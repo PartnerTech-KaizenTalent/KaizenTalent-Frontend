@@ -1,4 +1,4 @@
 export interface PostulanteSignin {
-    emailUsuario: string;
-    contraseñaUsuario: string;
+    usernameUsuario: string;
+    passwordUsuario: string;
 }

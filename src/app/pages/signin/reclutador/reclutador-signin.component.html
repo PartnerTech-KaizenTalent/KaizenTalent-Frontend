@@ -38,36 +38,32 @@
                         </div>
                         <form [formGroup]="reclutadorSigninForm" (ngSubmit)="SigninReclutador()">
                             <div class="input-group has-validation">
-                                <input (input)="AlertDefault()" class="form-control" type="text" name="emailUsuario" placeholder="Correo electrónico" aria-describedby="emailUsuario" required
-                                formControlName="emailUsuario"
+                                <input (input)="AlertDefault()" class="form-control" type="text" name="usernameUsuario" placeholder="Correo electrónico" aria-describedby="usernameUsuario" required
+                                formControlName="usernameUsuario"
                                 [ngClass]="{
-                                    'is-invalid': reclutadorSigninForm.controls['emailUsuario'].invalid && 
-                                                 (reclutadorSigninForm.controls['emailUsuario'].dirty || 
-                                                 reclutadorSigninForm.controls['emailUsuario'].touched) , 
-                                      'is-valid': reclutadorSigninForm.controls['emailUsuario'].valid}">
-                                <div id="emailUsuario" class="invalid-feedback">
-                                    <span class="text-danger" *ngIf="reclutadorSigninForm.controls['emailUsuario'].hasError('required')">
-                                        No puede dejar este campo vacío
+                                    'is-invalid': reclutadorSigninForm.controls['usernameUsuario'].invalid && 
+                                                 (reclutadorSigninForm.controls['usernameUsuario'].dirty || 
+                                                 reclutadorSigninForm.controls['usernameUsuario'].touched) , 
+                                      'is-valid': reclutadorSigninForm.controls['usernameUsuario'].valid}">
+                                <div id="usernameUsuario" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="reclutadorSigninForm.controls['usernameUsuario'].hasError('required')">
+                                        No puede dejar este campo usernameUsuario
                                     </span>
                                 </div>
-                                <div id="emailUsuario" class="invalid-feedback">
-                                    <span class="text-danger" *ngIf="reclutadorSigninForm.controls['emailUsuario'].hasError('email')">
-                                        Correo electrónico no válido
-                                    </span>
-                                </div>
+                                
                             </div>
                             <br>
                             <div class="input-group has-validation">
-                                <input (input)="AlertDefault()" class="form-control" type="password" name="contraseñaUsuario" placeholder="Contraseña" aria-describedby="contraseñaUsuario" required
-                                formControlName="contraseñaUsuario"
+                                <input (input)="AlertDefault()" class="form-control" type="password" name="passwordUsuario" placeholder="Contraseña" aria-describedby="passwordUsuario" required
+                                formControlName="passwordUsuario"
                                 [ngClass]="{
-                                    'is-invalid': reclutadorSigninForm.controls['contraseñaUsuario'].invalid && 
-                                                 (reclutadorSigninForm.controls['contraseñaUsuario'].dirty || 
-                                                  reclutadorSigninForm.controls['contraseñaUsuario'].touched) , 
-                                      'is-valid': reclutadorSigninForm.controls['contraseñaUsuario'].valid}">
+                                    'is-invalid': reclutadorSigninForm.controls['passwordUsuario'].invalid && 
+                                                 (reclutadorSigninForm.controls['passwordUsuario'].dirty || 
+                                                  reclutadorSigninForm.controls['passwordUsuario'].touched) , 
+                                      'is-valid': reclutadorSigninForm.controls['passwordUsuario'].valid}">
                                 <!--<i class="far fa-eye" id="clickme" style="cursor:pointer;"><span id="clickme" class="pwdtxt" style="cursor:pointer;"></span></i>-->
-                                <div id="contraseñaUsuario" class="invalid-feedback">
-                                    <span class="text-danger" *ngIf="reclutadorSigninForm.controls['contraseñaUsuario'].hasError('required')">
+                                <div id="passwordUsuario" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="reclutadorSigninForm.controls['passwordUsuario'].hasError('required')">
                                         No puede dejar este campo vacío
                                     </span>
                                 </div>

@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ReclutadorSignupRequest } from './reclutador-signup-interface';
 import { Observable } from 'rxjs';
 import { GlobalUrl } from 'src/app/util/global-url';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -16,22 +20,11 @@ export class ReclutadorSignupService {
 
   auxlogo = new File([], '');
 
-  SignUpReclutador(usuario: ReclutadorSignupRequest, logoempresa: File): Observable<any> {
-
-    const reclutadordata = new Blob([JSON.stringify(usuario)], {type: 'application/json'})
-
-    var reclutador: FormData = new FormData();
-
-    reclutador.append('usuario', reclutadordata);
-
-    if (logoempresa != null) {
-      reclutador.append('logo', logoempresa);
-    } else {
-      reclutador.append('logo', this.auxlogo);
-    }
-    
+  SignUpReclutador(usuario: ReclutadorSignupRequest): Observable<any> {  
+        
     return this.http.post(
       this.API_URL, 
-      reclutador);
+      usuario,
+      httpOptions);
   }
 }

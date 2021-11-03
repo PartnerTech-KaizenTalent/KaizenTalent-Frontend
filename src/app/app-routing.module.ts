@@ -24,6 +24,7 @@ import { ContactanosComponent } from './pages/contactanos/contactanos.component'
 import { PublicacionesComponent } from './pages/profile/reclutador/publicaciones/publicaciones.component';
 import { HeadhuntingComponent } from './pages/headhunting/headhunting.component';
 import { PostulanteDetailComponent } from './pages/headhunting/postulante-detail/postulante-detail.component'
+import { ReclutadorVerifyComponent } from './pages/signup/reclutador/reclutador-verify/reclutador-verify.component';
 
 
 
@@ -35,6 +36,8 @@ const routes: Routes = [
   { path: 'signup/postulante/verify/:token', component: PostulanteVerifyComponent, data: { title: 'Verificar Registro | Kaizen Talent' } },
 
   { path: 'signup/reclutador', component: ReclutadorSignupComponent, data: { title: 'Registro Reclutador | Kaizen Talent' } },
+  { path: 'signup/reclutador/verify/:token', component: ReclutadorVerifyComponent, data: { title: 'Verificar Registro | Kaizen Talent' } },
+
 
   { path: 'reclutador/:idReclutador/profile', component: ReclutadorProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },
   { path: 'postulante/:idPostulante/profile', component: PostulanteProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },

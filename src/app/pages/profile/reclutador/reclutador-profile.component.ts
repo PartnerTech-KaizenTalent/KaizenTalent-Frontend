@@ -118,9 +118,8 @@ export class ReclutadorProfileComponent implements OnInit {
   GetProfileBasicInfo() {
 
     this.currentReclutador = this.tokenService.getUser();
-    this.idReclutador = this.currentReclutador.idReclutador;
 
-    this.reclutadorprofileService.BasicInfo(this.currentReclutador.idReclutador).subscribe(
+    this.reclutadorprofileService.BasicInfo(this.currentReclutador.idUsuario).subscribe(
       data => {
         this.basicinfoData = data;
         this.basicInfo.nombreReclutador = this.basicinfoData.nombreReclutador,

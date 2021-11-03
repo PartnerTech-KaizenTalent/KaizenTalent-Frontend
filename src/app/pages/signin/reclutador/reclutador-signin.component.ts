@@ -33,14 +33,14 @@ export class ReclutadorSigninComponent implements OnInit {
 
   public reclutadorSigninForm = this.fb.group({
     
-    emailUsuario: new FormControl('', Validators.compose([
+    usernameUsuario: new FormControl('', Validators.compose([
       Validators.required,
-      Validators.email
     ])), 
 
-    contraseñaUsuario: new FormControl('', 
+    passwordUsuario: new FormControl('', 
     Validators.required)
   });
+  
   userToken: any;
   alert: any = {};
   constructor(private tokenstorageService : TokenStorageService, 
@@ -88,10 +88,9 @@ export class ReclutadorSigninComponent implements OnInit {
   }
 
   SigninReclutador() : void{
-    var reclutador: ReclutadorSignin = {
-
-      emailUsuario: this.reclutadorSigninForm.controls['emailUsuario'].value,
-      contraseñaUsuario: this.reclutadorSigninForm.controls['contraseñaUsuario'].value
+    var reclutador: ReclutadorSignin = {      
+      usernameUsuario: this.reclutadorSigninForm.controls['usernameUsuario'].value,
+      passwordUsuario: this.reclutadorSigninForm.controls['passwordUsuario'].value
     }
 
     this.reclutadorService.SignInReclutador(reclutador).subscribe(
@@ -100,7 +99,7 @@ export class ReclutadorSigninComponent implements OnInit {
         this.tokenstorageService.saveUser(data);
         this.loggedReclutador = this.tokenstorageService.getUser();
         $('#start').css('cursor', 'default');
-        this.router.navigate(['/reclutador/' + this.loggedReclutador.idReclutador + '/profile']);
+        this.router.navigate(['/reclutador/' + this.loggedReclutador.idUsuario + '/profile']);
       },
       err => {
         console.log(err);

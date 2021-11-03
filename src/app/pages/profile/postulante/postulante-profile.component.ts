@@ -140,11 +140,9 @@ export class PostulanteProfileComponent implements OnInit {
 
   getprofileBasicInfo() {
     this.currentPostulante = this.tokenService.getUser();
-    this.idPostulante = this.currentPostulante.idPostulante;
 
-    this.postulanteprofileService.BasicInfo(this.currentPostulante.idPostulante).subscribe(
+    this.postulanteprofileService.BasicInfo(this.currentPostulante.idUsuario).subscribe(
       data => {
-        this.basicinfoData = data;
         this.basicInfo.nombrePostulante = this.basicinfoData.nombrePostulante + ' ' + this.basicinfoData.apellidoPostulante,
         this.basicInfo.apellidoPostulante = this.basicinfoData.apellidoPostulante,
         this.basicInfo.direccionPostulante = this.basicinfoData.direccionPostulante,

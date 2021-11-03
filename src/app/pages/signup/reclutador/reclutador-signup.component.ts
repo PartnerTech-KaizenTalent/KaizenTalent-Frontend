@@ -27,6 +27,14 @@ declare const $:any;
     text-align: center;
     margin-top: 20px;
   }
+
+  .alert-valid {
+    color: #ffffff;
+    background-color: #29CF2C;
+    border-color: #29CF2C;
+    text-align: center;
+    margin-top: 20px;
+  }
 `]
 })
 export class ReclutadorSignupComponent implements OnInit {
@@ -83,8 +91,14 @@ export class ReclutadorSignupComponent implements OnInit {
       Validators.min(10000000000),
       Validators.max(99999999999)
     ])),
+    
+    usernameUsuario: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(20),
+    ])),    
 
-    contraseñaUsuario: new FormControl('', Validators.compose([
+    passwordUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(8),
       CustomValidators.patternValidator(/\d/, { passwordnumber: true }),
@@ -93,20 +107,19 @@ export class ReclutadorSignupComponent implements OnInit {
       CustomValidators.patternValidator(/[@#$:\^%&]/, {passwordspecialcharacter: true})
     ])),
 
-    nombrecontactanteUsuario: new FormControl('', Validators.compose([
+    contactanteempresaUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(100),
       Validators.pattern("([a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+( [a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+)*)")
     ])),
 
-    tamañoempresaUsuario: new FormControl('', 
+    tamanioempresaUsuario: new FormControl('', 
     Validators.required),
     
     checkear: new FormControl('', 
     Validators.required),
 
-    imagenUsuario: new FormControl(null)
   }); 
   
 
@@ -174,15 +187,16 @@ export class ReclutadorSignupComponent implements OnInit {
   }
 
   guardarReclutador(): void {
-
+    
     var usuario: ReclutadorSignupRequest = {
       nombreUsuario: this.reclutadorsignupForm.controls['nombreUsuario'].value,
       ciudadUsuario: this.reclutadorsignupForm.controls['ciudadUsuario'].value,
       emailUsuario: this.reclutadorsignupForm.controls['emailUsuario'].value,
       numerodocumentoUsuario: this.reclutadorsignupForm.controls['numerodocumentoUsuario'].value,
-      contraseñaUsuario: this.reclutadorsignupForm.controls['contraseñaUsuario'].value,
-      nombrecontactanteUsuario: this.reclutadorsignupForm.controls['nombrecontactanteUsuario'].value,
-      tamañoempresaUsuario: this.reclutadorsignupForm.controls['tamañoempresaUsuario'].value
+      passwordUsuario: this.reclutadorsignupForm.controls['passwordUsuario'].value,
+      usernameUsuario: this.reclutadorsignupForm.controls['usernameUsuario'].value,
+      contactanteempresaUsuario: this.reclutadorsignupForm.controls['contactanteempresaUsuario'].value,
+      tamanioempresaUsuario: this.reclutadorsignupForm.controls['tamanioempresaUsuario'].value
     }
 
     if (this.reclutadorsignupForm.invalid) {
@@ -194,12 +208,13 @@ export class ReclutadorSignupComponent implements OnInit {
       this.Datalist = this.Ciudades.filter(x => x.value === this.eleccion)[0];
       console.log(this.Datalist.value);
 
-      this.reclutadorsignupServie.SignUpReclutador(usuario, this.subirLogo()).subscribe(
+      this.reclutadorsignupServie.SignUpReclutador(usuario).subscribe(
         data => { 
           console.log(data);
+          this.alert.type = 'valid';  
+          this.alert.message = data.message;
           this.signupSuccess = true;
           $('#start').css('cursor', 'default');
-          this.router.navigate(['/signin/reclutador']); 
         },
   
         err => {

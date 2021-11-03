@@ -40,14 +40,14 @@ export class PostulanteSigninComponent implements OnInit {
 
   public postulanteSigninForm = this.fb.group({
     
-    emailUsuario: new FormControl('', Validators.compose([
-      Validators.required,
-      Validators.email
+    usernameUsuario: new FormControl('', Validators.compose([
+      Validators.required
     ])), 
 
-    contraseñaUsuario: new FormControl('', 
-    Validators.required)
+    passwordUsuario: new FormControl('', 
+      Validators.required)
   });
+
   userToken: any;
 
   constructor(private tokenstorageService : TokenStorageService, 
@@ -94,9 +94,10 @@ export class PostulanteSigninComponent implements OnInit {
   }
 
   SigninPostulante() : void{
+    
     var postulante: PostulanteSignin = {
-      emailUsuario: this.postulanteSigninForm.controls['emailUsuario'].value,
-      contraseñaUsuario: this.postulanteSigninForm.controls['contraseñaUsuario'].value
+      usernameUsuario: this.postulanteSigninForm.controls['usernameUsuario'].value,
+      passwordUsuario: this.postulanteSigninForm.controls['passwordUsuario'].value
     }
 
     this.postulanteService.SignInPostulante(postulante).subscribe(
@@ -105,7 +106,7 @@ export class PostulanteSigninComponent implements OnInit {
         this.tokenstorageService.saveUser(data);
         this.loggedPostulante = this.tokenstorageService.getUser();
         $('#start').css('cursor', 'default');
-        this.router.navigate(['/postulante/' + this.loggedPostulante.idPostulante + '/profile']);
+        this.router.navigate(['/postulante/' + this.loggedPostulante.idUsuario + '/profile']);
       },
 
       err => {
