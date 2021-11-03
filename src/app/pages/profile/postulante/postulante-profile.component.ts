@@ -149,6 +149,7 @@ export class PostulanteProfileComponent implements OnInit {
         this.basicInfo.direccionPostulante = this.basicinfoData.direccionPostulante;
         this.basicInfo.ciudadPostulante = this.basicinfoData.ciudadPostulante;
         this.basicInfo.emailPostulante = this.basicinfoData.emailPostulante;
+        this.tokenService.saveEmail(this.basicInfo.emailPostulante);
         this.basicInfo.telefonoPostulante = this.basicinfoData.telefonoPostulante;
         this.basicInfo.descripcionPostulante = this.basicinfoData.descripcionPostulante;
         this.basicInfo.tituloPostulante = this.basicinfoData.tituloPostulante;

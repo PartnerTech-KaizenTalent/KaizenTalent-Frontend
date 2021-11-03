@@ -128,6 +128,8 @@ export class ReclutadorProfileComponent implements OnInit {
         this.basicInfo.direccionReclutador = this.basicinfoData.direccionReclutador,
         this.basicInfo.ciudadReclutador = this.basicinfoData.ciudadReclutador,
         this.basicInfo.emailReclutador = this.basicinfoData.emailReclutador,
+        this.tokenService.saveEmail(this.basicInfo.emailReclutador);
+
         this.basicInfo.telefonoReclutador = this.basicinfoData.telefonoReclutador,
         this.basicInfo.nombrecontactanteReclutador = this.basicinfoData.nombrecontactanteReclutador,
         this.basicInfo.logoempresaReclutador = this.basicinfoData.logoempresaReclutador.urlImagen              

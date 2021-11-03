@@ -230,20 +230,13 @@ export class NavigationComponent implements OnInit {
   }
 
   PasswordRequest(): void{
-    this.bpostulante = this.tokens.getUser();
-    
-    if(this.bpostulante.emailPostulante){
-      this.bpostulante.email = this.bpostulante.emailPostulante
-    }
+    this.bpostulante = this.tokens.getEmail();  
 
-    if(this.bpostulante.emailReclutador){
-      this.bpostulante.email = this.bpostulante.emailReclutador
+    var passwordRequest: PasswordRequest = {
+      emailUsuario:  this.bpostulante
     }
-
-      var passwordRequest: PasswordRequest = {
-        emailUsuario:  this.bpostulante.email
-      }
     
+
     this.passwordrequestService.PasswordRequest(passwordRequest).subscribe(
       data => {
         
