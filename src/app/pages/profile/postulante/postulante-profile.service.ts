@@ -26,7 +26,7 @@ export class PostulanteProfileService {
       `${this.API_URL}/${id}/profile/basicinfo`);
   }
 
-  updateLogo(foto:File, id:any): Observable<any> {
+  updateLogo(id:any, foto:File): Observable<any> {
 
     var postulante: FormData = new FormData();
 
@@ -42,14 +42,14 @@ export class PostulanteProfileService {
     )
   }
 
-  updatecv(cv:File, id:any): Observable<any> {
+  updatecv(id:any, cv:File ): Observable<any> {
 
     var postulante: FormData = new FormData();
 
     if (cv != null) {
-      postulante.append('archivocv', cv);
+      postulante.append('cv', cv);
     }else {
-      postulante.append('archivocv', this.auxcv);
+      postulante.append('cv', this.auxcv);
     }
     
     return this.http.put(
@@ -58,10 +58,11 @@ export class PostulanteProfileService {
     )
   }
 
-  UpdateBasicInfo(postulante: BasicInfoPostulanteProfile, id: any): Observable<any> {
+  UpdateBasicInfo(id: any, postulante: BasicInfoPostulanteProfile): Observable<any> {
     return this.http.put(
-      this.API_URL + `/${id}/update/fields`,
+      this.API_URL + `/${id}/update/basicinfo`,
       postulante,
       httpOptions);
   }
+
 }

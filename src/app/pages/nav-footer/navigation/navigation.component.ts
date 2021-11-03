@@ -40,6 +40,10 @@ export class NavigationComponent implements OnInit {
   expirar: any;
   expiradaso: any;
   bpostulante: any;
+  reclutador: any;
+  postulante: any;
+  idr: any;
+  idp: any;
 
   constructor(private tokens: TokenStorageService,
               private router:Router,
@@ -51,7 +55,6 @@ export class NavigationComponent implements OnInit {
     this.Expirado();
     this.MovimientoToken();
     this.MenuNavbar();
-
   }
 
   open(content:any) {
@@ -59,9 +62,30 @@ export class NavigationComponent implements OnInit {
   }
   
   general(){
-    if(this.tokens.getUser()){
-      this.UsuarioToken = this.tokens.getUser()
-      if(this.UsuarioToken.idReclutador !== undefined ){   
+
+    this.UsuarioToken = this.tokens.getUser();
+    
+
+    if(this.UsuarioToken.token){
+      this.UsuarioToken = this.tokens.getUser();
+      var a = this.UsuarioToken.authorities[0];
+      console.log(a.authority)
+
+      switch (a.authority) {
+        case 'ROLE_RECLUTADOR':   
+            this.reclutador = a.authority;   
+            this.idr = this.UsuarioToken.idUsuario    
+          break;
+        case 'ROLE_POSTULANTE': 
+            this.postulante = a.authority;
+            this.idp = this.UsuarioToken.idUsuario
+          break;      
+        default:
+          break;
+      }
+      console.log(this.UsuarioToken)
+
+      if(this.reclutador !== undefined ){   
         this.isMostrar = true;
         this.isMostrarIngresar = false;
         this.cerrarSesion = true;  
@@ -70,7 +94,7 @@ export class NavigationComponent implements OnInit {
         this.misPublicaciones = true;
       }          
 
-      if(this.UsuarioToken.idPostulante !== undefined ){       
+      if(this.postulante !== undefined ){       
         this.isMostrar = true;
         this.isMostrarIngresar = false;
         this.cerrarSesion = true;
@@ -78,21 +102,38 @@ export class NavigationComponent implements OnInit {
         this.misPostulaciones = true;  
       }
     }
-    if(this.tokens.getToken() === null || this.UsuarioToken.idReclutador == "" || this.UsuarioToken.idPostulante == ""){
+
+    if(this.tokens.getToken() === null || this.reclutador == "" || this.postulante == ""){
       this.tokens.signOut();
       this.loginPostulante = true;
       this.loginReclutador = true;       
     }
-  }
+  }            
  
   Salir(){
-    this.salir = this.tokens.getUser()
-    if(this.salir.idPostulante !== undefined){
+    this.salir = this.tokens.getUser();
+
+      var a = this.salir.authorities[0];
+      console.log(a.authority)
+
+      switch (a.authority) {
+        case 'ROLE_RECLUTADOR':   
+            this.reclutador = a.authority;  
+                 
+          break;
+        case 'ROLE_POSTULANTE': 
+            this.postulante = a.authority;
+          break;      
+        default:
+          break;
+      }
+
+    if(this.reclutador !== undefined){
       this.tokens.signOut();
-      window.location.href ='/signin/postulante';
+      window.location.href ='/signin/reclutador';
     }else{
       this.tokens.signOut();
-      window.location.href = '/signin/reclutador';
+      window.location.href = '/signin/postulante';
     }    
   }
 
@@ -124,11 +165,27 @@ export class NavigationComponent implements OnInit {
   
   BtnAlerclose(){
     if(this.expiradaso == 'expirado'){
-      if(this.UsuarioToken.idPostulante !== undefined){
+
+      this.UsuarioToken = this.tokens.getUser();
+      var a = this.UsuarioToken.authorities[0];
+
+      switch (a.authority) {
+        case 'ROLE_RECLUTADOR':   
+            this.reclutador = a.authority;       
+          break;
+        case 'ROLE_POSTULANTE': 
+            this.postulante = a.authority;
+          break;      
+        default:
+          break;
+      }
+      console.log(this.postulante)
+
+      if(this.postulante !== undefined){
         this.tokens.signOut();
         window.location.href ='/signin/postulante';
       }
-      if(this.UsuarioToken.idReclutador !== undefined){
+      if(this.reclutador !== undefined){
         this.tokens.signOut();
         window.location.href = '/signin/reclutador';
       }
@@ -174,7 +231,7 @@ export class NavigationComponent implements OnInit {
 
   PasswordRequest(): void{
     this.bpostulante = this.tokens.getUser();
-
+    
     if(this.bpostulante.emailPostulante){
       this.bpostulante.email = this.bpostulante.emailPostulante
     }
