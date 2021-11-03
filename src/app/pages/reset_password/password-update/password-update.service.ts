@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class PasswordUpdateService {
 
-  private API_URL = GlobalUrl.BASE_URL + 'api';
+  private API_URL = GlobalUrl.BASE_URL + 'api/restore_password/update';
 
   constructor(private http: HttpClient) { }
 
@@ -26,9 +26,9 @@ export class PasswordUpdateService {
   PasswordUpdate(passwordUpdate: PasswordUpdate): Observable<any> {
 
     return this.http.put(
-      this.API_URL + `/forgotpassword/update`,
+      this.API_URL,
       passwordUpdate,
       httpOptions
-      );
+    );
   }
 }

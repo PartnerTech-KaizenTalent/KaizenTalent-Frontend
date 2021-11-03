@@ -57,21 +57,30 @@ export class PasswordUpdateComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //link https://dessmo-1a622.web.app/   (29)    
+  //local
+  //this.token = location.href.slice(39); 
+  //producción     
+  // location.href.slice(46); 
+
   PasswordUpdate(): any {
+
+    this.token = location.href.slice(39)
+
     var passwordUpdate: PasswordUpdate = {
-      contrasenia: this.passwordupdateForm.controls['contrasenia'].value,
-      token: this.token || ""
+      passwordUsuario: this.passwordupdateForm.controls['contrasenia'].value,
+      utilityToken: this.token || ""
     }
     
     this.passwordupdateService.PasswordUpdate(passwordUpdate).subscribe(
       data => {
         console.log(data);
-        this.tokenstorage.signOut();
-        window.location.href = '/';
+        this.errorMessage = data.message;
       },
 
       err => {
         this.errorMessage = err.error.message;
+        console.log(err);
 
         this.alert.type = 'invalid';
         this.alert.message = this.errorMessage;

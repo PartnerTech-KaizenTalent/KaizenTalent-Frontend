@@ -25,6 +25,7 @@ import { PublicacionesComponent } from './pages/profile/reclutador/publicaciones
 import { HeadhuntingComponent } from './pages/headhunting/headhunting.component';
 import { PostulanteDetailComponent } from './pages/headhunting/postulante-detail/postulante-detail.component'
 import { ReclutadorVerifyComponent } from './pages/signup/reclutador/reclutador-verify/reclutador-verify.component';
+import { Error403Component } from './pages/error403/error403.component';
 
 
 
@@ -38,13 +39,20 @@ const routes: Routes = [
   { path: 'signup/reclutador', component: ReclutadorSignupComponent, data: { title: 'Registro Reclutador | Kaizen Talent' } },
   { path: 'signup/reclutador/verify/:token', component: ReclutadorVerifyComponent, data: { title: 'Verificar Registro | Kaizen Talent' } },
 
+  { path: 'error/403', component: Error403Component, data: { title: 'Ocurrió un Error | Kaizen Talent' } },
+
+
 
   { path: 'reclutador/:idReclutador/profile', component: ReclutadorProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },
   { path: 'postulante/:idPostulante/profile', component: PostulanteProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },
   { path: '', component: IndexComponent, data: { title: 'Kaizen Talent' }},
   { path: 'index', component: IndexComponent, data: { title: 'Kaizen Talent' }},
+
   { path: 'password/request', component: PasswordRequestComponent, data: {title: 'Recupera tu contraseña - Kaizen Talent '}},
-  { path: 'password/update', component: PasswordUpdateComponent },
+
+  { path: 'restore/password/:token', component: PasswordUpdateComponent, data: {title: 'Recupera tu contraseña - Kaizen Talent '}},
+  
+  
   { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:EmpleoDetailComponent},
   { path: 'home/show/all', component:ListaTrabajosComponent },
   { path: 'postulante/:idPostulante/postulaciones', component:PostulacionesComponent},

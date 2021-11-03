@@ -47,24 +47,20 @@ export class PasswordRequestComponent implements OnInit {
   ngOnInit(): void {}
 
   PasswordResetRequest(): void{
-    var passwordRequest: PasswordRequest = {
-
+    var emailRequest: PasswordRequest = {
       emailUsuario: this.passwordrequestForm.controls['emailUsuario'].value
     }
 
-    this.passwordrequestService.PasswordRequest(passwordRequest).subscribe(
+    this.passwordrequestService.PasswordRequest(emailRequest).subscribe(
       data => {
-        this.passwordrequestData = data;
-        localStorage.setItem('passwordresetToken', this.passwordrequestData.passwordresetToken);
-        console.log(this.passwordrequestData);
-
+        this.passwordrequestData = data;   
+        console.log(data)
         this.alert.type = 'valid';
-        this.alert.message = this.passwordrequestData.passwordresetMessage;
+        this.alert.message = this.passwordrequestData.message;
       },
 
       err => {
         this.errorMessage = err.error.message;
-
         this.alert.type = 'invalid';
         this.alert.message = this.errorMessage;
       }

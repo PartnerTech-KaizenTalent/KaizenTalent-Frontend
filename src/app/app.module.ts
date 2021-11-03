@@ -17,6 +17,7 @@ import { ListaTrabajosModule } from './pages/lista-trabajos/lista-trabajos.modul
 import { ContactanosModule } from './pages/contactanos/contactanos.module';
 import { NavFooterModule } from './pages/nav-footer/nav-footer.module';
 import { HeadhuntingModule } from './pages/headhunting/headhunting.module';
+import { Error403Module } from './pages/error403/error403.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HeadhuntingModule } from './pages/headhunting/headhunting.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    Error403Module,
     SigninModule,
     SignupModule,
     ProfileModule,
