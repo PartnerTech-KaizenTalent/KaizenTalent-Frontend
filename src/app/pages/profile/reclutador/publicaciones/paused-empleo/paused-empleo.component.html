@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <title>Empleos - Kaizen Talent</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />
+
+        <!-- Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!--  Datatables  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
+
+        <!--  extension responsive  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+        <!-- CSS -->
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/empleosreclutador.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+        <!-- selectize css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+        <title></title>
+
+        
+    </head>
+
+    <body>        
+        <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+                <h4 class="text-dark">Empleos Pausados :</h4>
+                    <br> 
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th id="nombreEmpleo" colspan="4" scope="col">Nombre del Empleo</th>
+                                <th colspan="2" scope="col">Estado</th>
+                                <th colspan="1" scope="col">Candidatos</th>
+                                <th colspan="3" scope="col">Enlace</th>
+                                <th colspan="3" scope="col">Detalle</th>
+                                <th colspan="3" scope="col">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" *ngFor="let listpausa of ListPaused | paginate: { id:'listpaused', itemsPerPage: 5, currentPage: p }">
+                                    <td colspan="2" id="nombrePuesto">{{listpausa.nombrePuestoTrabajo}}</td>
+                                    <td id="estadoPuesto" colspan="4">{{listpausa.estadoPuestoTrabajo}}</td>
+                                    <td id="cantidadPostulante" colspan="1">{{listpausa.cantidadPostulantes}}</td>
+                                    <td id="irAPubli" colspan="3"><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verDetalle()" style="color: #2f55d4;">Ir a publicación</a></td>
+                                    <td id="verCandidatos" colspan="3"><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verPostulantes()" style="color: #2f55d4;">Ver Candidatos</a></td>
+                                    <td id="accionesPublicaciones"colspan="3" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)">
+                                        <a href="#deletePausedModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                                        <a href="#reanudarPausedModal" class="delete" data-toggle="modal"><i style="color: #824EA9;" class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
+                                    </td>                       
+                                  </tr>
+                            </tbody>
+                        </table>
+                          <br>
+                        <pagination-controls class="ngx-pagination" id="listpaused" (pageChange)="p = $event" previousLabel="" nextLabel="">    
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reanudarPausedModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="ActivarEmpleo()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Reanudar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas reanudar esta publicación?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Reanudar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="deletePausedModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="EliminarEmpleo()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Eliminar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas eliminar esta publicación?</p>
+                            <p class="text-warning"><small>Esta acción no se puede deshacer</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Eliminar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <title>Empleos - Kaizen Talent</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />
+
+        <!-- Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!--  Datatables  -->
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>   -->
+
+        <!--  extension responsive  -->
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/pagination-table.css" />
+
+        <!-- CSS -->
+
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/style.css" /> -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/styletablareclutador.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/empleosreclutador.css" /> -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+        <!-- selectize css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+        
+
+        <title></title>
+    </head>
+
+    
+
+    <body>
+        
+        <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+                <h4 class="text-dark">Empleos Activos :</h4>
+                    <br> 
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th id="nombreEmpleo" colspan="4" scope="col">Nombre del Empleo</th>
+                                <th colspan="2" scope="col">Estado</th>
+                                <th colspan="1" scope="col">Candidatos</th>
+                                <th colspan="3" scope="col">Enlace</th>
+                                <th colspan="3" scope="col">Detalle</th>
+                                <th colspan="3" scope="col">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" *ngFor="let listactivo of ListActive | paginate: { id:'listactive', itemsPerPage: 5, currentPage: p } ">
+                                    <td colspan="2" id="nombrePuesto">{{listactivo.nombrePuestoTrabajo}}</td>
+                                    <td id="estadoPuesto" colspan="4">{{listactivo.estadoPuestoTrabajo}}</td>
+                                    <td id="cantidadPostulante" colspan="1">{{listactivo.cantidadPostulantes}}</td>
+                                    <td id="irAPubli" colspan="3"><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verDetalle()" style="color: #2f55d4;">Ir a publicación</a></td>
+                                    <td id="verCandidatos" colspan="3"><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verPostulantes()" style="color: #2f55d4;">Ver Candidatos</a></td>
+                                    <td id="accionesPublicaciones"colspan="3" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)">
+                                        <a href="#editActiveModal" class="edit" data-toggle="modal"> <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                                        <a href="#deleteActiveModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                                        <a href="#pauseActiveModal" class="delete" data-toggle="modal"><i style="color: #824EA9;" class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
+                                    </td>                       
+                                  </tr>
+                            </tbody>
+                            
+                        </table>
+                        <br>
+                        <pagination-controls class="ngx-pagination" id="listactive" (pageChange)="p = $event" previousLabel="" nextLabel="">    
+                        </pagination-controls>
+                    </div>
+                                        
+                </div> 
+            </div>    
+        </div>
+
+        <div id="pauseActiveModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="PausaEmpleoActive()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Pausar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas pausar esta publicación?</p>
+                            <p class="text-warning"><small>Podrás volver a activar la publicación desde empleos publicados.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Pausar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="deleteActiveModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="BorrarEmpleoActive()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Eliminar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas eliminar esta publicación?</p>
+                            <p class="text-warning"><small>Esta acción no se puede deshacer</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Eliminar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Corregido -->
+        <form [formGroup]="puestosupdateform" (ngSubmit)="ActualizarEmpleo()">
+            <div class="modal fullscreen-modal fade" id="editActiveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <div class="rounded shadow bg-white p-4">
+                                    <div class="custom-form">
+                                        <div class="modal-content" style="border: transparent;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Empleo</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>                                          
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Título del puesto </label>
+                                                            <input id="company-name" type="text" class="form-control resume" placeholder=""  name="nombrePuestoTrabajo" id="nombrePuestoTrabajo"
+                                                                formControlName="nombrePuestoTrabajo" [ngModel]="nombrePuestoTrabajo" required
+                                                                
+                                                                [ngClass]="{
+                                                                    'is-invalid': puestosupdateform.controls['nombrePuestoTrabajo'].invalid && 
+                                                                                (puestosupdateform.controls['nombrePuestoTrabajo'].dirty || 
+                                                                                puestosupdateform.controls['nombrePuestoTrabajo'].touched) , 
+                                                                    'is-valid': puestosupdateform.controls['nombrePuestoTrabajo'].valid}">
+
+                                                            <div class="invalid-feedback">
+                                                                <span class="text-danger" *ngIf="puestosupdateform.controls['nombrePuestoTrabajo'].hasError('required')">
+                                                                            No puede dejar este campo vacío
+                                                                </span>
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                <span class="text-danger" *ngIf="puestosupdateform.controls['nombrePuestoTrabajo'].hasError('minlength')">
+                                                                        Debe contener al menos 5 caracteres
+                                                                </span>
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                <span class="text-danger" *ngIf="puestosupdateform.controls['nombrePuestoTrabajo'].hasError('maxlength')">
+                                                                        Debe contener como maximo 50 caracteres
+                                                                </span>
+                                                            </div>
+                                                                                                       
+                                                        </div>                                                    
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Tipo de Jornada</label>
+                                                            <div class="form-button">
+
+                                                                <input  (change)="savejor($event)" type="form-control required" class="form-control demo-default" list="tpostulacion" name="tipojornadaPuestoTrabajo" onfocus="this.value=''"
+                                                                            placeholder="Tipo de Jornada" formControlName="tipojornadaPuestoTrabajo" [ngModel]="tipojornadaPuestoTrabajo" required 
+                                                                            [ngClass]="{
+                                                                                'is-invalid': puestosupdateform.controls['tipojornadaPuestoTrabajo'].invalid && 
+                                                                                            (puestosupdateform.controls['tipojornadaPuestoTrabajo'].dirty || 
+                                                                                            puestosupdateform.controls['tipojornadaPuestoTrabajo'].touched) , 
+                                                                                'is-valid': puestosupdateform.controls['tipojornadaPuestoTrabajo'].valid}">
+
+                                                                <datalist id="tpostulacion">
+                                                                    <option *ngFor="let tpostulacion of TipoPostulacion" value="{{tpostulacion.value}}">{{tpostulacion.text}}</option>       
+                                                                </datalist>
+
+                                                                <div class="invalid-feedback">
+                                                                    <span class="text-danger" *ngIf="puestosupdateform.controls['tipojornadaPuestoTrabajo'].hasError('required')">
+                                                                                No puede dejar este campo vacío
+                                                                    </span>
+                                                                </div>     
+                                                                <p style="color: red; font-size: 13px;">{{msgerrorjor}}</p>                                                                                             
+                                                            </div>                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Ciudad</label>
+                                                            <div class="form-button">
+                                                                <input (change)="savecity($event)" type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
+                                                                        onfocus="this.value=''" formControlName="ciudadPuestoTrabajo" [ngModel]="ciudadPuestoTrabajo"  required
+                                                                        [ngClass]="{
+                                                                            'is-invalid': puestosupdateform.controls['ciudadPuestoTrabajo'].invalid && 
+                                                                                        (puestosupdateform.controls['ciudadPuestoTrabajo'].dirty || 
+                                                                                        puestosupdateform.controls['ciudadPuestoTrabajo'].touched) , 
+                                                                            'is-valid': puestosupdateform.controls['ciudadPuestoTrabajo'].valid}" >
+                                                                <datalist id="ciudad">
+                                                                    <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
+                                                                </datalist>
+
+                                                                <div class="invalid-feedback">
+                                                                    <span class="text-danger" *ngIf="puestosupdateform.controls['ciudadPuestoTrabajo'].hasError('required')">
+                                                                                No puede dejar este campo vacío
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <p style="color: red; font-size: 13px;">{{msgerrorcity}}</p>
+                                                        </div>
+                                                    </div>                                    
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Sueldo</label>
+                                                            <input type="number"  class="form-control resume" placeholder="" formControlName="sueldoPuestoTrabajo" [ngModel]="sueldoPuestoTrabajo" required 
+                                                                [ngClass]="{
+                                                                    'is-invalid': puestosupdateform.controls['sueldoPuestoTrabajo'].invalid && 
+                                                                                (puestosupdateform.controls['sueldoPuestoTrabajo'].dirty || 
+                                                                                puestosupdateform.controls['sueldoPuestoTrabajo'].touched) , 
+                                                                    'is-valid': puestosupdateform.controls['sueldoPuestoTrabajo'].valid}">
+                                                            <div class="invalid-feedback">
+                                                                <span class="text-danger" *ngIf="puestosupdateform.controls['sueldoPuestoTrabajo'].hasError('required')">
+                                                                        No puede dejar este campo vacío
+                                                                </span>
+                                                            </div> 
+                                                                 
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Categoría de Empleo</label>
+                                                            <div class="form-button">
+                                                                <input  (change)="savecat($event)" type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
+                                                                        onfocus="this.value=''" formControlName="categoriaPuestoTrabajo" [ngModel]="categoriaPuestoTrabajo" required 
+                                                                        [ngClass]="{
+                                                                            'is-invalid': puestosupdateform.controls['categoriaPuestoTrabajo'].invalid && 
+                                                                                        (puestosupdateform.controls['categoriaPuestoTrabajo'].dirty || 
+                                                                                        puestosupdateform.controls['categoriaPuestoTrabajo'].touched) , 
+                                                                            'is-valid': puestosupdateform.controls['categoriaPuestoTrabajo'].valid}">
+                                                                <datalist id="categoria">
+                                                                    <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>                           
+                                                                </datalist>
+                                                                <div class="invalid-feedback">
+                                                                    <span class="text-danger" *ngIf="puestosupdateform.controls['categoriaPuestoTrabajo'].hasError('required')">
+                                                                            No puede dejar este campo vacío
+                                                                    </span>
+                                                                </div>
+                                                                <p style="color: red; font-size: 13px;">{{msgerrorcat}}</p> 
+                                                            </div>
+                                                        </div>
+                                                    </div>                                   
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Tiempo de Experiencia</label>
+                                                            <div class="form-button">
+                                                                <input  (change)="savetime($event)" type="form-control" class="form-control demo-default" list="experiencia" placeholder="Experiencia" 
+                                                                onfocus="this.value=''" formControlName="experienciaPuestoTrabajo" [ngModel]="experienciaPuestoTrabajo"  required
+                                                                        [ngClass]="{
+                                                                            'is-invalid': puestosupdateform.controls['experienciaPuestoTrabajo'].invalid && 
+                                                                                        (puestosupdateform.controls['experienciaPuestoTrabajo'].dirty || 
+                                                                                        puestosupdateform.controls['experienciaPuestoTrabajo'].touched) , 
+                                                                            'is-valid': puestosupdateform.controls['experienciaPuestoTrabajo'].valid}">
+                                                                <datalist id="experiencia">
+                                                                    <option *ngFor="let experiencia of Experiencia" value="{{experiencia.text}}" >{{experiencia.text}}</option>                           
+                                                                </datalist>
+                                                                <div class="invalid-feedback">
+                                                                    <span class="text-danger" *ngIf="puestosupdateform.controls['experienciaPuestoTrabajo'].hasError('required')">
+                                                                            No puede dejar este campo vacío
+                                                                    </span>
+                                                                </div>
+                                                                <p style="color: red; font-size: 13px;">{{msgerrortime}}</p> 
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    
+                                                    <div class="col-md-6">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Modalidad del Puesto de Trabajo</label>
+                                                            <div class="form-button">
+                                                                <input  (change)="savemod($event)" type="form-control" class="form-control demo-default" list="remoto" placeholder="Modalidad" 
+                                                                        onfocus="this.value=''"   formControlName="trabajoremotoPuestoTrabajo" [ngModel]="trabajoremotoPuestoTrabajo" required 
+                                                                        [ngClass]="{
+                                                                            'is-invalid': puestosupdateform.controls['trabajoremotoPuestoTrabajo'].invalid && 
+                                                                                        (puestosupdateform.controls['trabajoremotoPuestoTrabajo'].dirty || 
+                                                                                        puestosupdateform.controls['trabajoremotoPuestoTrabajo'].touched) , 
+                                                                            'is-valid': puestosupdateform.controls['trabajoremotoPuestoTrabajo'].valid}">
+                                                                <datalist id="remoto">
+                                                                    <option *ngFor="let remoto of Remoto" >{{remoto.text}}</option>                           
+                                                                </datalist>
+                                                                <div class="invalid-feedback">
+                                                                    <span class="text-danger" *ngIf="puestosupdateform.controls['trabajoremotoPuestoTrabajo'].hasError('required')">
+                                                                            No puede dejar este campo vacío
+                                                                    </span>
+                                                                </div>
+                                                                <p style="color: red; font-size: 13px;">{{msgerrormod}}</p> 
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+
+                                               
+
+                                                <div class="row">
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group app-label mt-2">
+                                                            <label class="text-muted">Descripción del Empleo</label>
+                                                            <textarea id="description" rows="6" class="form-control resume" placeholder="" formControlName="descripcionPuestoTrabajo" [ngModel]="descripcionPuestoTrabajo" ></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                <div class="row">                                                    
+                                                    <div class="col-md-12">
+                                                        <button type="button" style="border-radius:10px; float: right;" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                        <label for="" style="float: right;"> &nbsp;&nbsp;&nbsp; </label>
+                                                        <button type="submit" style="border-radius:10px; float: right;" class="btn btn-primary" [disabled]="!puestosupdateform.valid">Actualizar Empleo</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Fin Modal Corregido -->            
+        
+    </body>
+</html>
+
+            
+
+        
+
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mis Postulaciones - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/empleosreclutador.css" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="/assets/css/paginationPostulaciones.css"/>
+
+    
+
+</head>
+
+<body>
+    <!-- Barra navegación -->
+    <app-navigation></app-navigation>
+    <!-- Fin de la navbar -->
+    
+    <!-- Inicio Mis Postulaciones -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Mis Postulaciones</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Mis Postulaciones -->
+
+    <!-- Inicio Contenido -->
+    <section class="section">
+        <div class="container">
+           <h2 id="tituloPostulaciones"><b>Postulaciones</b></h2>
+           <div class="hint-text"> <b>Tiene</b> <b> {{conteo}} </b> <b> Postulaciones </b> </div>
+           <br>
+
+            <table class="table table-striped">
+                <thead role="rowgroup">
+                  <tr>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Titulo del Empleo</th>
+                    <th scope="col">Enlace</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let postu of postulaciones | paginate: { itemsPerPage: 5, currentPage: p}" >
+                        <td ><p class="textito2">{{postu.nombreEmpresa}}</p></td>
+                        <td ><p class="textito2">{{postu.nombrePuestoTrabajo}}</p></td> <!--Nombre de la empresa a postular-->
+                        <td style="cursor: pointer;" [class.active]="postu == ListPostulacionesCurrent" (click)="Seleccionarpostulacion(postu)" (click)="verDetalle()" >
+                            <a class="irAPublicacion" style="font-weight: bolder; color: #2f55d4;display: block;">Ir a publicación</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="clearfix">
+
+                
+
+                <div style="text-align: right;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+
+            </div>
+
+                        
+        </div>
+    </section>
+    <!-- Fin Perfil --> 
+    
+    
+    
+    <!-- MODAL Cambiar contraseña-->
+    <div class="modal fullscreen-modal fade"  tabindex="-1" role="dialog" id="modalContra" >
+        <div class="modal-dialog modal-dialog-centered" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Restablecimiento de contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body" >       
+                    <p>{{message}}</p>
+                </div>
+                <div class="modal-footer"  >
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin modal cambiar contraseña-->   
+    <app-footer></app-footer>
+    
+</body>
+</html>

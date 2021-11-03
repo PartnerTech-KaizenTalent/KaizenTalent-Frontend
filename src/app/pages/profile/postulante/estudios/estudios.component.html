@@ -1,0 +1,391 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">    
+
+<!--ACA EMPIEZA-->
+
+<div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+    <div class="card-body">
+      <h3 class="card-header d-flex justify-content-between align-items-center"><b>Formación</b><button class="seccion_btn btnAgregar" type="button" data-toggle="modal" data-target="#nuevoModal"><i class="fas fa-plus"></i></button></h3>
+      <!--Inicio Row de Cartas-->
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mt-4" *ngFor="let edu of CurrentEducacion | estudios: filterEstudios">
+           <!--Inicio Card 1-->
+            <div class="card cardInterna popu-category-box" style="width: 18rem;">
+                <div class="card-body">
+                    <div *ngIf="edu.estadoEducacion=='Culminado'" class="border rounded-pill hasthtagculminado">{{edu.estadoEducacion}}</div>
+                    <div *ngIf="edu.estadoEducacion=='Trunco'" class="border rounded-pill hasthtagtrunco">{{edu.estadoEducacion}}</div>
+                    <div *ngIf="edu.estadoEducacion=='Cursando'" class="border rounded-pill hasthtagcursando">{{edu.estadoEducacion}}</div>
+                    <i class="mdi mdi-48px mdi-school iconoEducacion"></i>
+                    <h5 class="card-title titulo">{{edu.institucionEducacion}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted cargo">{{edu.nombreEducacion}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted subtitulo">{{edu.periodoinicioEducacion}} - {{edu.periodofinEducacion}}</h6>
+                    <div class="">
+                        <button class="btnBotoncitos btnEditar" [class.active]=" edu == ListEdu" (click)="SeleccionarEdu(edu)" data-toggle="modal" data-target="#nuevoModalEditar" type="submit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+
+                        <button href ="#deleteEstudioModal"  data-toggle="modal" [class.active]=" edu == ListEdu" (click)="SeleccionarEdu(edu)" type="submit" class="btnBotoncitos btnTrash">
+                            <i class="fas fa-trash"></i>
+                        </button>               
+                    </div>
+                </div>
+            </div>
+          <!--Fin Card 1-->
+        </div>
+       </div>
+       <!--Fin Row de Cartas-->
+
+       <!--Nuevo Modal-->
+       <div class="modal fullscreen-modal animate__animated animate__slideInUp" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title w-100 tituloModal" id="exampleModalLabel">Agregar Formación</h4>
+              <button type="button" class="close" data-dismiss="modal animate__animated animate__slideInDown" aria-label="Cerrar">
+                  <!--Boton X-->
+                <!--<span aria-hidden="true">&times;</span>-->
+              </button>
+              
+            </div>
+            <div class="modal-body">
+                                <form [formGroup]="educacionModalForm" name="educacionModalForm" (ngSubmit)="guardarEdu()">
+                    <div class="form-group row divCentroEducativo">
+                        <h3 id="tituloCentroEducativo"for="inputCentroEducativo" class="col-form-label">Nombre de Estudio</h3>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa el Nombre del Estudio"
+                            name="nombreEducacion" formControlName="nombreEducacion" required 
+                            [ngClass]="{
+                                'is-invalid': educacionModalForm.controls['nombreEducacion'].invalid && 
+                                         (educacionModalForm.controls['nombreEducacion'].dirty || 
+                                         educacionModalForm.controls['nombreEducacion'].touched) , 
+                                'is-valid': educacionModalForm.controls['nombreEducacion'].valid}">
+
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['nombreEducacion'].hasError('required')">
+                                                No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['nombreEducacion'].hasError('minlength')">
+                                            Debe contener al menos 2 caracteres
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['nombreEducacion'].hasError('maxlength')">
+                                            Debe contener como maximo 50 caracteres
+                                    </span>
+                                </div> 
+                        </div>                        
+                    </div>
+                    <div class="form-group row">
+                        <h3 id="tituloCentroEducativo"for="inputCentroEducativo" class="col-form-label">Centro Educativo</h3>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa tu Centro Educativo"
+                            name="nombreEducacion" formControlName="institucionEducacion" required 
+                            [ngClass]="{
+                                'is-invalid': educacionModalForm.controls['institucionEducacion'].invalid && 
+                                             (educacionModalForm.controls['institucionEducacion'].dirty || 
+                                             educacionModalForm.controls['institucionEducacion'].touched) , 
+                                  'is-valid': educacionModalForm.controls['institucionEducacion'].valid}">
+
+                                  <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['institucionEducacion'].hasError('required')">
+                                                    No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['institucionEducacion'].hasError('minlength')">
+                                                Debe contener al menos 2 caracteres
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['institucionEducacion'].hasError('maxlength')">
+                                                Debe contener como maximo 50 caracteres
+                                    </span>
+                                </div>       
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h3 id="tituloNivelEstudios"for="inputTituloNEstudios" class="col-form-label">Nivel de Estudios</h3>
+                        <div class="col-sm-10">
+                        <select (change)="SeleccionNivel($event)" id="inputNivelEstudios" class="form-control">
+                          <option selected disabled>Selecciona el Nivel de Estudios</option>
+                          <option *ngFor="let neducacion of NivelEstudio" value="{{neducacion.text}}">{{neducacion.text}}</option>   
+                        </select>
+                        </div>
+                    </div>     
+                    
+                    <div class="form-group row">
+                        <h3 id="tituloEstado"for="inputTituloNEstudios" class="col-form-label">Estado</h3>
+                        <div class="col-sm-10">
+                        <select (change)="SeleccionEstado($event)" id="inputEstado" class="form-control">
+                          <option selected disabled>Selecciona el Estado</option>
+                          <option *ngFor="let esestudio of EstadoEstudio" value="{{esestudio.text}}">{{esestudio.text}}</option>  
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <h3 id="tituloPeriodo" for="inputTituloNEstudios" class="col-form-label">Periodo</h3>
+
+                        
+                        <div id="txbMesInicio" class="col-sm-2">
+                           
+
+                            <select id="inputInicioMesPeriodo" class="form-control" formControlName="mesinicioEducacion" name="fechaM" 
+                            required
+                            >
+
+                                <option selected disabled>Mes de Inicio</option>
+                                <option *ngFor="let fechaMinicio of MesPeriodo" value="{{fechaMinicio.text}}">{{fechaMinicio.text}}</option>  
+                            </select>
+                            <div class="invalid-feedback" style="margin-left: 31%;">
+                                <span class="text-danger" *ngIf="educacionModalForm.controls['mesinicioEducacion'].hasError('required')">
+                                                No puede dejar estos campos vacíos
+                                </span>
+                            </div>                                    
+                            <div class="invalid-feedback" style="margin-left: 31%;">
+                                <span class="text-danger" *ngIf="educacionModalForm.controls['mesinicioEducacion'].hasError('maxlength')">
+                                            Seleccione un mes permitido
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="input-group-addon slashSeparadorInicio"> / </span>
+
+                        <div id="txbAnio" class="col-sm-2">
+                            <input type="number"  min="1900" class="form-control"  placeholder="Año" formControlName="anioinicioEducacion" 
+                            id="fechainicioAño" required
+                            [ngClass]="{
+                                'is-invalid': educacionModalForm.controls['anioinicioEducacion'].invalid && 
+                                            (educacionModalForm.controls['anioinicioEducacion'].dirty || 
+                                            educacionModalForm.controls['anioinicioEducacion'].touched) , 
+                                'is-valid': educacionModalForm.controls['anioinicioEducacion'].valid}"> 
+
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['anioinicioEducacion'].hasError('required') ">
+                                                    No puede dejar estos campos vacíos
+                                    </span>
+                                </div>  
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionModalForm.controls['anioinicioEducacion'].hasError('min')">
+                                                Ingrese un año mayor a {{aniomin}}
+                                    </span>
+                                </div>
+                        </div>
+
+                        <span class="input-group-addon rayita"> - </span>
+                        <div id="txbMesFin" class="col-sm-2">
+                            <select id="inputInicioMesPeriodo" class="form-control" formControlName="mesfinEducacion" name="fechaM">
+                              <option selected disabled>Mes de Fin</option>
+                              <option *ngFor="let fechaMinicio of MesPeriodo" value="{{fechaMinicio.text}}">{{fechaMinicio.text}}</option>  
+                            </select>
+                        </div>
+                        <span class="input-group-addon slashSeparadorFinal"> / </span>
+                        <div id="txbAnioFin" class="col-sm-2">
+                            <input type="number"  min="1900" class="form-control" placeholder="Año" formControlName="aniofinEducacion" id="fechafinAño" >                                                      
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="seccion_btnModal btnGuardar" type="submit" [disabled]="!educacionModalForm.valid"><i class="far fa-save"></i> Guardar</button>
+                    </div> 
+                </form>                                 
+            </div>            
+          </div>
+        </div>
+      </div>
+       <!--Fin Nuevo Modal-->
+
+       <!--Nuevo Modal Editar-->
+       <div class="modal fullscreen-modal animate__animated animate__slideInUp" id="nuevoModalEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title w-100 tituloModal" id="exampleModalLabel">Editar Formación</h4>
+              <button type="button" class="close" data-dismiss="modal animate__animated animate__slideInDown" aria-label="Cerrar">
+                  <!--Boton X-->
+                <!--<span aria-hidden="true">&times;</span>-->
+              </button>
+              
+            </div>
+            <div class="modal-body">
+                
+                <form [formGroup]="educacionUpdateModalForm" (ngSubmit)="editaEdu()">
+                    <div class="form-group row divCentroEducativo">
+                        <h3 id="tituloCentroEducativo" for="inputCentroEducativo" class="col-form-label">Nombre de Estudio</h3>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa el Nombre del Estudio"
+                            name="nombreEducacion" formControlName="nombreEducacion" [ngModel]="nombreEducacion" required 
+                            [ngClass]="{
+                                'is-invalid': educacionUpdateModalForm.controls['nombreEducacion'].invalid && 
+                                         (educacionUpdateModalForm.controls['nombreEducacion'].dirty || 
+                                         educacionUpdateModalForm.controls['nombreEducacion'].touched) , 
+                                'is-valid': educacionUpdateModalForm.controls['nombreEducacion'].valid}">
+
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['nombreEducacion'].hasError('required')">
+                                                No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['nombreEducacion'].hasError('minlength')">
+                                            Debe contener al menos 5 caracteres
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['nombreEducacion'].hasError('maxlength')">
+                                            Debe contener como maximo 50 caracteres
+                                    </span>
+                                </div> 
+                        </div>                        
+                    </div>
+                    <div class="form-group row">
+                        <h3 id="tituloCentroEducativo"for="inputCentroEducativo" class="col-form-label">Centro Educativo</h3>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa tu Centro Educativo"
+                            name="institucionEducacion" formControlName="institucionEducacion" [ngModel]="institucionEducacion" required 
+                            [ngClass]="{
+                                'is-invalid': educacionUpdateModalForm.controls['institucionEducacion'].invalid && 
+                                             (educacionUpdateModalForm.controls['institucionEducacion'].dirty || 
+                                             educacionUpdateModalForm.controls['institucionEducacion'].touched) , 
+                                  'is-valid': educacionUpdateModalForm.controls['institucionEducacion'].valid}">
+
+                                  <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['institucionEducacion'].hasError('required')">
+                                                    No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['institucionEducacion'].hasError('minlength')">
+                                                Debe contener al menos 5 caracteres
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['institucionEducacion'].hasError('maxlength')">
+                                                Debe contener como maximo 50 caracteres
+                                    </span>
+                                </div>       
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h3 id="tituloNivelEstudios"for="inputTituloNEstudios" class="col-form-label">Nivel de Estudios</h3>
+                        <div class="col-sm-10">
+                        <select (change)="SeleccionNivel($event)" id="inputNivelEstudios" class="form-control">
+                          <option selected disabled>Selecciona el Nivel de Estudios</option>
+                          <option *ngFor="let neducacion of NivelEstudio" value="{{neducacion.text}}">{{neducacion.text}}</option>                         
+                        </select>
+                        </div>
+                    </div>     
+                    
+                    <div class="form-group row">
+                        <h3 id="tituloEstado"for="inputTituloNEstudios" class="col-form-label">Estado</h3>
+                        <div class="col-sm-10">
+                        <select (change)="SeleccionEstado($event)" id="inputEstado" class="form-control">
+                          <option selected disabled>Selecciona el Estado</option>
+                          <option *ngFor="let esestudio of EstadoEstudio" value="{{esestudio.text}}">{{esestudio.text}}</option>  
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <h3 id="tituloPeriodo" for="inputTituloNEstudios" class="col-form-label">Periodo</h3>
+
+                        
+                        <div id="txbMesInicio" class="col-sm-2">
+                           
+
+                            <select id="inputInicioMesPeriodo" class="form-control" formControlName="mesinicioEducacion" name="fechaM" 
+                            required
+                            [ngClass]="{
+                                        'is-invalid': educacionUpdateModalForm.controls['mesinicioEducacion'].invalid && 
+                                        (educacionUpdateModalForm.controls['mesinicioEducacion'].dirty || 
+                                        educacionUpdateModalForm.controls['mesinicioEducacion'].touched) , 
+                                        'is-valid': educacionUpdateModalForm.controls['mesinicioEducacion'].valid}">
+
+                                <option selected disabled>{{mesinicio}}</option>
+                                <option *ngFor="let fechaMinicio of MesPeriodo" value="{{fechaMinicio.text}}">{{fechaMinicio.text}}</option>  
+                            </select>
+                            <div class="invalid-feedback" style="margin-left: 31%;">
+                                <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['mesinicioEducacion'].hasError('required')">
+                                                No puede dejar estos campos vacíos
+                                </span>
+                            </div>                                    
+                            <div class="invalid-feedback" style="margin-left: 31%;">
+                                <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['mesinicioEducacion'].hasError('maxlength')">
+                                            Seleccione un mes permitido
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="input-group-addon slashSeparadorInicio"> / </span>
+
+                        <div id="txbAnio" class="col-sm-2">
+                            <input type="number"  min="1900" class="form-control"  placeholder="Año" formControlName="anioinicioEducacion" 
+                            id="fechainicioAño" [ngModel]="anioinicio" required
+                            [ngClass]="{
+                                'is-invalid': educacionUpdateModalForm.controls['anioinicioEducacion'].invalid && 
+                                            (educacionUpdateModalForm.controls['anioinicioEducacion'].dirty || 
+                                            educacionUpdateModalForm.controls['anioinicioEducacion'].touched) , 
+                                'is-valid': educacionUpdateModalForm.controls['anioinicioEducacion'].valid}"> 
+
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['anioinicioEducacion'].hasError('required') ">
+                                                    No puede dejar estos campos vacíos
+                                    </span>
+                                </div>  
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="educacionUpdateModalForm.controls['anioinicioEducacion'].hasError('min')">
+                                                Ingrese un año mayor a {{aniomin}}
+                                    </span>
+                                </div>
+                        </div>
+
+                        <span class="input-group-addon rayita"> - </span>
+                        <div id="txbMesFin" class="col-sm-2">
+                            <select id="inputInicioMesPeriodo" class="form-control" formControlName="mesfinEducacion" name="fechaM">
+                              <option selected disabled>{{mesfinal}}</option>
+                              <option *ngFor="let fechaMinicio of MesPeriodo" value="{{fechaMinicio.text}}">{{fechaMinicio.text}}</option>  
+                            </select>
+                        </div>
+                        <span class="input-group-addon slashSeparadorFinal"> / </span>
+                        <div id="txbAnioFin" class="col-sm-2">
+                            <input type="number"  min="1900" class="form-control" placeholder="Año" formControlName="aniofinEducacion" id="fechafinAño" >                                                      
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="seccion_btnModal btnGuardar" type="submit" [disabled]="!educacionUpdateModalForm.valid"><i class="far fa-save"></i> Guardar</button>
+                    </div> 
+                </form>                                 
+            </div>            
+          </div>
+        </div>
+      </div>
+       <!--Fin Nuevo Modal-->
+       <!--Niu-->
+      
+       <!--Niu-->
+    </div>
+  </div>
+  
+
+    <div id="deleteEstudioModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form (ngSubmit)="deleteEdu()">
+                <div class="modal-header">      
+                    <h4 class="modal-title">Eliminar Estudio</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">     
+                    <p>¿Estás seguro que deseas eliminar esta publicación?</p>
+                    <p class="text-warning"><small>Esta acción no se puede deshacer</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

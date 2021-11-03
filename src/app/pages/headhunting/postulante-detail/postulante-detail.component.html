@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Perfil - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/avatar.css" />
+
+    
+</head>
+<body>
+
+    <app-navigation></app-navigation>
+    
+    <section  class="bg-half page-next-level">
+         
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <!-- Prueba -->
+            <!--inicio pruebassssss-->
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded cardperfil">
+                <div class="card-body cardDelPerfil">
+                    <div class="containerxd">
+                        <div class="imgPerfilLast"><div class=""></div><img class="niuImagenPerfil" src="{{this.Usuario.fotoperfilPostulante}}"></div>
+                        <div class="nombredelPostulanteLast">{{Usuario.nombrePostulante}}</div>
+                        <div class="btnBotoncitosLast">
+
+                            <button class="btnDescargarCV" (click)="descargarcv()">
+                                <i class="fas fa-cloud-download-alt"></i>&nbsp;Descargar CV
+                            </button>
+                        </div>
+                        <div class="datosdelPostulanteLast">
+                            <p><i class="mdi mdi-map-marker mr-2"></i>{{Usuario.direccionPostulante}} {{guion}} {{Usuario.ciudadPostulante}}</p>
+                            <p><i class="mdi mdi-email mr-2"></i>&nbsp;{{Usuario.emailPostulante}}</p>
+                            <p><i class="mdi mdi-cellphone-iphone mr-2"></i>{{Usuario.telefonoPostulante}}</p>
+                        </div>
+                        <div class="descripciónUsuario">
+                            <hr>
+                            <div class="tituloAcercadeMi"><p>Acerca de mí</p></div>
+                            <div class="descripciondelPostulante"><p [innerHTML]="Usuario.descripcionPostulante">  </p></div>
+                        </div>
+                        <br>
+                    </div>  
+                </div>
+            </div>
+             <!-- MODAL Cambiar Foto-->
+             
+
+
+            <!--fin pruebasssssssss-->
+            <!--Fin Prueba-->
+            
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+             <!--inicio pruebassssss-->
+        
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+            <div class="card-body">
+              <h3 class="card-header d-flex justify-content-between align-items-center"><b>Formación</b></h3>
+              <!--Inicio Row de Cartas-->
+              <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4" *ngFor="let edu of CurrentEducacion | postulanteDetail: filterEstudios">
+                   <!--Inicio Card 1-->
+                    <div class="card cardInterna popu-category-box" style="width: 18rem;">
+                        <div class="card-body">
+                            <i class="mdi mdi-48px mdi-school iconoEducacion"></i>
+                            <h5 class="card-title titulo">{{edu.institucionEducacion}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted cargo">{{edu.nombreEducacion}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted subtitulo">{{edu.periodoinicioEducacion}} - {{edu.periodofinEducacion}}</h6>
+                        </div>
+                    </div>
+                  <!--Fin Card 1-->
+                </div>
+               </div>
+               <!--Fin Row de Cartas-->
+            </div>
+          </div>
+        <!--fin pruebasssssssss-->
+        
+<div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+    <div class="card-body">
+      <h3 class="card-header d-flex justify-content-between align-items-center headerExpLaboral"><b>Experiencia Laboral</b></h3>
+      <!--Inicio Row de Cartas-->
+      <div class="row">
+        <div class="col-12">
+         <div class="card-deck">
+           <!--Inicio Card 1-->
+           <div class="col-lg-4 col-md-6 mt-4" *ngFor="let exp of CurrentExperiencia | postulanteDetail: filterExp">
+
+           <div class="card cardExpLaboral popu-category-box" style="width: 18rem;" >
+            <div class="card-body">
+                
+              <img id="logoExpLaboral" src="{{exp.logoEmpresa.urlImagen}}">
+              <h5 class="card-title tituloExpLaboral"> {{exp.nombreExperienciaLaboral}} </h5>
+              <div class="cnom">
+              <h6 class="card-subtitle mb-2 text-muted nombreExpLaboral"> {{exp.nombreExperienciaLaboral}} </h6>
+              <h6 class="card-subtitle mb-2 text-muted fechasExpLaboral"> {{exp.periodoinicioExperienciaLaboral}} - {{exp.periodofinExperienciaLaboral}} </h6>
+              <hr>
+              </div>
+              <h6 class="card-subtitle mb-2 text-muted descripciónExpLaboral"> {{exp.descripcionExperienciaLaboral}} </h6>
+            </div>
+          </div>
+          </div>
+          <!--Fin Card 1-->
+          
+         </div>
+        </div>
+       </div>
+
+       
+       <!--Fin Row de Cartas-->
+      
+       <!-- REFERENCIA LABORAL -->
+       <h3 class="card-header d-flex justify-content-between align-items-center headerRefLaboral"><b>Referencia Laboral</b></h3>
+       <!--Inicio Card 1-->
+
+       <div class="row">
+        <div class="col-lg-4 col-md-6 mt-4" *ngFor="let ref of CurrentReferencia | postulanteDetail: filterRef" >
+
+            <div class="card cardExpLaboral popu-category-box" style="width: 18rem;" >
+                <div class="card-body">
+                    <img id="logoExpLaboral" src="{{ref.logoEmpresa.urlImagen}}">
+                    <h5 class="card-title tituloExpLaboral"> {{ref.empresaReferente}} </h5>
+                    <h6 class="card-subtitle mb-2 text-muted fechasExpLaboral"> {{ref.telefonoReferente}} </h6>
+                    <h6 class="card-subtitle mb-2 text-muted fechasExpLaboral"> {{ref.emailReferente}} </h6>
+                    <h6 class="card-subtitle mb-2 text-muted fechasExpLaboral"> {{ref.nombreReferente}} </h6>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+            <div class="card-body">
+              <h3 class="card-header d-flex justify-content-between align-items-center"><b>Idiomas</b></h3>
+              <!--Inicio Row de Cartas-->
+              <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4"*ngFor="let idi of CurrentIdioma | postulanteDetail: filterIdiomas">
+                   <!--Inicio Card 1-->
+                    <div class="card cardInterna popu-category-box" style="width: 18rem;">
+                        <div class="card-body">
+                            <i class="mdi mdi-48px mdi-star iconoEducacion"></i>
+                            <h6 style="text-align: center;" class="text-uppercase f-17"><a href="#" class="text-muted">{{idi.nombreSkill}}  </a></h6>
+                            <p style="text-align: center;">{{idi.nivelSkill}}</p>
+                        </div>
+                    </div>
+                  <!--Fin Card 1-->
+                </div>
+               </div>
+               <!--Fin Row de Cartas-->
+            </div>
+        </div>
+
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+            <div class="card-body">
+              <h3 class="card-header d-flex justify-content-between align-items-center"><b>Conocimientos</b></h3>
+              <!--Inicio Row de Cartas-->
+              <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4" *ngFor="let con of CurrentConocimiento | postulanteDetail: filterConocimientos ">
+                   <!--Inicio Card 1-->
+                    <div class="card cardInterna popu-category-box" style="width: 18rem;">
+                        <div class="card-body">
+                            <i class="mdi mdi-48px mdi-star iconoEducacion"></i>
+                            <h6 style="text-align: center;" class="text-uppercase f-17"><a href="#" class="text-muted">{{con.nombreSkill}}  </a></h6>
+                            <p style="text-align: center;">{{con.nivelSkill}}</p>
+                        </div>
+                    </div>
+                  <!--Fin Card 1-->
+                </div>
+               </div>
+               <!--Fin Row de Cartas-->
+            </div>
+        </div>
+
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+            <div class="card-body">
+              <h3 class="card-header d-flex justify-content-between align-items-center"><b>Habilidades</b></h3>
+              <!--Inicio Row de Cartas-->
+              <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4" *ngFor="let hab of CurrentHabilidad | postulanteDetail: filterHabilidades ">
+                   <!--Inicio Card 1-->
+                    <div class="card cardInterna popu-category-box" style="width: 18rem;">
+                        <div class="card-body">
+                            <i class="mdi mdi-48px mdi-star iconoEducacion"></i>
+                            <h6 style="text-align: center;" class="text-uppercase f-17"><a href="#" class="text-muted">{{hab.nombreSkill}}  </a></h6>
+                            <p style="text-align: center;">{{hab.nivelSkill}}</p>
+                        </div>
+                    </div>
+                  <!--Fin Card 1-->
+                </div>
+               </div>
+               <!--Fin Row de Cartas-->
+            </div>
+        </div>
+
+        <!--hasta aca nomas papa paramos-->
+
+
+    </div>
+    </section>
+
+    <app-footer></app-footer>
+</body>
+</html>

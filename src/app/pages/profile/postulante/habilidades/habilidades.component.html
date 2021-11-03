@@ -1,0 +1,190 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">    
+<br>
+<!--ACA EMPIEZA-->
+
+<div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
+    <div class="card-body">
+      <h3 class="card-header d-flex justify-content-between align-items-center"><b>Habilidades</b><button class="seccion_btn btnAgregar" type="button" data-toggle="modal" data-target="#NuevoModalHabilidad"><i class="fas fa-plus"></i></button></h3>
+      <!--Inicio Row de Cartas-->
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mt-4" *ngFor="let hab of CurrentHabilidad | habilidades: filterHabilidades">
+           <!--Inicio Card 1-->
+            <div class="card cardInterna popu-category-box" style="width: 18rem;">
+                <div class="card-body">
+                    <i class="mdi mdi-48px mdi-star iconoEducacion"></i>
+                    <h6 style="text-align: center;" class="text-uppercase f-17"><a href="#" class="text-muted">{{hab.nombreSkill}}  </a></h6>
+                    <p style="text-align: center;">{{hab.nivelSkill}}</p>
+                    <div class="">
+                        <button class="btnBotoncitos btnEditar" [class.active]=" hab == ListHab" (click)="Seleccionarhab(hab)" data-toggle="modal" data-target="#NuevoModalHabilidadUpdate" type="submit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+
+                        <button data-target="#deleteHabilidadModal" data-toggle="modal" [class.active]=" hab == ListHab" (click)="Seleccionarhab(hab)"  type="submit" class="btnBotoncitos btnTrash">
+                            <i class="fas fa-trash"></i>
+                        </button>               
+                    </div>
+                </div>
+            </div>
+
+            <!--Nuevo Modal Editar-->
+       <!--Nuevo Modal-->
+       <div class="modal fullscreen-modal animate__animated animate__slideInUp" id="NuevoModalHabilidadUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title w-100 tituloModal" id="exampleModalLabel">Editar Habilidad</h4>
+              <button type="button" class="close" data-dismiss="modal animate__animated animate__slideInDown" aria-label="Cerrar">
+                  <!--Boton X-->
+                <!--<span aria-hidden="true">&times;</span>-->
+              </button>
+              
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="habilidadesUpdateModalForm" (ngSubmit)="updateHabilidad()">
+                    <div class="form-group row divCentroEducativo">
+                        <h3 id="tituloCentroEducativo"for="inputCentroEducativo" class="col-form-label">Nombre Habilidad</h3>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa el Nombre del Conocimiento"
+                            name="nombreHabilidad" formControlName="nombreHabilidad" [ngModel]="nombreSkill" required 
+                            [ngClass]="{
+                                'is-invalid': habilidadesUpdateModalForm.controls['nombreHabilidad'].invalid && 
+                                         (habilidadesUpdateModalForm.controls['nombreHabilidad'].dirty || 
+                                         habilidadesUpdateModalForm.controls['nombreHabilidad'].touched) , 
+                                'is-valid': habilidadesUpdateModalForm.controls['nombreHabilidad'].valid}">
+
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="habilidadesUpdateModalForm.controls['nombreHabilidad'].hasError('required')">
+                                                No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="habilidadesUpdateModalForm.controls['nombreHabilidad'].hasError('minlength')">
+                                            Debe contener al menos 2 caracteres
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="habilidadesUpdateModalForm.controls['nombreHabilidad'].hasError('maxlength')">
+                                            Debe contener como maximo 50 caracteres
+                                    </span>
+                                </div> 
+                        </div>                        
+                    </div>
+                    
+                    <div class="form-group row">
+                        <h3 id="tituloNivelEstudios"for="inputTituloNEstudios" class="col-form-label">Nivel de Habilidad</h3>
+                        <div class="col-sm-10">
+                        <select (change)="SeleccionHabilidad($event)" id="inputNivelEstudios" class="form-control">
+                          <option selected disabled>{{this.nivelSkill}}</option>
+                          <option *ngFor="let nivelhabilidad of NivelGeneral" value="{{nivelhabilidad.value}}">{{nivelhabilidad.text}}</option>  
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="seccion_btnModal btnGuardar" type="submit" [disabled]="!habilidadesUpdateModalForm.valid"><i class="far fa-save"></i><a (click)="updateHabilidad()">Guardar</a></button>
+                    </div> 
+                </form>                                 
+            </div>            
+          </div>
+        </div>
+      </div>
+       <!--Fin Nuevo Modal-->
+       <!--Fin Nuevo Modal-->
+          <!--Fin Card 1-->
+        </div>
+       </div>
+       <!--Fin Row de Cartas-->
+
+       <!--Nuevo Modal-->
+       <div class="modal fullscreen-modal animate__animated animate__slideInUp" id="NuevoModalHabilidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title w-100 tituloModal" id="exampleModalLabel">Agregar Habilidad</h4>
+              <button type="button" class="close" data-dismiss="modal animate__animated animate__slideInDown" aria-label="Cerrar">
+                  <!--Boton X-->
+                <!--<span aria-hidden="true">&times;</span>-->
+              </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="habilidadesModalForm" (ngSubmit)="registrarHabilidad()">
+                    <div class="form-group row divCentroEducativo">
+                        <h3 id="tituloCentroEducativo"for="inputCentroEducativo" class="col-form-label">Nombre de Habilidad</h3>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa la Habilidad"
+                            name="nombreHabilidad" formControlName="nombreHabilidad" required 
+                            [ngClass]="{
+                                'is-invalid': habilidadesModalForm.controls['nombreHabilidad'].invalid && 
+                                         (habilidadesModalForm.controls['nombreHabilidad'].dirty || 
+                                         habilidadesModalForm.controls['nombreHabilidad'].touched) , 
+                                'is-valid': habilidadesModalForm.controls['nombreHabilidad'].valid}">
+
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="habilidadesModalForm.controls['nombreHabilidad'].hasError('required')">
+                                                No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="habilidadesModalForm.controls['nombreHabilidad'].hasError('minlength')">
+                                            Debe contener al menos 2 caracteres
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" style="margin-left: 31%;">
+                                    <span class="text-danger" *ngIf="habilidadesModalForm.controls['nombreHabilidad'].hasError('maxlength')">
+                                            Debe contener como maximo 50 caracteres
+                                    </span>
+                                </div> 
+                        </div>                        
+                    </div>
+                    
+                    <div class="form-group row">
+                        <h3 id="tituloNivelEstudios"for="inputTituloNEstudios" class="col-form-label">Nivel de Habilidad</h3>
+                        <div class="col-sm-10">
+                        <select (change)="SeleccionHabilidad($event)" id="inputNivelEstudios" class="form-control">
+                          <option selected disabled>Selecciona el Nivel de Habilidad</option>
+                          <option *ngFor="let nivelhabilidad of NivelGeneral" value="{{nivelhabilidad.value}}">{{nivelhabilidad.text}}</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="seccion_btnModal btnGuardar" type="submit" [disabled]="!habilidadesModalForm.valid"><i class="far fa-save"></i><a (click)="registrarHabilidad()">Guardar</a></button>
+                    </div> 
+                </form>                                 
+            </div>            
+          </div>
+        </div>
+      </div>
+       <!--Fin Nuevo Modal-->
+
+       
+       <!--Niu-->
+      
+       <!--Niu-->
+    </div>
+  </div>
+  
+
+  <div id="deleteHabilidadModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form (ngSubmit)="deleteHab()">
+                <div class="modal-header">      
+                    <h4 class="modal-title">Eliminar Habilidad</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">     
+                    <p>¿Estás seguro que deseas eliminar esta publicación?</p>
+                    <p class="text-warning"><small>Esta acción no se puede deshacer</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

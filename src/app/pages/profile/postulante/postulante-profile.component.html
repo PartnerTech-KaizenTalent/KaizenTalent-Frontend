@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Perfil - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/avatar.css" />
+
+    
+
+</head>
+
+<body id="target">
+    <app-navigation></app-navigation>
+    <!-- Inicio Perfil -->
+    <section  class="bg-half page-next-level">
+         
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <!-- Prueba -->
+            <!--inicio pruebassssss-->
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded cardperfil">
+                <div class="card-body cardDelPerfil">
+                    <div class="containerxd">
+                        <div class="imgPerfilLast"><div class="imgPerfilLast_overlay" data-toggle="modal" data-target="#modalFoto"></div><img class="niuImagenPerfil" src="{{this.basicInfo.imagen}}"></div>
+                        <div class="nombredelPostulanteLast">{{this.basicInfo.nombrePostulante}}</div>
+                        <div class="btnBotoncitosLast">
+                            <button class="btnEditarPerfil" data-toggle="modal" data-target="#modalKaizenpostulante" >
+                                <i class="fas fa-edit"></i>&nbsp;Editar
+                            </button>
+                            <!--Cambie el button por Label-->
+                            <label class="btnSubirCV">   
+                                <input id="my-file-selector" (change)="GuardarCV($event)" type="file" style="display:none"
+                                 accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">                             
+                                <i class="fas fa-cloud-upload-alt">                                    
+                                </i>&nbsp;Subir Mi CV
+                            </label>                           
+                           
+                            <button class="btnDescargarCV" (click)="descargarcv()">
+                                <i class="fas fa-cloud-download-alt"></i>&nbsp;Descargar CV
+                            </button>
+                        </div>
+                        <div class="datosdelPostulanteLast">
+                            <p><i class="mdi mdi-map-marker mr-2"></i>{{basicInfo.direccionPostulante}} {{guion}} {{basicInfo.ciudadPostulante}}</p>
+                            <p><i class="mdi mdi-email mr-2"></i>&nbsp;{{basicInfo.emailPostulante}}</p>
+                            <p><i class="mdi mdi-cellphone-iphone mr-2"></i>{{basicInfo.telefonoPostulante}}</p>
+                        </div>
+                        <div class="descripciónUsuario">
+                            <hr>
+                            <div class="tituloAcercadeMi"><p>Acerca de mí</p></div>
+                            <div class="descripciondelPostulante"><p [innerHTML]="basicInfo.descripcionPostulante2">  </p></div>
+                        </div>
+                        <br>
+                    </div>  
+                </div>
+            </div>
+             <!-- MODAL Cambiar Foto-->
+             <div class="modal fullscreen-modal fade" tabindex="-1" role="dialog" id="modalFoto">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title w-100 text-center">Actualizar Foto de Perfil</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">       
+                            <div class="container">
+
+                                <div class="row" style="margin-top: 5%;">
+                                    <div class="text-center col-md-12">
+                                       <!-- <label>Sube tu foto de perfil<br><small>(Archivos aceptados: .png, .jpeg - Máximo tamaño : 3MB)</small></label>-->
+                                        <div class="fileupload">
+                                            <input type="file" name="fileupload"  (change)="fileChangeEvent($event)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <div class="row" >
+                                    <div class="text-center col-md-8 subirImagemModal">
+                                        <h5>Imagen</h5>
+                                        <image-cropper class="" 
+                                        [imageChangedEvent]="imageChangedEvent" 
+                                        [maintainAspectRatio]="true" 
+                                        [aspectRatio]=" 4/4"
+                                        [roundCropper]="true"
+                                        [resizeToWidth]="128"
+                                        format="png" 
+                                        type="file"
+                                        (imageCropped)="imageCropped($event)" 
+                                        ></image-cropper>
+                                    </div>
+                                    
+                                    <div class="text-center col-md-4">
+                                        <h5>Perfil</h5>
+                                        <img style="border-radius: 80px;" type="file"  class="bg-primary" [src]="croppedImage"  /><button (click)="GuardarFotoCropper()" >Guardar</button>
+                                    </div>                                         
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Fin modal cambiar Foto--> 
+
+
+            <!--fin pruebasssssssss-->
+            <!--Fin Prueba-->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="candidates-profile-details text-center">
+                        <div class="col-md-12 mb-4">
+                        </div>                       
+
+                        <!-- Boton Modal -->
+                        
+                        <!-- MODAL Cambiar contraseña-->
+                        
+                        <!-- Fin modal cambiar contraseña-->                        
+                      
+                        <!-- Modal Corregido -->
+                        <form [formGroup]="postulantebasicinfoupdateForm" (ngSubmit)="updateBasicInfo()">
+                            <div class="modal fullscreen-modal fade" id="modalKaizenpostulante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Perfil</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="descripcionUsuario">Mi Perfil</label>                                                
+                                                <textarea class="form-control" id="descripcionUsuario" rows="3"
+                                                formControlName="descripcionUsuario" placeholder="Ingrese una descripción"
+                                                [ngClass]="{
+                                                    'is-invalid': postulantebasicinfoupdateForm.controls['descripcionUsuario'].invalid && 
+                                                                 (postulantebasicinfoupdateForm.controls['descripcionUsuario'].dirty || 
+                                                                  postulantebasicinfoupdateForm.controls['descripcionUsuario'].touched) , 
+                                                              '': postulantebasicinfoupdateForm.controls['descripcionUsuario'].valid}"
+                                                [ngModel]="basicInfo.descripcionPostulante"></textarea>
+                                                <div class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="postulantebasicinfoupdateForm.controls['descripcionUsuario'].hasError('minlength')">
+                                                        Debe contener al menos 5 caracteres 
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputLabel" class="col-sm-2 col-form-label">Cargo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputLabel" placeholder="Ingresa tu cargo"
+                                                    formControlName="tituloUsuario"
+                                                    [ngClass]="{
+                                                        'is-invalid': postulantebasicinfoupdateForm.controls['tituloUsuario'].invalid && 
+                                                                     (postulantebasicinfoupdateForm.controls['tituloUsuario'].dirty || 
+                                                                      postulantebasicinfoupdateForm.controls['tituloUsuario'].touched) , 
+                                                                  '': postulantebasicinfoupdateForm.controls['tituloUsuario'].valid}"
+                                                    [ngModel]="basicInfo.tituloPostulante">
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="postulantebasicinfoupdateForm.controls['tituloUsuario'].hasError('minlength')">
+                                                            Debe contener al menos 3 caracteres 
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group row">
+                                                <label  class="col-sm-2 col-form-label">Ciudad</label>
+                                                <div class="col-sm-10">                                                          
+                                                    
+                                                    <input type="form-control" list="ciudad" placeholder="Selecciona una Ciudad" [ngModel]="basicInfo.ciudadPostulante" class="form-control" required
+                                                    formControlName="ciudadUsuario" onfocus="this.value=''">
+                                                    <datalist id="ciudad">
+                                                        <option *ngFor="let ciudad of Ciudades" value="{{ciudad.text}}">{{ciudad.text}}</option>
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group row">
+                                                <label for="inputAddress" class="col-sm-2 col-form-label">Dirección</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputAddress" placeholder="Ingresa tu dirección"
+                                                    formControlName="direccionUsuario"
+                                                    [ngClass]="{
+                                                        'is-invalid': postulantebasicinfoupdateForm.controls['direccionUsuario'].invalid && 
+                                                                     (postulantebasicinfoupdateForm.controls['direccionUsuario'].dirty || 
+                                                                      postulantebasicinfoupdateForm.controls['direccionUsuario'].touched) , 
+                                                                  '': postulantebasicinfoupdateForm.controls['direccionUsuario'].valid}"
+                                                    [ngModel]="basicInfo.direccionPostulante">
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="postulantebasicinfoupdateForm.controls['direccionUsuario'].hasError('minlength')">
+                                                             Debe contener al menos 5 caracteres 
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputphone" class="col-sm-2 col-form-label">Teléfono</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="inputphone" placeholder="Ingrese su   número de teléfono"
+                                                    formControlName="telefonoUsuario"
+                                                    [ngClass]="{
+                                                        'is-invalid': postulantebasicinfoupdateForm.controls['telefonoUsuario'].invalid && 
+                                                                     (postulantebasicinfoupdateForm.controls['telefonoUsuario'].dirty || 
+                                                                      postulantebasicinfoupdateForm.controls['telefonoUsuario'].touched) , 
+                                                                  '': postulantebasicinfoupdateForm.controls['telefonoUsuario'].valid}"
+                                                    [ngModel]="basicInfo.telefonoPostulante">
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="postulantebasicinfoupdateForm.controls['telefonoUsuario'].hasError('min')">
+                                                             Debe contener como mínimo 7 dígitos
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="postulantebasicinfoupdateForm.controls['telefonoUsuario'].hasError('max')">
+                                                             Debe contener como máximo 9 dígitos
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary" [disabled]="!postulantebasicinfoupdateForm.valid">Guardar Cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>  
+                        <!-- Fin Modal Corregido -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Perfil -->
+    
+    
+    
+    <!-- Inicio Contenido -->
+    
+    <section class="section">
+        
+        <div class="container">
+                              
+
+            <app-estudios></app-estudios>
+            <app-experiencia-laboral></app-experiencia-laboral>
+            <app-idiomas></app-idiomas>
+            <app-conocimientos></app-conocimientos>
+            <app-habilidades></app-habilidades>
+            
+      
+        </div>
+    
+    </section>
+    
+
+    <br>
+    <br>
+    
+    
+    <app-footer></app-footer>
+
+
+    <!-- Volver Arriba -->
+    <a  class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Volver Arriba -->
+
+    
+</body>
+</html>

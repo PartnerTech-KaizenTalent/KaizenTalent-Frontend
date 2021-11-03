@@ -1,0 +1,184 @@
+<!-- Barra de navegación-->
+
+<!--
+<div>
+    <div class="modal fullscreen-modal fade" style="z-index: 1200;" tabindex="-1" role="dialog" id="modalContra">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Restablecimiento de contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">       
+                    <p>{{message}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!---->
+<ng-template #content let-c="close" let-d="dismiss">
+    <div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center">Restablecimiento de contraseña</h5>
+                <button type="button" class="close" (click)="d('Cross click')" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">       
+                <p>{{message}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="d('Cross click')">Cerrar</button>
+            </div>
+        </div>
+ 
+    </div>
+            
+  </ng-template>
+
+<header id="topnav" class="defaultscroll scroll-active ">
+    <!-- Inicio Tagline -->
+    <div class="tagline">            
+        <div class="container">
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+    <!-- Fin Tagline-->
+
+    <!-- Inicio Menú -->
+    <div class="container">
+        <!-- Logo container-->
+
+        <div>
+            <a href="/" class="logo">
+                <img src="/assets/images/logolight.png" alt="" class="logo-light" height="40" />
+                <img src="/assets/images/logo.png" alt="" class="logo-dark" height="40" />
+            </a>
+        </div>
+            
+            <!-- <div class="buy-button dropdown" *ngIf="this.cerrarSesion">
+                <a  class="btnBotoncitos dropdownusuariobtn btnMenuUsuario"><i id="iconoMenuUsuario"class="fas fa-user"></i>{{this.UsuarioToken.nombrePostulante}}</a>
+            </div> -->
+
+            <div class="buy-button dropdown fondodropdownUsuario" *ngIf="this.perfilPostulante">
+                <a class="btnBotonUsuario dropdown-toggle" href="#" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="iconoMenuUsuario"class="fas fa-user"></i>
+                    {{this.UsuarioToken.nombrePostulante}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuUsuario">
+                  <a class="dropdown-item" href="/postulante/{{UsuarioToken.idPostulante}}/profile">Mi Perfil</a>
+                  <a class="dropdown-item" style="cursor: pointer;" (click)="PasswordRequest()" (click)="open(content)">Cambiar Contraseña</a>
+                  <a class="dropdown-item" (click)="Salir()" style="cursor: pointer;" >Cerrar Sesión</a>
+                </div>
+            </div>
+
+            <div class="buy-button dropdown fondodropdownUsuario" *ngIf="this.perfilReclutador">
+                <a class="btnBotonUsuario dropdown-toggle" href="#" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="iconoMenuUsuario"class="fas fa-user"></i>
+                    {{this.UsuarioToken.nombreReclutador}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuUsuario">
+                  <a class="dropdown-item" href="/reclutador/{{UsuarioToken.idReclutador}}/profile">Mi Perfil</a>
+                  <a class="dropdown-item" style="cursor: pointer;" (click)="PasswordRequest()" (click)="open(content)">Cambiar Contraseña</a>
+                  <a class="dropdown-item" (click)="Salir()" style="cursor: pointer;" >Cerrar Sesión</a>
+                </div>
+            </div>
+            
+            <div class="buy-button" *ngIf="this.loginReclutador">
+                <a href="/signin/reclutador" class="btn btn-primary"><i class="mdi mdi-table-edit"></i> Publicar Empleo </a>
+            </div> 
+
+            <div class="buy-button" *ngIf="this.publicarEmpleo">
+                <a href="/reclutador/{{UsuarioToken.idReclutador}}/publicar" class="btn btn-primary"><i class="mdi mdi-table-edit"></i> Publicar Empleo </a>
+            </div>
+            
+            <div class="buy-button" *ngIf="this.loginPostulante">
+                <a href="/signin/postulante" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Subir mi CV </a>
+            </div>  
+        <!-- Fin del container del logo-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu -->
+                <a class="navbar-toggle">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- Fin del mobile menu-->
+            </div>
+        </div>
+
+        <div id="navigation" >
+            <!-- Menú de Navegación-->
+            <ul class="navigation-menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a (click)="empezarBusqueda()" style="cursor: pointer;">Empleos</a></li>
+
+
+                <li class="has-submenu" *ngIf="this.perfilReclutador" >
+                    <a href="javascript:void(0)" >Gestión</a><span class="menu-arrow" ></span>
+                    <ul class="submenu" id="subm"> 
+                        <li>
+                            <div >
+                                <a href="/headhunting">Headhunting</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div >
+                                <a href="/reclutador/{{UsuarioToken.idReclutador}}/publicaciones">Mis Publicaciones</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li> 
+
+                <li *ngIf="this.perfilPostulante" >
+                    <a href="/postulante/{{UsuarioToken.idPostulante}}/postulaciones" >Postulaciones</a>
+                </li>
+<li class="has-submenu" *ngIf="this.isMostrarIngresar" >
+                    <a href="javascript:void(0)" >Ingresar</a><span class="menu-arrow" ></span>
+                    <ul class="submenu">
+                        <li>
+                            <div >
+                                <a href="/signin/postulante">Como Postulante</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div >
+                                <a href="/signin/reclutador">Como Reclutador</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="/contactanos">Contáctanos</a>
+                </li>
+            </ul><!--Fin del Menú de navegación-->
+        </div><!--Fin de la navegación-->
+
+        
+        
+    </div><!--Fin del container-->
+    
+    
+
+     
+    <!---->
+    <!--Su session se ha cerrado -->
+    <!-- Falta su responsive para celular-->
+    <!--<p *ngIf="this.MostrarAlert" class="alertmessage rounded text-center" (click)="BtnAlerclose()">
+        <ngb-alert class="unitamasnomas" [dismissible]="false">
+          <strong>Warning!</strong> Se ha cerrado la sesion.
+        </ngb-alert>
+    </p>-->
+</header><!--Fin del header-->
+

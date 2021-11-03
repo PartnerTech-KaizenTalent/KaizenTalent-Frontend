@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Perfil Empresarial - Kaizen Talent</title>
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />
+
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+        <!-- selectize css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+        <link rel="stylesheet" href="/assets/css/avatar.css">
+        
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />    
+
+    </head>
+<body>
+
+     <!-- Inicio Perfil -->
+     <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="candidates-profile-details text-center">
+                        
+
+                        <div class="col-md-12 mb-4">
+                                <div class="text-center text-white">
+                                    <h4 class="text-uppercase title mb-4">Mis Publicaciones</h4>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+  
+    <!-- Fin Perfil -->
+
+
+    <app-navigation></app-navigation>
+    
+    
+
+    <!-- Inicio Contenido -->
+    <section class="section">
+        <div class="container">           
+
+            
+            <app-active-empleo></app-active-empleo>
+            <app-paused-empleo></app-paused-empleo>
+            <app-no-active-empleo></app-no-active-empleo> 
+          
+        </div>
+    </section>
+    <!-- Fin Perfil --> 
+
+    
+    <!-- MODAL Cambiar contraseña-->
+    <div class="modal fullscreen-modal fade"  tabindex="-1" role="dialog" id="modalContra" >
+        <div class="modal-dialog modal-dialog-centered" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Restablecimiento de contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body" >       
+                    <p>{{message}}</p>
+                </div>
+                <div class="modal-footer"  >
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin modal cambiar contraseña-->  
+
+    <app-footer></app-footer>
+    
+
+    <!-- Volver Arriba -->
+    <a class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Volver Arriba -->
+</body>
+</html>

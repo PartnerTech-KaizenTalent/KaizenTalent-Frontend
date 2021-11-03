@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KaizenTalentApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Kaizen Talent">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script type="text/javascript" src="../assets/js/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.easypiechart.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.nice-select.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../assets/js/owl.carousel.min.js"></script>
+  <script type="text/javascript" src="../assets/js/selectize.min.js"></script>
+  <script type="text/javascript" src="../assets/js/plugins.js"></script>
+  <script type="text/javascript" src="../assets/js/app.js"></script>
+  <script type="text/javascript" src="../assets/js/main.js"></script>
+  <script type="text/javascript" src="../assets/js/home.js"></script>   
+  <script type="text/javascript" src="../assets/js/common_functions.js"></script>
+  <script type="text/javascript" src="../assets/js/common_scripts.js"></script>
+  <script type="text/javascript" src="../assets/js/common_scripts.min.js"></script>
+  <script type="text/javascript" src="../assets/js/func_1.js"></script>
+  <script type="text/javascript" src="../assets/js/contactanos.js"></script>
+  <script type="text/javascript" src="../assets/js/tablas.js"></script>
+  <script type="text/javascript" src="../assets/js/counter.int.js"></script>
+  <script type="text/javascript" src="../assets/js/datatables.min.js"></script>
+  <script type="text/javascript" src="../assets/js/dropdown.js"></script>
+  <script type="text/javascript" src="../assets/js/empleosreclutador.js"></script>
+  <script type="text/javascript" src="../assets/js/file-validator.js"></script>
+  <script type="text/javascript" src="../assets/js/modernizr.js"></script>     
+  <script type="text/javascript" src="../assets/js/popper.min.js"></script>
+  <script type="text/javascript" src="../assets/js/scrollspy.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.slimscroll.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap-material-design.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <script type="text/javascript" src="../assets/js/velocity.min.js"></script>
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <meta name="theme-color" content="#1976d2">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+</head>
+<body>
+  
+  <app-root></app-root>  
+  
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script>
+    var check = function() {
+      if (document.getElementById('password').value ==
+          document.getElementById('confirmar_password').value) {
+          document.getElementById('message').style.color = 'green';
+          document.getElementById('message').innerHTML = 'Las contraseñas Coinciden';
+      } else {
+              document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'Ambas contraseñas NO coinciden';
+      }
+  }
+</script>
+<script>
+$(document).ready(function() {
+    $('.modal').on('hidden.bs.modal', function(){
+        $(this).find('form')[0].reset();
+     });
+});
+</script>
+
+
+</body>
+</html>
