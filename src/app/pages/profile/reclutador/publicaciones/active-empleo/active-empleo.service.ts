@@ -11,31 +11,29 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ActiveEmpleoService {
+  
+  private API_URL = GlobalUrl.BASE_URL + 'api/reclutador';
+  private API_URL2 = GlobalUrl.BASE_URL + 'api/publicacion';
 
-  private API_URL = GlobalUrl.BASE_URL + 'api/reclutador/profile/activeposts';
-  private API_URL2 = GlobalUrl.BASE_URL + 'api/publicacion/update/estado/pausa';
-  private API_URL3 = GlobalUrl.BASE_URL + 'api/publicacion';
-  private API_URL4 = GlobalUrl.BASE_URL + 'api/reclutador';
-
+  
   constructor(private http:HttpClient) { }
 
   getActivos(idrec:any){
-    return this.http.get(`${this.API_URL}?id=${idrec}`);
+    return this.http.get(`${this.API_URL}/${idrec}/profile/posts/active/`,
+    httpOptions);
   }
   
   putPublicacionpausa(idpausar:any): Observable<any>{
-
-    return this.http.put(this.API_URL2,
-                        idpausar,
+    return this.http.put(`${this.API_URL2}/${idpausar}/update/estado/pausa`,
                         httpOptions);               
-  }  
-
-  deleteEmpleo(idborrar: any) : Observable<any> {
-    return this.http.delete(`${this.API_URL3}/${idborrar}/delete`);
   }
 
-  putPublicacionUpdate(puestoTrabajo:any,  idreclutador:any, idactualizar:any): Observable<any>{
-    return this.http.put(`${this.API_URL4}/${idreclutador}/publicacion/${idactualizar}/update`,
+  deleteEmpleo(idborrar: any) : Observable<any> {
+    return this.http.delete(`${this.API_URL2}/${idborrar}/delete`);
+  }
+
+  putPublicacionUpdate(idreclutador:any, idactualizar:any, puestoTrabajo:any): Observable<any>{
+    return this.http.put(`${this.API_URL}/${idreclutador}/publicacion/${idactualizar}/update`,
                           puestoTrabajo,
                           httpOptions);
   }

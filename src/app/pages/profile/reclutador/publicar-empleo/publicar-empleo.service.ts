@@ -16,7 +16,7 @@ export class PublicarEmpleoService {
 
   constructor(private http: HttpClient) { }
   
-  Publicar(puesto:any,id:any): Observable<any> {
+  Publicar(id:any, puesto:any): Observable<any> {
     return this.http.post(
       this.API_URL+`/${id}/publicar`,
       puesto,

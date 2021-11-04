@@ -159,7 +159,6 @@ export class PostulanteProfileComponent implements OnInit {
         if (this.basicInfo.descripcionPostulante){ 
           this.basicInfo.descripcionPostulante2 = this.basicInfo.descripcionPostulante.replace(/\n/g, '<br />');
         }
-
         if(this.basicInfo.direccionReclutador == null || this.basicInfo.direccionReclutador == undefined || this.basicInfo.direccionReclutador == ''){
           this.guion = '';
         }else{
@@ -261,7 +260,6 @@ export class PostulanteProfileComponent implements OnInit {
 
   GuardarCV(event:any):void {
     this.selectedcv = event.target.files;
-    console.log(this.selectedcv)
     if (this.selectedcv) {
       const cv: File | null = this.selectedcv.item(0);
       if (cv) {
@@ -271,7 +269,6 @@ export class PostulanteProfileComponent implements OnInit {
           data => { 
             this.CurrentUser2 = data;
             this.signupSuccess = true;
-            window.location.reload();            
           },
           err => {
             this.errorMessage = err.error.message;
