@@ -465,7 +465,7 @@
 <br>
 <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 69.4rem;">
     <div class="card-body">
-      <h3 class="card-header d-flex justify-content-between align-items-center headerExpLaboral"><b>Experiencia Laboral</b><button class="seccion_btn btnAgregar" type="button" data-toggle="modal" data-target="#experiencia"><i class="fas fa-plus"></i></button></h3>
+      <h3 class="card-header d-flex justify-content-between align-items-center headerExpLaboral"><b>Experiencia Laboral</b><button class="seccion_btn btnAgregar" type="button" data-toggle="modal" data-target="#nuevoModalcito"><i class="fas fa-plus"></i></button></h3>
       <!--Inicio Row de Cartas-->
       <div class="row">
         <div class="col-12">
@@ -538,38 +538,106 @@
               
             </div>
             
-            <div class="modal-body">
-                <form>
-                    <div class="form-group row divCentroEducativo">
-                        <h3 id="tituloCentroEducativo"for="inputIdioma" class="col-form-label">Idioma</h3>
-                        <div class="col-sm-10">
-                            <select id="inputIdioma" class="form-control">
-                              <option selected disabled>Selecciona un Idioma</option>
-
-                            </select>
-                            <span class="text-danger advertenciaIdioma">No puede dejar este campo vacío</span>
-                        </div>
-                        
-                    </div>
-                    <div class="form-group row">
-                        <h3 id="tituloNivelEstudios"for="inputTituloNEstudios" class="col-form-label">Nivel</h3>
-                        <div class="col-sm-10">
-                        <select id="inputNivel" class="form-control">
-                          <option selected disabled>Selecciona el Nivel del Idioma</option>
-                        </select>
-                        </div>
-                    </div>
-                </form>                              
-            </div>
-            <div class="modal-footer">
-                <button class="seccion_btnModal btnGuardar" type="button"><i class="far fa-save"></i> Guardar</button>
-            </div>
+            
+            
           </div>
         </div>
       </div>
-       <!--Fin Nuevo Modal-->
-       <!--Niu-->
-      
-       <!--Niu-->
+
     </div>
   </div>
+
+
+
+
+<!-- -->
+
+<!-- <div class="modal-body"><input type="text" class="form-control-plaintext" value="Plain Text Value" readonly style="width: 196px;" />
+  <input type="text" class="form-control-plaintext" value="Plain Text Value" readonly style="width: 174px;padding-top: -44px;margin-top: -38px;margin-right: 0px;margin-left: 244px;" />
+  <input type="text" style="width: 221px;margin: 3px;padding: 10 10;padding-right: 0px;padding-bottom: -9px;padding-left: 0px;margin-left: 0px;margin-right: 19px;" />
+  <input type="text" style="width: 221px;margin: 3px;padding: 10 10;padding-right: 0px;padding-bottom: -9px;padding-left: 0px;margin-left: 0px;margin-right: -2px;" />
+</div> -->
+
+<!-- Niu Kaizen Noviembre 2021 -->
+
+<div class="modal fullscreen-modal animate__animated animate__slideInUp" id="nuevoModalcito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered modalIdiomas" style="max-width: 100%" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100 tituloModal" id="exampleModalLabel">Agregar Experiencia Laboral</h4>
+        <button type="button" class="close" data-toggle="modal" data-target="#nuevoModalcito" data-dismiss="modal animate__animated animate__slideInDown" aria-label="Cerrar">
+
+            <!--Boton X-->
+          <!--<span aria-hidden="true">&times;</span>-->
+        </button>
+        
+      </div>
+      
+      <div class="modal-body">
+          <form>
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Experiencia Laboral</label>
+                  <div class="col-sm-10">
+                      <input class="form-control" type="text" placeholder="Ingrese el nombre de la Experiencia Laboral" style="border-radius: 20px; text-align: center;">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" style="margin-top: -1%;" id="mesdeInicio">Periodo de Inicio</label>
+                  <div class="col-sm-10">
+                      <div class="input-group" id="inputmesdeInicio">
+                          <input type="text" class="form-control input-sm" placeholder="Mes" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;" />
+                          <span class="input-group-btn" style="width:0px;"></span>
+                          <input type="text" class="form-control input-sm" placeholder="Año" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"/>
+                        </div>
+                        
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" style="margin-top: -1%;" id="mesdeFin">Periodo de Finalización</label>
+                  <div class="col-sm-10">
+                      <div class="input-group" id="inputmesdeFin">
+                          <input type="text" class="form-control input-sm" placeholder="Mes" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;" />
+                          <span class="input-group-btn" style="width:0px;"></span>
+                          <input type="text" class="form-control input-sm" placeholder="Año" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"/>
+                        </div>
+                        
+                  </div>
+              </div>
+              <div class="form-group row formcito">
+                  <label class="col-sm-2 col-form-label">Empresa</label>
+                  <div class="col-sm-10">
+                      <input class="form-control" type="text" placeholder="Ingrese el nombre de la Empresa" style="border-radius: 20px; text-align: center;">
+                  </div>
+              </div>
+              <div class="form-group row formcito">
+                  <label class="col-sm-2 col-form-label">Descripción</label>
+                  <div class="col-sm-10">
+                      <textarea class="form-control tamanio" placeholder="Ingrese una breve descripción aquí" id="exampleFormControlTextarea1" rows="2" style="text-align: center; border-radius: 20px;"></textarea>
+                  </div>
+              </div>
+              <div class="form-group row formcito">
+                  <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Nombre del Referente</label>
+                  <div class="col-sm-10">
+                      <input class="form-control" type="text" placeholder="Ingrese el nombre del Referente" style="border-radius: 20px; text-align: center;">
+                  </div>
+              </div>
+              <div class="form-group row formcito">
+                  <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Correo del Referente</label>
+                  <div class="col-sm-10">
+                      <input class="form-control" type="mail" placeholder="Ingrese el correo del Referente" style="border-radius: 20px; text-align: center;">
+                  </div>
+              </div>
+              <div class="form-group row formcito">
+                  <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Número del Referente</label>
+                  <div class="col-sm-10">
+                      <input class="form-control" type="number" placeholder="Ingrese el número telefónico del Referente" style="border-radius: 20px; text-align: center;">
+                  </div>
+              </div>
+          </form>                              
+      </div>
+      <div class="modal-footer">
+          <button class="seccion_btnModal btnGuardar" type="button"><i class="far fa-save"></i> Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
