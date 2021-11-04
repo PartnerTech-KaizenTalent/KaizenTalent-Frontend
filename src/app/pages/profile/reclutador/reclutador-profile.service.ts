@@ -25,14 +25,14 @@ export class ReclutadorProfileService {
       `${this.API_URL}/${id}/profile/basicinfo`);
   }
 
-  UpdateBasicInfo(reclutador: BasicInfoReclutadorProfile, id: any): Observable<any> {
+  UpdateBasicInfo(id: any, reclutador: BasicInfoReclutadorProfile): Observable<any> {
     return this.http.put(
-      this.API_URL + `/${id}/update/fields`,
+      this.API_URL + `/${id}/update/basicinfo`,
       reclutador,
       httpOptions);
   }
 
-  updateLogo(logo: File,id:any): Observable<any> {
+  updateLogo(id:any, logo: File): Observable<any> {
   
     var reclutador: FormData = new FormData();
 

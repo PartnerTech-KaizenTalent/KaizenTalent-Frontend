@@ -119,6 +119,7 @@
 										</span>
 									</div>
 	                            </div>
+
 								<div class="form-group">
 	                                <label for="emailUsuario">Correo electrónico</label>
 	                                <input (input)="AlertDefault()" id="emailUsuario" class="form-control required"
@@ -141,41 +142,76 @@
 	                            </div>							
 
 								<div class="form-group">
-	                                <label for="contraseñaUsuario">Contraseña</label>
-	                                <input (input)="AlertDefault()" type="password" id="contraseñaUsuario" class="form-control required"
-									formControlName="contraseñaUsuario"
+	                                <label for="usernameUsuario">Usuario</label>
+	                                <input type="text" (input)="this.AlertDefault()" name="usernameUsuario" id="usernameUsuario" class="form-control required"
+                                    formControlName="usernameUsuario"
 									[ngClass]="{
-										'is-invalid': reclutadorsignupForm.controls['contraseñaUsuario'].invalid && 
-									                  (reclutadorsignupForm.controls['contraseñaUsuario'].dirty || 
-													  reclutadorsignupForm.controls['contraseñaUsuario'].touched) , 
-										  'is-valid': reclutadorsignupForm.controls['contraseñaUsuario'].valid}">
+										'is-invalid': reclutadorsignupForm.controls['usernameUsuario'].invalid && 
+									                  (reclutadorsignupForm.controls['usernameUsuario'].dirty || 
+													  reclutadorsignupForm.controls['usernameUsuario'].touched) , 
+										  'is-valid': reclutadorsignupForm.controls['usernameUsuario'].valid}">
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['usernameUsuario'].hasError('required')">
+                                            No puede dejar este campo vacío
+                                        </span>
+                                    </div>
+
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('required')">
+										<span class="text-danger"
+										  *ngIf="reclutadorsignupForm.controls['usernameUsuario'].hasError('required')">
+										  No puede dejar este campo vacío
+										</span>
+									  </div>
+									  <div class="invalid-feedback">
+										<span class="text-danger"
+										  *ngIf="reclutadorsignupForm.controls['usernameUsuario'].hasError('minlength')">
+										  Debe contener al menos 6 caracteres
+										</span>
+									  </div>
+									  <div class="invalid-feedback">
+										<span class="text-danger"
+										  *ngIf="reclutadorsignupForm.controls['usernameUsuario'].hasError('maxlength')">
+										  Debe contener como maximo 20 caracteres
+										</span>
+									  </div>                                    
+	                            </div>
+
+								<div class="form-group">
+	                                <label for="passwordUsuario">Contraseña</label>
+	                                <input (input)="AlertDefault()" type="password" id="passwordUsuario" class="form-control required"
+									formControlName="passwordUsuario"
+									[ngClass]="{
+										'is-invalid': reclutadorsignupForm.controls['passwordUsuario'].invalid && 
+									                  (reclutadorsignupForm.controls['passwordUsuario'].dirty || 
+													  reclutadorsignupForm.controls['passwordUsuario'].touched) , 
+										  'is-valid': reclutadorsignupForm.controls['passwordUsuario'].valid}">
+									<div class="invalid-feedback">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['passwordUsuario'].hasError('required')">
 											No puede dejar este campo vacío
 										</span>
 									</div>
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('minlength')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['passwordUsuario'].hasError('minlength')">
 											Debe contener al menos 8 caracteres
 										</span>
 									</div> 
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passwordnumber')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['passwordUsuario'].hasError('passwordnumber')">
 											Debe contener al menos un número
 										</span>
 									</div> 
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passworduppercase')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['passwordUsuario'].hasError('passworduppercase')">
 											Debe contener al menos una letra mayúscula
 										</span>
 									</div> 
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passwordsmallcase')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['passwordUsuario'].hasError('passwordsmallcase')">
 											Debe contener al menos una letra minúscula
 										</span>
 									</div>
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passwordspecialcharacter')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['passwordUsuario'].hasError('passwordspecialcharacter')">
 											Debe contener al menos un carácter especial
 										</span>
 									</div>   
@@ -197,8 +233,8 @@
 	                            <h3 class="main_question">¿Cuántas personas laboran en tu empresa actualmente?</h3>
 	                            <div class="form-group">
 									<label class="container_radio version_2" *ngFor="let tamanioempresas of TamanioEmpresas"> {{tamanioempresas.text}}
-										<input type="radio" name="tamañoempresaUsuario" value="{{tamanioempresas.value}}"
-										formControlName="tamañoempresaUsuario" class="required">
+										<input type="radio" name="tamanioempresaUsuario" value="{{tamanioempresas.value}}"
+										formControlName="tamanioempresaUsuario" class="required">
 										<span class="checkmark"></span>
 									</label>
 	                            </div>
@@ -221,32 +257,32 @@
 								</div>
 								
 								<div class="form-group add_top_20">
-									<label for="nombrecontactante">Nombre Completo del Contactante</label>
-									<input type="text" id="nombrecontactante" class="form-control required"
-									formControlName="nombrecontactanteUsuario" required
+									<label for="contactanteempresaUsuario">Nombre Completo del Contactante</label>
+									<input type="text" id="contactanteempresaUsuario" class="form-control required"
+									formControlName="contactanteempresaUsuario" required
 									[ngClass]="{
-										'is-invalid': reclutadorsignupForm.controls['nombrecontactanteUsuario'].invalid && 
-														(reclutadorsignupForm.controls['nombrecontactanteUsuario'].dirty || 
-														 reclutadorsignupForm.controls['nombrecontactanteUsuario'].touched) , 
-										  'is-valid': reclutadorsignupForm.controls['nombrecontactanteUsuario'].valid}">
+										'is-invalid': reclutadorsignupForm.controls['contactanteempresaUsuario'].invalid && 
+														(reclutadorsignupForm.controls['contactanteempresaUsuario'].dirty || 
+														 reclutadorsignupForm.controls['contactanteempresaUsuario'].touched) , 
+										  'is-valid': reclutadorsignupForm.controls['contactanteempresaUsuario'].valid}">
 
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombrecontactanteUsuario'].hasError('required')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contactanteempresaUsuario'].hasError('required')">
 											No puede dejar este campo vacío
 										</span>
 									</div>
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombrecontactanteUsuario'].hasError('minlength')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contactanteempresaUsuario'].hasError('minlength')">
 											Debe contener al menos 5 caracteres
 										</span>
 									</div>
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombrecontactanteUsuario'].hasError('maxlength')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contactanteempresaUsuario'].hasError('maxlength')">
 											Debe contener como maximo 100 caracteres
 										</span>
 									</div>
 									<div class="invalid-feedback">
-										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombrecontactanteUsuario'].hasError('pattern')">
+										<span class="text-danger" *ngIf="reclutadorsignupForm.controls['contactanteempresaUsuario'].hasError('pattern')">
 											Caracteres no permitidos
 										</span>
 									</div>								

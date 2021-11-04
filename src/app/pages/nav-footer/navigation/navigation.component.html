@@ -71,10 +71,10 @@
 
             <div class="buy-button dropdown fondodropdownUsuario" *ngIf="this.perfilPostulante">
                 <a class="btnBotonUsuario dropdown-toggle" href="#" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="iconoMenuUsuario"class="fas fa-user"></i>
-                    {{this.UsuarioToken.nombrePostulante}}
+                    {{this.UsuarioToken.nombreUsuario}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuUsuario">
-                  <a class="dropdown-item" href="/postulante/{{UsuarioToken.idPostulante}}/profile">Mi Perfil</a>
+                  <a class="dropdown-item" href="/postulante/{{idp}}/profile">Mi Perfil</a>
                   <a class="dropdown-item" style="cursor: pointer;" (click)="PasswordRequest()" (click)="open(content)">Cambiar Contraseña</a>
                   <a class="dropdown-item" (click)="Salir()" style="cursor: pointer;" >Cerrar Sesión</a>
                 </div>
@@ -82,10 +82,10 @@
 
             <div class="buy-button dropdown fondodropdownUsuario" *ngIf="this.perfilReclutador">
                 <a class="btnBotonUsuario dropdown-toggle" href="#" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="iconoMenuUsuario"class="fas fa-user"></i>
-                    {{this.UsuarioToken.nombreReclutador}}
+                    {{this.UsuarioToken.nombreUsuario}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuUsuario">
-                  <a class="dropdown-item" href="/reclutador/{{UsuarioToken.idReclutador}}/profile">Mi Perfil</a>
+                  <a class="dropdown-item" href="/reclutador/{{idr}}/profile">Mi Perfil</a>
                   <a class="dropdown-item" style="cursor: pointer;" (click)="PasswordRequest()" (click)="open(content)">Cambiar Contraseña</a>
                   <a class="dropdown-item" (click)="Salir()" style="cursor: pointer;" >Cerrar Sesión</a>
                 </div>
@@ -96,7 +96,7 @@
             </div> 
 
             <div class="buy-button" *ngIf="this.publicarEmpleo">
-                <a href="/reclutador/{{UsuarioToken.idReclutador}}/publicar" class="btn btn-primary"><i class="mdi mdi-table-edit"></i> Publicar Empleo </a>
+                <a href="/reclutador/{{idr}}/publicar" class="btn btn-primary"><i class="mdi mdi-table-edit"></i> Publicar Empleo </a>
             </div>
             
             <div class="buy-button" *ngIf="this.loginPostulante">
@@ -134,16 +134,16 @@
                         </li>
                         <li>
                             <div >
-                                <a href="/reclutador/{{UsuarioToken.idReclutador}}/publicaciones">Mis Publicaciones</a>
+                                <a href="/reclutador/{{idr}}/publicaciones">Mis Publicaciones</a>
                             </div>
                         </li>
                     </ul>
                 </li> 
 
                 <li *ngIf="this.perfilPostulante" >
-                    <a href="/postulante/{{UsuarioToken.idPostulante}}/postulaciones" >Postulaciones</a>
+                    <a href="/postulante/{{idp}}/postulaciones" >Postulaciones</a>
                 </li>
-<li class="has-submenu" *ngIf="this.isMostrarIngresar" >
+                <li class="has-submenu" *ngIf="this.isMostrarIngresar" >
                     <a href="javascript:void(0)" >Ingresar</a><span class="menu-arrow" ></span>
                     <ul class="submenu">
                         <li>

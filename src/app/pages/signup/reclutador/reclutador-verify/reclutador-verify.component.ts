@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { PostulanteVerifyService } from './postulante-verify.service';
+import { ReclutadorVerifyService } from './reclutador-verify.service';
 
 @Component({
-  selector: 'app-postulante-verify',
-  templateUrl: './postulante-verify.component.html',
+  selector: 'app-reclutador-verify',
+  templateUrl: './reclutador-verify.component.html',
   styleUrls: []
 })
-export class PostulanteVerifyComponent implements OnInit {
+export class ReclutadorVerifyComponent implements OnInit {
 
-  constructor( private postulanteVerifyService : PostulanteVerifyService) { }
+  constructor( private reclutadorVerifyService: ReclutadorVerifyService) { }
 
   ngOnInit(): void {
-    this.UserVerify();
+    this.UserVerify()
   }
+
 
   //Variables
   message: any;
@@ -22,7 +23,6 @@ export class PostulanteVerifyComponent implements OnInit {
   //Fin Variables
 
   UserVerify() : void{
-    
     //prod
     //console.log(location.href.slice(60))
     
@@ -38,7 +38,7 @@ export class PostulanteVerifyComponent implements OnInit {
     this.isView2 = true;
 
 
-    this.postulanteVerifyService.VerifyPostulante(token).subscribe(
+    this.reclutadorVerifyService.VerifyReclutador(token).subscribe(
       data => {
         this.isView = true;
         this.isView2 = false;

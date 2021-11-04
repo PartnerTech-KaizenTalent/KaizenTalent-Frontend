@@ -21,14 +21,14 @@ export class PausedEmpleoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ids = this.token.getUser();
+
     this.getEmpleoPaused();
   }
 
   //get Tabla de empleo pausados con su respectivo API
   getEmpleoPaused(){
-    this.PausedEmpleoService.getPublicacionPaused(this.ids.idReclutador).subscribe(data => {
+    this.PausedEmpleoService.getPublicacionPaused(this.ids.idUsuario).subscribe(data => {
       this.ListPaused = data;
-      console.log(this.ListPaused);
     })
   }
 
@@ -59,16 +59,18 @@ export class PausedEmpleoComponent implements OnInit {
     this.PausedEmpleoService.putPublicacionactivar(trabajo.idPuestoTrabajo).subscribe(data => {
       data;
       console.log(data);
+      window.location.reload();
+
     });
-    window.location.reload();
   }
 
   EliminarEmpleo(){
     this.PausedEmpleoService.deleteEmpleo(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
       console.log(data);
+      window.location.reload(); 
+
     });
-    window.location.reload(); 
   }
 
 }

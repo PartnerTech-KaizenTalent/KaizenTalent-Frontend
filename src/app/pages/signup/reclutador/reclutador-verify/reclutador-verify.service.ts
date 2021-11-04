@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GlobalUrl } from 'src/app/util/global-url';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -10,16 +10,16 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class PublicarEmpleoService {
+export class ReclutadorVerifyService {
 
-  private API_URL = GlobalUrl.BASE_URL + 'api/reclutador';
-
+  private API_URL = GlobalUrl.BASE_URL + 'api/reclutador/signup/verify';
   constructor(private http: HttpClient) { }
-  
-  Publicar(id:any, puesto:any): Observable<any> {
-    return this.http.post(
-      this.API_URL+`/${id}/publicar`,
-      puesto,
+
+
+  VerifyReclutador(token: any): Observable<any> {
+    return this.http.put(
+      this.API_URL,
+      token,
       httpOptions
     );
   }

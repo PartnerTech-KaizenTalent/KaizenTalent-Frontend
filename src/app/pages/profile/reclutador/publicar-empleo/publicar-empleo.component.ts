@@ -96,6 +96,7 @@ export class PublicarEmpleoComponent implements OnInit {
   Datalistper: any;
   Datalistmod: any;
   msgerror: any;
+  message2: any;
  
 
   constructor(private fb: FormBuilder,
@@ -195,14 +196,14 @@ export class PublicarEmpleoComponent implements OnInit {
       nombrePuestoTrabajo: this.puestostrabajoform.controls['nombrePuestoTrabajo'].value,
       ciudadPuestoTrabajo: this.puestostrabajoform.controls['ciudadPuestoTrabajo'].value,
       categoriaPuestoTrabajo: this.puestostrabajoform.controls['categoriaPuestoTrabajo'].value,
-      trabajoremotoPuestoTrabajo: this.puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].value,
+      modalidadPuestoTrabajo: this.puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].value,
       tipojornadaPuestoTrabajo: this.puestostrabajoform.controls['tipojornadaPuestoTrabajo'].value,
       sueldoPuestoTrabajo: this.puestostrabajoform.controls['sueldoPuestoTrabajo'].value,
       experienciaPuestoTrabajo: this.expPuestoTrabajo,
       descripcionPuestoTrabajo: this.puestostrabajoform.controls['descripcionPuestoTrabajo'].value,
-      periodopublicacionPuestoTrabajo: this.pPublicacion
+      periodoinicioPuestoTrabajo: this.pPublicacion
     }
-
+    
     if (this.puestostrabajoform.invalid) {
       this.message = "Complete los campos faltantes";
       return;
@@ -222,14 +223,14 @@ export class PublicarEmpleoComponent implements OnInit {
       this.Datalistmod = this.Remoto.filter(x => x.text === this.eleccionmod)[0];
       console.log(this.Datalistmod.text);
 
-      this.PublicarEmpleoService.Publicar(puestowork,this.currentUser.idReclutador).subscribe(
+      this.PublicarEmpleoService.Publicar(this.currentUser.idUsuario, puestowork).subscribe(
         data => {
-          console.log(data);
-          this.message = data.message;
-          window.location.href='/reclutador/'+this.currentUser.idReclutador+'/publicaciones'
+          this.message2 = data.message;
+
+         // window.location.href='/reclutador/'+this.currentUser.idUsuario+'/publicaciones'
       },
       err => {
-        this.message = err.error.message;
+        this.message2 = err.error.message;
        
       });
       

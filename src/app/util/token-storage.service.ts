@@ -13,6 +13,7 @@ const CON_KEY = 'auth-con'
 const IDI_KEY = 'auth-idi'
 const HEAD_KEY = 'auth-head'
 const CONT_KEY = 'auth-cont'
+const EMAIL_KEY = 'auth-e'
 
 const PROFILE_KEY = 'auth-profile'
 
@@ -160,6 +161,16 @@ export class TokenStorageService {
   public getUsuarioPerfil(): string | null {
     return window.localStorage.getItem(PROFILE_KEY);
   }
+
+  //Obtiene el dato de la experiencia
+  public saveEmail(email: string): void {
+    window.localStorage.removeItem(EMAIL_KEY);
+    window.localStorage.setItem(EMAIL_KEY, email);
+  }
+
+  public getEmail(): string | null {
+    return window.localStorage.getItem(EMAIL_KEY);
+}
 
 
 }

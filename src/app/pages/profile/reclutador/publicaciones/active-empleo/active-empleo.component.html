@@ -311,7 +311,7 @@
                                                             <label class="text-muted">Modalidad del Puesto de Trabajo</label>
                                                             <div class="form-button">
                                                                 <input  (change)="savemod($event)" type="form-control" class="form-control demo-default" list="remoto" placeholder="Modalidad" 
-                                                                        onfocus="this.value=''"   formControlName="trabajoremotoPuestoTrabajo" [ngModel]="trabajoremotoPuestoTrabajo" required 
+                                                                        onfocus="this.value=''"  formControlName="trabajoremotoPuestoTrabajo" [ngModel]="modalidadPuestoTrabajo" required 
                                                                         [ngClass]="{
                                                                             'is-invalid': puestosupdateform.controls['trabajoremotoPuestoTrabajo'].invalid && 
                                                                                         (puestosupdateform.controls['trabajoremotoPuestoTrabajo'].dirty || 

@@ -140,27 +140,25 @@ export class PostulanteProfileComponent implements OnInit {
 
   getprofileBasicInfo() {
     this.currentPostulante = this.tokenService.getUser();
-    this.idPostulante = this.currentPostulante.idPostulante;
 
-    this.postulanteprofileService.BasicInfo(this.currentPostulante.idPostulante).subscribe(
+    this.postulanteprofileService.BasicInfo(this.currentPostulante.idUsuario).subscribe(
       data => {
         this.basicinfoData = data;
-        this.basicInfo.nombrePostulante = this.basicinfoData.nombrePostulante + ' ' + this.basicinfoData.apellidoPostulante,
-        this.basicInfo.apellidoPostulante = this.basicinfoData.apellidoPostulante,
-        this.basicInfo.direccionPostulante = this.basicinfoData.direccionPostulante,
-        this.basicInfo.ciudadPostulante = this.basicinfoData.ciudadPostulante,
-        this.basicInfo.emailPostulante = this.basicinfoData.emailPostulante,
-        this.basicInfo.telefonoPostulante = this.basicinfoData.telefonoPostulante,
-        this.basicInfo.descripcionPostulante = this.basicinfoData.descripcionPostulante,
-        this.basicInfo.tituloPostulante = this.basicinfoData.tituloPostulante,
-        this.basicInfo.imagen = this.basicinfoData.fotoperfilPostulante.urlImagen,
-        this.basicInfo.nombreimagen = this.basicinfoData.fotoperfilPostulante.nombreImagen,
-        this.basicInfo.archivocvPostulante  = this.basicinfoData.archivocvPostulante.urlArchivoCV
-
+        this.basicInfo.nombrePostulante = this.basicinfoData.nombrePostulante + ' ' + this.basicinfoData.apellidoPostulante;
+        this.basicInfo.apellidoPostulante = this.basicinfoData.apellidoPostulante;
+        this.basicInfo.direccionPostulante = this.basicinfoData.direccionPostulante;
+        this.basicInfo.ciudadPostulante = this.basicinfoData.ciudadPostulante;
+        this.basicInfo.emailPostulante = this.basicinfoData.emailPostulante;
+        this.tokenService.saveEmail(this.basicInfo.emailPostulante);
+        this.basicInfo.telefonoPostulante = this.basicinfoData.telefonoPostulante;
+        this.basicInfo.descripcionPostulante = this.basicinfoData.descripcionPostulante;
+        this.basicInfo.tituloPostulante = this.basicinfoData.tituloPostulante;
+        this.basicInfo.imagen = this.basicinfoData.fotoperfilPostulante.urlImagen;
+        this.basicInfo.nombreimagen = this.basicinfoData.fotoperfilPostulante.nombreImagen;
+        this.basicInfo.documentocvPostulante  = this.basicinfoData.documentocvPostulante.urlDocumentoCV;
         if (this.basicInfo.descripcionPostulante){ 
           this.basicInfo.descripcionPostulante2 = this.basicInfo.descripcionPostulante.replace(/\n/g, '<br />');
         }
-
         if(this.basicInfo.direccionReclutador == null || this.basicInfo.direccionReclutador == undefined || this.basicInfo.direccionReclutador == ''){
           this.guion = '';
         }else{
@@ -183,7 +181,7 @@ export class PostulanteProfileComponent implements OnInit {
       return;
     }
 
-    this.postulanteprofileService.UpdateBasicInfo(postulante, this.currentPostulante.idPostulante).subscribe(
+    this.postulanteprofileService.UpdateBasicInfo(this.currentPostulante.idUsuario, postulante ).subscribe(
       data => {
         window.location.reload();
       },
@@ -247,7 +245,7 @@ export class PostulanteProfileComponent implements OnInit {
     var foto = new Blob([binario], {type: 'image/png'});
     var imagen_foto = new File([foto], 'imagen_foto.png', { type: 'image/png' });
 
-    this.postulanteprofileService.updateLogo(imagen_foto,this.currentPostulante.idPostulante).subscribe(
+    this.postulanteprofileService.updateLogo(this.currentPostulante.idUsuario, imagen_foto).subscribe(
       data => {
         this.CurrentUser2 = data;
         this.signupSuccess = true;
@@ -267,12 +265,10 @@ export class PostulanteProfileComponent implements OnInit {
       if (cv) {
         this.currentcv = cv;
         console.log(this.currentcv);
-        this.postulanteprofileService.updatecv(this.currentcv,this.currentPostulante.idPostulante).subscribe(
+        this.postulanteprofileService.updatecv(this.currentPostulante.idUsuario, this.currentcv).subscribe(
           data => { 
             this.CurrentUser2 = data;
             this.signupSuccess = true;
-            window.location.reload();
-            
           },
           err => {
             this.errorMessage = err.error.message;

@@ -44,7 +44,7 @@ export class ActiveEmpleoComponent implements OnInit {
   categoriaPuestoTrabajo: any;
   experienciaPuestoTrabajo: any;
   periodopublicacionPuestoTrabajo: any;
-  trabajoremotoPuestoTrabajo: any;
+  modalidadPuestoTrabajo: any;
   descripcionPuestoTrabajo: any;
   eleccion: any;
   msgerror: any;
@@ -84,12 +84,11 @@ export class ActiveEmpleoComponent implements OnInit {
 
   //get Tabla de empleo activos con su respectivo API
   getEmpleoActivo(){
-    this.ActiveEmpleoService.getActivos(this.ids.idReclutador).subscribe(data => {
-      this.ListActive = data;
-      console.log(this.ListActive);
+    this.ActiveEmpleoService.getActivos(this.ids.idUsuario).subscribe(data => {
+      this.ListActive = data       
     })
   }
-
+  
   //Seleccionar un empleo de las listas de empleos (lista) -> es el parametro q se tomara del html
   Seleccionarempleo(lista:any) {    
       this.ListEmpleoCurrent = lista;
@@ -153,7 +152,7 @@ export class ActiveEmpleoComponent implements OnInit {
           break;
       }
   
-      this.trabajoremotoPuestoTrabajo = this.ListEmpleoCurrent.trabajoremotoPuestoTrabajo;
+      this.modalidadPuestoTrabajo = this.ListEmpleoCurrent.modalidadPuestoTrabajo;
       this.descripcionPuestoTrabajo = this.ListEmpleoCurrent.descripcionPuestoTrabajo;
       this.guardarValidaciondeDatalist();
 
@@ -202,10 +201,8 @@ export class ActiveEmpleoComponent implements OnInit {
 
   //Pausar un empleo seleccionado
   PausaEmpleoActive(){
-    var trabajo:any = {
-      idPuestoTrabajo: this.ListEmpleoCurrent.idPuestoTrabajo
-    }
-    this.ActiveEmpleoService.putPublicacionpausa(trabajo).subscribe(data => {
+   
+    this.ActiveEmpleoService.putPublicacionpausa(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
       console.log(data);
       window.location.reload();
@@ -218,7 +215,7 @@ export class ActiveEmpleoComponent implements OnInit {
       this.eleccionjornada = this.tipojornadaPuestoTrabajo;
       this.eleccioncat = this.categoriaPuestoTrabajo;
       this.elecciontime = this.experienciaPuestoTrabajo;
-      this.eleccionmod = this.trabajoremotoPuestoTrabajo;
+      this.eleccionmod = this.modalidadPuestoTrabajo;
     }
   }
 
@@ -293,7 +290,7 @@ export class ActiveEmpleoComponent implements OnInit {
       nombrePuestoTrabajo: this.puestosupdateform.controls['nombrePuestoTrabajo'].value,
       ciudadPuestoTrabajo: this.puestosupdateform.controls['ciudadPuestoTrabajo'].value,
       categoriaPuestoTrabajo: this.puestosupdateform.controls['categoriaPuestoTrabajo'].value,
-      trabajoremotoPuestoTrabajo: this.puestosupdateform.controls['trabajoremotoPuestoTrabajo'].value,
+      modalidadPuestoTrabajo: this.puestosupdateform.controls['trabajoremotoPuestoTrabajo'].value,
       tipojornadaPuestoTrabajo: this.puestosupdateform.controls['tipojornadaPuestoTrabajo'].value,
       sueldoPuestoTrabajo: this.puestosupdateform.controls['sueldoPuestoTrabajo'].value,
       experienciaPuestoTrabajo: this.experienciaPuestoTrabajo,
@@ -313,7 +310,7 @@ export class ActiveEmpleoComponent implements OnInit {
       console.log(this.Datalistmod.text);
       
 
-      this.ActiveEmpleoService.putPublicacionUpdate(puestowork,this.ids.idReclutador, this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(
+      this.ActiveEmpleoService.putPublicacionUpdate(this.ids.idUsuario, this.ListEmpleoCurrent.idPuestoTrabajo, puestowork).subscribe(
         data => {
           console.log(data);
           window.location.reload();
@@ -342,11 +339,11 @@ export class ActiveEmpleoComponent implements OnInit {
   }
 
   BorrarEmpleoActive(){
-    this.ActiveEmpleoService.deleteEmpleo(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
+        this.ActiveEmpleoService.deleteEmpleo(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
       console.log(data);
+      //window.location.reload();
     });
-    window.location.reload();
   }
 
 }

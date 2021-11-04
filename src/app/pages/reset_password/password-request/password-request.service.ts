@@ -14,16 +14,17 @@ const httpOptions = {
 
 export class PasswordRequestService {
 
-  private API_URL = GlobalUrl.BASE_URL + 'api/forgotpassword/sendemail';
+  private API_URL = GlobalUrl.BASE_URL + 'api/restore_password/request';
 
   constructor(private http: HttpClient) { }
 
-  PasswordRequest(passwordRequest: PasswordRequest): Observable<any> {
+  PasswordRequest(emailRequest: PasswordRequest): Observable<any> {
     
     return this.http.post(
       this.API_URL,
-      passwordRequest,
+      emailRequest,
       httpOptions
     );
   }
+  
 }

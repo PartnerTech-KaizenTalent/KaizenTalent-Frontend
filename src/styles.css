@@ -1,1 +1,125 @@
 /* You can add global styles to this file, and also import other style files */
+
+@media (max-width: 900px) {
+    form {
+        display: inline-block;
+        text-align: center;
+        margin-top: -2%!important;
+    }
+    textarea {        
+        max-height: 60px!important;
+    }
+    #mesdeInicio{
+        
+        text-align: left!important;
+        margin-left: 6%!important;
+
+        /*font-size: 1.5vh!important;*/
+    }
+    #inputmesdeInicio{
+        width: 43%!important;
+        max-width: 43%!important;
+        margin-left: 1%!important;
+    }
+    #mesdeFin{
+        
+        text-align: right!important;
+        margin-left: -3%!important;
+        margin-top: -26%!important;
+        /*font-size: 1.5vh!important;*/
+    }
+    #inputmesdeFin{
+        width: 43%!important;
+        max-width: 43%!important;
+        float: right!important;
+        margin-top: -17%!important;
+        margin-right: 4%!important;
+    }
+    .formcito{
+        margin-top: -6%!important;
+    }
+    
+  }
+
+
+/* #container{
+    width:80%;
+    height:80%;
+    position:absolute;
+    padding:10%;
+    background-image:url(https://edinhopiscinas.com.br/img/bg.jpg);
+}
+.round_bt_container{
+    cursor:pointer;
+    position:relative;
+    float:left;
+    margin-right:40px;
+   
+    width:160px;
+    height:160px;
+    
+}
+
+.round_bt{
+    position:absolute;
+    border-radius:50%;
+    width:160px;
+    height:160px;
+    padding:0;
+    margin:0;
+    border:0px solid #eeeeee;
+    -webkit-transition:all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -moz-transition:all 0.2s ease;
+    -o-transition:all 0.2s ease;
+    transition:all 0.2s ease;
+    background-size:cover!important;
+}
+
+.round_bt img{
+    border-radius:50%;
+}
+
+.round_bt_container:hover .ring{
+    width:160px;
+    height:160px;
+    border:5px solid #f98523;
+    padding:15px;
+    margin-left:-20px;
+    margin-top:-20px;
+}
+
+.round_bt_container:hover .inner_ring{
+    border:2px solid #ffcfa7;
+    margin-left:3px;
+    margin-top:3px;
+}
+.inner_ring {
+    top: -5px; left: -5px;
+    position:absolute;
+    margin-right:40px;
+    border-radius:50%;
+    border:5px solid #ffffff;
+    box-shadow:2px 1px 15px -9px #000000;
+    width:160px;
+    height:160px;
+    -webkit-transition:all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -moz-transition:all 0.2s ease;
+    -o-transition:all 0.2s ease;
+    transition:all 0.2s ease;
+}
+.ring {
+    position:absolute;
+    border-radius:50%;
+    width:160px;
+    height:160px;
+    padding:0;
+    margin:0;
+    border:0px solid #eeeeee;
+    -webkit-transition:all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -moz-transition:all 0.2s ease;
+    -o-transition:all 0.2s ease;
+    transition:all 0.2s ease;
+} */

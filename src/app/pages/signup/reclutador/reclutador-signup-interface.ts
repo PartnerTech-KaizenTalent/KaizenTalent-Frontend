@@ -3,7 +3,8 @@ export interface ReclutadorSignupRequest {
     ciudadUsuario: string;
     emailUsuario: string;
     numerodocumentoUsuario: string;
-    contraseñaUsuario: string;
-    nombrecontactanteUsuario: string;
-    tamañoempresaUsuario: string;
+    usernameUsuario: string;
+    passwordUsuario: string;
+    contactanteempresaUsuario: string;
+    tamanioempresaUsuario: string;
 }

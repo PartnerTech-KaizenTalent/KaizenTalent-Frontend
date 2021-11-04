@@ -13,26 +13,23 @@ const httpOptions = {
 })
 export class PausedEmpleoService {
 
-  private API_URL = GlobalUrl.BASE_URL + 'api/reclutador/profile/pausedposts';
-  private API_URL2 = GlobalUrl.BASE_URL + 'api/publicacion/update/estado/activo';
+  private API_URL = GlobalUrl.BASE_URL + 'api/reclutador';
   private API_URL3 = GlobalUrl.BASE_URL + 'api/publicacion';
 
   constructor(private http:HttpClient) { }
 
   getPublicacionPaused(idpau:any){
-    return this.http.get(`${this.API_URL}?id=${idpau}`);
+    return this.http.get(`${this.API_URL}/${idpau}/profile/posts/paused`);
   }
 
-  
   putPublicacionactivar(idactivar:any): Observable<any>{
-
-    return this.http.put(this.API_URL2,
-                         idactivar,
-                         httpOptions);               
+    return this.http.put(`${this.API_URL3}/${idactivar}/update/estado/activo`,
+                        httpOptions);               
   }
   
   deleteEmpleo(idborrar: any) : Observable<any> {
     return this.http.delete(`${this.API_URL3}/${idborrar}/delete`);
   }
+  
 
 }

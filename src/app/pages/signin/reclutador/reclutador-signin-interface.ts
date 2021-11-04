@@ -1,4 +1,4 @@
 export interface ReclutadorSignin {
-    emailUsuario: string;
-    contraseñaUsuario: string;
+    usernameUsuario: string;
+    passwordUsuario: string;
 }

@@ -72,8 +72,8 @@
                                     <td id="irAPubli" colspan="3"><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verDetalle()" style="color: #2f55d4;">Ir a publicación</a></td>
                                     <td id="verCandidatos" colspan="3"><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verPostulantes()" style="color: #2f55d4;">Ver Candidatos</a></td>
                                     <td id="accionesPublicaciones"colspan="3" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)">
-                                        <a href="#deletePausedModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                                        <a href="#reanudarPausedModal" class="delete" data-toggle="modal"><i style="color: #824EA9;" class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
+                                        <a href="#deletePausedModal" class="delete" data-toggle="modal"><i class="fa fa-trash" style="font-size: 18px;" data-toggle="tooltip" title="Eliminar"></i></a>
+                                        <a href="#reanudarPausedModal" data-toggle="modal"><i style="font-size: 18px; color: #30E638;" class="fa fa-play" data-toggle="tooltip" title="Pausar"> </i></a>
                                     </td>                       
                                   </tr>
                             </tbody>

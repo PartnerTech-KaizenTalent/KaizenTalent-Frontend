@@ -1,4 +1,4 @@
 export interface PasswordUpdate {
-    token: string;
-    contrasenia: string;
+    utilityToken: string;
+    passwordUsuario: string;
 }

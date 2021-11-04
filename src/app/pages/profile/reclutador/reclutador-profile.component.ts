@@ -118,9 +118,8 @@ export class ReclutadorProfileComponent implements OnInit {
   GetProfileBasicInfo() {
 
     this.currentReclutador = this.tokenService.getUser();
-    this.idReclutador = this.currentReclutador.idReclutador;
 
-    this.reclutadorprofileService.BasicInfo(this.currentReclutador.idReclutador).subscribe(
+    this.reclutadorprofileService.BasicInfo(this.currentReclutador.idUsuario).subscribe(
       data => {
         this.basicinfoData = data;
         this.basicInfo.nombreReclutador = this.basicinfoData.nombreReclutador,
@@ -129,6 +128,8 @@ export class ReclutadorProfileComponent implements OnInit {
         this.basicInfo.direccionReclutador = this.basicinfoData.direccionReclutador,
         this.basicInfo.ciudadReclutador = this.basicinfoData.ciudadReclutador,
         this.basicInfo.emailReclutador = this.basicinfoData.emailReclutador,
+        this.tokenService.saveEmail(this.basicInfo.emailReclutador);
+
         this.basicInfo.telefonoReclutador = this.basicinfoData.telefonoReclutador,
         this.basicInfo.nombrecontactanteReclutador = this.basicinfoData.nombrecontactanteReclutador,
         this.basicInfo.logoempresaReclutador = this.basicinfoData.logoempresaReclutador.urlImagen              
@@ -161,7 +162,7 @@ export class ReclutadorProfileComponent implements OnInit {
       return;
     }
 
-    this.reclutadorprofileService.UpdateBasicInfo(postulante, this.currentReclutador.idReclutador).subscribe(
+    this.reclutadorprofileService.UpdateBasicInfo(this.currentReclutador.idUsuario, postulante).subscribe(
       data => {
         console.log(data);
         window.location.reload();
@@ -200,7 +201,7 @@ export class ReclutadorProfileComponent implements OnInit {
         if (logo) {
           this.currentLogo = logo;
           console.log(this.currentLogo);
-          this.reclutadorprofileService.updateLogo(this.currentLogo,this.currentReclutador.idReclutador).subscribe(
+          this.reclutadorprofileService.updateLogo(this.currentReclutador.idUsuario, this.currentLogo).subscribe(
             data => {
               this.CurrentUser2 = data;
               this.signupSuccess = true;
@@ -233,7 +234,7 @@ export class ReclutadorProfileComponent implements OnInit {
       var foto = new Blob([binario], {type: 'image/png'});
       var imagen_foto = new File([foto], 'imagen_foto.png', { type: 'image/png' });
   
-      this.reclutadorprofileService.updateLogo(imagen_foto,this.currentReclutador.idReclutador).subscribe(
+      this.reclutadorprofileService.updateLogo(this.currentReclutador.idUsuario, imagen_foto).subscribe(
         data => {
           this.CurrentUser2 = data;
           this.signupSuccess = true;
