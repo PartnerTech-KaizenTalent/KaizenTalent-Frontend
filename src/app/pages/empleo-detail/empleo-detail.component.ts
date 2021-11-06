@@ -19,6 +19,11 @@ export class EmpleoDetailComponent implements OnInit {
   msgerror: any;
   aviso: any;
   verRedireccion = false;
+  reclutador: any;
+  postulante: any;
+  auxPostu: any;
+  idreclutador: any;
+  idpostulante: any;
 
   constructor(private EmpleoDetailService:EmpleoDetailService,
               private tokens:TokenStorageService, 
@@ -34,17 +39,39 @@ export class EmpleoDetailComponent implements OnInit {
   verBoton(){
 
     if(this.tokens.getUser()){
-      this.auxUsertoken = this.tokens.getUser()
-      if(this.auxUsertoken.idReclutador !== undefined){
 
+      this.auxUsertoken = this.tokens.getUser()
+
+      if(this.auxUsertoken.idUsuario === undefined){
+      }else{
+        var a = this.auxUsertoken.authorities[0];
+        switch (a.authority) {
+          case 'ROLE_RECLUTADOR':   
+              this.reclutador =  this.auxUsertoken.idUsuario                   
+            break;
+          case 'ROLE_POSTULANTE': 
+              this.postulante = this.auxUsertoken.idUsuario 
+            break;      
+          default:
+            break;
+        }
+
+        if(this.reclutador !== undefined){
+          this.isButtonVisible = false;
+        }
+        if(this.postulante !== undefined){
+          this.isButtonVisible = true;
+        }
+
+        if(this.tokens.getToken() === null){
+          this.isButtonVisible = true;
+        }
       }
-      if(this.auxUsertoken.idPostulante !== undefined){
-        this.isButtonVisible = true;
-      }
+     
+      
     }
-    if(this.tokens.getToken() === null){
-      this.isButtonVisible = true;
-    }
+    
+
   }
 
   getdetalleEmpleo(){
@@ -65,20 +92,44 @@ export class EmpleoDetailComponent implements OnInit {
   }
 
   Postularempleo(){
-    if(this.PostulanteActual.idPostulante != null || this.PostulanteActual.idPostulante != undefined  ){
-            this.EmpleoDetailService.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
-        data => {
-          console.log(data);
-          this.aviso = data.message;
-      },
-      error => {
-        this.msgerror = error.error.message;
-        this.aviso = this.msgerror;
-        
-      });
+    
+    if(this.tokens.getUser()){
+
+      this.auxPostu = this.tokens.getUser()
+
+      if(this.auxPostu.idUsuario === undefined){
+      }else{
+        var a = this.auxPostu.authorities[0];
+        switch (a.authority) {
+          case 'ROLE_RECLUTADOR':   
+              this.idreclutador =  this.auxPostu.idUsuario                   
+            break;
+          case 'ROLE_POSTULANTE': 
+              this.idpostulante = this.auxPostu.idUsuario 
+            break;      
+          default:
+            break;
+        }
+      }
+    }else{
+
+    }
+
+    if(this.idpostulante != null || this.idpostulante != undefined  ){
+        this.EmpleoDetailService.PostularTrabajoenDetalle(this.idpostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
+          data => {
+            console.log(data);
+            this.aviso = data.message;
+          },
+          error => {
+            this.msgerror = error.error.message;
+            this.aviso = this.msgerror;
+            
+          });
     }else{      
       this.aviso = "Debes de Iniciar sesion como postulante";
       this.verRedireccion = true;
     }
   }
+
 }

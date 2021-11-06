@@ -1,438 +1,4 @@
-        <!--EXPERIENCIA--> 
-            
-            <div class="row">
-                <div class="col-sm-10 col-12 mt-4 pt-2">
-
-                     <!-- Modal Corregido -->
-                     <form [formGroup]="experienciaModalForm" (ngSubmit)="guardarExp()">
-                        <div class="modal fullscreen-modal fade" id="experiencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-            
-                                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Experiencia Laboral</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                            
-                                    </div>
-                                    
-                                    <div class="modal-body">
-                                        
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Experiencia Laboral</label>                                               
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" 
-                                                placeholder="Ingrese la Experiencia Laboral" required
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaModalForm.controls['nombreExperienciaLaboral'].invalid && 
-                                                                 (experienciaModalForm.controls['nombreExperienciaLaboral'].dirty || 
-                                                                 experienciaModalForm.controls['nombreExperienciaLaboral'].touched) , 
-                                                      'is-valid': experienciaModalForm.controls['nombreExperienciaLaboral'].valid}">
-                                                      
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['nombreExperienciaLaboral'].hasError('required')">
-                                                                        No puede dejar este campo vacío
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['nombreExperienciaLaboral'].hasError('minlength')">
-                                                                    Debe contener al menos 5 caracteres
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['nombreExperienciaLaboral'].hasError('maxlength')">
-                                                                    Debe contener como maximo 50 caracteres
-                                                        </span>
-                                                    </div>
-                                            </div>
-                                        </div>      
-                                                
-                                                                                      
-                                        <div class="form-group row">
-
-                                            <label for="inputphone" class="col-sm-2 col-form-label">Periodo de Inicio</label>
-                                            <div class="col-sm-10" class="input-group" style="width: 30%; margin-left: 15px;">                                    
-                                                <input type="text" class="form-control" list="fechaxinicioMes" formControlName="mesinicioExperienciaLaboral" 
-                                                 placeholder="Mes" onfocus="this.value=''" required
-                                                 [ngClass]="{
-                                                    'is-invalid': experienciaModalForm.controls['mesinicioExperienciaLaboral'].invalid && 
-                                                                (experienciaModalForm.controls['mesinicioExperienciaLaboral'].dirty || 
-                                                                experienciaModalForm.controls['mesinicioExperienciaLaboral'].touched) , 
-                                                    'is-valid': experienciaModalForm.controls['mesinicioExperienciaLaboral'].valid}">
-
-                                                <datalist id="fechaxinicioMes">
-                                                    <option *ngFor="let fechaxinicioMes of MesPeriodo" value="{{fechaxinicioMes.text}}">{{fechaxinicioMes.text}}</option>
-                                                </datalist> 
-
-                                                <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" 
-                                                formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" required
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaModalForm.controls['anioinicioExperienciaLaboral'].invalid && 
-                                                                (experienciaModalForm.controls['anioinicioExperienciaLaboral'].dirty || 
-                                                                experienciaModalForm.controls['anioinicioExperienciaLaboral'].touched) , 
-                                                    'is-valid': experienciaModalForm.controls['anioinicioExperienciaLaboral'].valid}"> 
-                                                    
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['mesinicioExperienciaLaboral'].hasError('required') || experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('required') ">
-                                                                    No puede dejar estos campos vacíos
-                                                        </span>
-                                                    </div>                                    
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['mesinicioExperienciaLaboral'].hasError('maxlength')">
-                                                                    Seleccione un mes de la lista
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('max')">
-                                                                    El año maximo permitido es {{anioactual}}
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('min')">
-                                                                    Ingrese un año mayor a {{aniomin}}
-                                                        </span>
-                                                    </div>  
-
-
-                                            </div>
-                                            
-                                            <label for="docnumber" class="col-sm-2 col-form-label" >Periodo de Finalización</label>
-                                            <div class="col-sm-10" class="input-group" style="width: 30%;">                                    
-                                                <input type="text" class="form-control" list="fechaxfinMes" formControlName="mesfinExperienciaLaboral"  placeholder="Mes" onfocus="this.value=''" >    
-                                                <datalist id="fechaxfinMes">
-                                                    <option *ngFor="let fechaxfinMes of MesPeriodo" value="{{fechaxfinMes.text}}">{{fechaxfinMes.text}}</option>
-                                                </datalist> 
-                                                <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" >                                                       
-                                            </div> 
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Empresa</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" 
-
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaModalForm.controls['empresaExperienciaLaboral'].invalid && 
-                                                                 (experienciaModalForm.controls['empresaExperienciaLaboral'].dirty || 
-                                                                 experienciaModalForm.controls['empresaExperienciaLaboral'].touched) , 
-                                                      'is-valid': experienciaModalForm.controls['empresaExperienciaLaboral'].valid}">
-                                                      
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('required')">
-                                                                        No puede dejar este campo vacío
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('minlength')">
-                                                                    Debe contener al menos 1 caracteres
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('maxlength')">
-                                                                    Debe contener como maximo 50 caracteres
-                                                        </span>
-                                                    </div>
-                                            </div>
-                                        </div> 
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Descripción del Trabajo</label>
-                                            <div class="col-sm-10">
-                                                <textarea type="text" class="form-control" formControlName="descripcionExperienciaLaboral" id="descripcionExperienciaLaboral" 
-                                                placeholder="Ingrese una breve descripción"
-                                                
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaModalForm.controls['descripcionExperienciaLaboral'].invalid && 
-                                                                 (experienciaModalForm.controls['descripcionExperienciaLaboral'].dirty || 
-                                                                 experienciaModalForm.controls['descripcionExperienciaLaboral'].touched) , 
-                                                      'is-valid': experienciaModalForm.controls['descripcionExperienciaLaboral'].valid}">                                                      
-                                                   </textarea>
-                                                   <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('required')">
-                                                                    No puede dejar este campo vacío
-                                                    </span>
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('minlength')">
-                                                                Debe contener al menos 5 caracteres
-                                                    </span>
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('maxlength')">
-                                                                Debe contener como maximo 50 caracteres
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Nombre del Referente</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" formControlName="referenteReferenciaLaboral" id="referenteReferenciaLaboral" placeholder="Nombre" >
-                                            </div>
-                                        </div> 
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Correo del Referente</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" formControlName="emailreferenteReferenciaLaboral" id="emailreferenteReferenciaLaboral" placeholder="Ingrese el Correo Electrónico" >
-                                            </div>
-                                        </div>   
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Número del Referente</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" formControlName="telefonoreferenteReferenciaLaboral" id="telefonoreferenteReferenciaLaboral" placeholder="Ingrese el Número de Teléfono"
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].invalid && 
-                                                                (experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].dirty || 
-                                                                experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].touched) , 
-                                                    'is-valid': experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].valid}">
-
-                                                <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].hasError('max')">
-                                                                    Máximo 9 dígitos
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>                
-                                                                   
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" [disabled]="!experienciaModalForm.valid">Guardar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>  
-                    <!-- Fin Modal Corregido -->
-
-                    <!-- Modal Corregido -->
-                    <form [formGroup]="experienciaUpdateModalForm" (ngSubmit)="updateExp()">
-                        <div class="modal fullscreen-modal fade" id="experienciaeditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-            
-                                        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Experiencia Laboral</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                            
-                                    </div>
-                                    
-                                    <div class="modal-body">
-                                        
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Nombre de experiencia laboral</label>                                               
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" 
-                                                placeholder="Ingrese el nombre" [ngModel]="nombreExperienciaLaboral" required
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].invalid && 
-                                                                 (experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].dirty || 
-                                                                 experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].touched) , 
-                                                      'is-valid': experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].valid}">
-                                                      
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].hasError('required')">
-                                                                        No puede dejar este campo vacío
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].hasError('minlength')">
-                                                                    Debe contener al menos 5 caracteres
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].hasError('maxlength')">
-                                                                    Debe contener como maximo 50 caracteres
-                                                        </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                                                                       
-                                        <div class="form-group row">
-                                            <label for="inputphone" class="col-sm-2 col-form-label">Periodo de Inicio</label>
-                                            <div class="col-sm-10" class="input-group" style="width: 30%; margin-left: 15px;">
-                                                <input type="text" class="form-control" list="fechaxinicioMes" formControlName="mesinicioExperienciaLaboral" 
-                                                name="fechaM" [ngModel]="mesinicio" placeholder="Mes" onfocus="this.value=''" required
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].invalid && 
-                                                                (experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].dirty || 
-                                                                experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].touched) , 
-                                                    'is-valid': experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].valid}">
-
-                                                <datalist id="fechaxinicioMes">
-                                                    <option *ngFor="let fechaxinicioMes of MesPeriodo" value="{{fechaxinicioMes.text}}">{{fechaxinicioMes.text}}</option>
-                                                </datalist> 
-
-                                                <input type="number"  min="1900" class="form-control"  placeholder="Año" formControlName="anioinicioExperienciaLaboral" 
-                                                id="fechaxinicioAño" [ngModel]="anioinicio" required
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].invalid && 
-                                                                (experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].dirty || 
-                                                                experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].touched) , 
-                                                    'is-valid': experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].valid}"> 
-                                                    
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].hasError('required') || experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].hasError('required') ">
-                                                                    No puede dejar estos campos vacíos
-                                                        </span>
-                                                    </div>                                    
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].hasError('maxlength')">
-                                                                    Seleccione un mes de la lista
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].hasError('max')">
-                                                                    El año maximo permitido es {{anioactual}}
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].hasError('min')">
-                                                                    Ingrese un año mayor a {{aniomin}}
-                                                        </span>
-                                                    </div>  
-
-                                            </div> 
-                                            <label for="docnumber" class="col-sm-2 col-form-label">Periodo de Finalización</label>
-                                            <div class="col-sm-10" class="input-group" style="width: 30%; margin-left: 15px;">
-                                                <input type="text" class="form-control" list="fechaxfinMes" formControlName="mesfinExperienciaLaboral" name="fechaM"  [ngModel]="mesfinal" placeholder="Mes" onfocus="this.value=''" >    
-                                                <datalist id="fechaxfinMes">
-                                                    <option *ngFor="let fechaxfinMes of MesPeriodo" value="{{fechaxfinMes.text}}">{{fechaxfinMes.text}}</option>
-                                                </datalist> 
-                                                <input type="number"  min="1900" class="form-control"  placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" [ngModel]="anio" >                                                       
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Empresa</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" 
-                                                [ngModel]="empresaExperienciaLaboral" required
-                                                [ngClass]="{
-                                                    'is-invalid': experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].invalid && 
-                                                                 (experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].dirty || 
-                                                                 experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].touched) , 
-                                                      'is-valid': experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].valid}">
-                                                      
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].hasError('required')">
-                                                                        No puede dejar este campo vacío
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].hasError('minlength')">
-                                                                    Debe contener al menos 5 caracteres
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['empresaExperienciaLaboral'].hasError('maxlength')">
-                                                                    Debe contener como maximo 50 caracteres
-                                                        </span>
-                                                    </div>
-                                            </div>
-                                        </div>   
-
-                                        <div class="form-group row">
-                                            <label for="direccionpos" class="col-sm-2 col-form-label">Descripción del Trabajo</label>
-                                            <div class="col-sm-10">
-                                                <textarea type="text" class="form-control" formControlName="descripcionExperienciaLaboral" id="descripcionExperienciaLaboral" 
-                                                 [ngModel]="descripcionExperienciaLaboral"[ngClass]="{
-                                                    'is-invalid': experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].invalid && 
-                                                                 (experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].dirty || 
-                                                                 experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].touched) , 
-                                                      'is-valid': experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].valid}">                                                      
-                                                   </textarea>
-                                                   <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].hasError('required')">
-                                                                    No puede dejar este campo vacío
-                                                    </span>
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].hasError('minlength')">
-                                                                Debe contener al menos 5 caracteres
-                                                    </span>
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['descripcionExperienciaLaboral'].hasError('maxlength')">
-                                                                Debe contener como maximo 50 caracteres
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                            <div class="form-group row">
-                                                <label for="direccionpos" class="col-sm-2 col-form-label">Nombre del Referente</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" formControlName="referenteReferenciaLaboral" id="referenteReferenciaLaboral" 
-                                                    [ngModel]="referenteExperienciaLaboral" placeholder="Nombre" required 
-                                                    [ngClass]="{
-                                                    'is-invalid': experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].invalid && 
-                                                                 (experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].dirty || 
-                                                                 experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].touched) , 
-                                                      'is-valid': experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].valid}">
-
-                                                      <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].hasError('required')">
-                                                                        No puede dejar este campo vacío
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].hasError('minlength')">
-                                                                    Debe contener al menos 5 caracteres
-                                                        </span>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['referenteReferenciaLaboral'].hasError('maxlength')">
-                                                                    Debe contener como maximo 50 caracteres
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div> 
-
-                                            <div class="form-group row">
-                                                <label for="direccionpos" class="col-sm-2 col-form-label">Correo del Referente</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" formControlName="emailreferenteReferenciaLaboral" id="emailreferenteReferenciaLaboral" [ngModel]="emailReferente" placeholder="Ingrese el Correo Electrónico" >
-                                                </div>
-                                            </div>   
-
-                                            <div class="form-group row">
-                                                <label for="direccionpos" class="col-sm-2 col-form-label">Número del Referente</label>
-                                                <div class="col-sm-10">
-                                                    <input type="number" class="form-control" formControlName="telefonoreferenteReferenciaLaboral" id="telefonoreferenteReferenciaLaboral" [ngModel]="telefonoReferente" placeholder="Ingrese el Número de Teléfono" 
-                                                    [ngClass]="{
-                                                        'is-invalid': experienciaUpdateModalForm.controls['telefonoreferenteReferenciaLaboral'].invalid && 
-                                                                    (experienciaUpdateModalForm.controls['telefonoreferenteReferenciaLaboral'].dirty || 
-                                                                    experienciaUpdateModalForm.controls['telefonoreferenteReferenciaLaboral'].touched) , 
-                                                        'is-valid': experienciaUpdateModalForm.controls['telefonoreferenteReferenciaLaboral'].valid}">
-    
-                                                    <div class="invalid-feedback">
-                                                        <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['telefonoreferenteReferenciaLaboral'].hasError('max')">
-                                                                        Máximo 9 dígitos
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                                                   
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" [disabled]="!experienciaUpdateModalForm.valid" >Guardar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>   
-                </div>
-            </div>
-
-            
+                 
 
 
             <div id="deleteExperienciaModal" class="modal fade">
@@ -558,7 +124,7 @@
   <input type="text" style="width: 221px;margin: 3px;padding: 10 10;padding-right: 0px;padding-bottom: -9px;padding-left: 0px;margin-left: 0px;margin-right: -2px;" />
 </div> -->
 
-<!-- Niu Kaizen Noviembre 2021 -->
+<!-- Niu Kaizen Noviembre 2021  Guardar-->
 
 <div class="modal fullscreen-modal animate__animated animate__slideInUp" id="nuevoModalcito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-dialog-centered modalIdiomas" style="max-width: 100%" role="document">
@@ -574,20 +140,80 @@
       </div>
       
       <div class="modal-body">
-          <form>
+          <form [formGroup]="experienciaModalForm" (ngSubmit)="guardarExp()">
               <div class="form-group row">
                   <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Experiencia Laboral</label>
                   <div class="col-sm-10">
-                      <input class="form-control" type="text" placeholder="Ingrese el nombre de la Experiencia Laboral" style="border-radius: 20px; text-align: center;">
+                      <input class="form-control" type="text" placeholder="Ingrese el nombre de la Experiencia Laboral" style="border-radius: 20px; text-align: center;"
+                      formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" placeholder="Ingrese la Experiencia Laboral" required
+                        [ngClass]="{
+                            'is-invalid': experienciaModalForm.controls['nombreExperienciaLaboral'].invalid && 
+                                        (experienciaModalForm.controls['nombreExperienciaLaboral'].dirty || 
+                                        experienciaModalForm.controls['nombreExperienciaLaboral'].touched) , 
+                            'is-valid': experienciaModalForm.controls['nombreExperienciaLaboral'].valid}">
+                          
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['nombreExperienciaLaboral'].hasError('required')">
+                                            No puede dejar este campo vacío
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['nombreExperienciaLaboral'].hasError('minlength')">
+                                        Debe contener al menos 5 caracteres
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['nombreExperienciaLaboral'].hasError('maxlength')">
+                                        Debe contener como maximo 50 caracteres
+                            </span>
+                        </div>                       
                   </div>
               </div>
               <div class="form-group row">
                   <label class="col-sm-2 col-form-label" style="margin-top: -1%;" id="mesdeInicio">Periodo de Inicio</label>
                   <div class="col-sm-10">
                       <div class="input-group" id="inputmesdeInicio">
-                          <input type="text" class="form-control input-sm" placeholder="Mes" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;" />
+                          <input type="text" class="form-control input-sm" placeholder="Mes" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;"
+                            list="fechaxinicioMes" formControlName="mesinicioExperienciaLaboral" placeholder="Mes" onfocus="this.value=''" required
+                                [ngClass]="{
+                                    'is-invalid':   experienciaModalForm.controls['mesinicioExperienciaLaboral'].invalid && 
+                                                    (experienciaModalForm.controls['mesinicioExperienciaLaboral'].dirty || 
+                                                    experienciaModalForm.controls['mesinicioExperienciaLaboral'].touched) , 
+                                    'is-valid': experienciaModalForm.controls['mesinicioExperienciaLaboral'].valid}">
+                                <datalist id="fechaxinicioMes">
+                                        <option *ngFor="let fechaxinicioMes of MesPeriodo" value="{{fechaxinicioMes.text}}">{{fechaxinicioMes.text}}</option>
+                                 </datalist> 
+                                                                     
                           <span class="input-group-btn" style="width:0px;"></span>
-                          <input type="text" class="form-control input-sm" placeholder="Año" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"/>
+                          <input type="number" class="form-control input-sm" placeholder="Año" min="1900" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"
+                            formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" required
+                            [ngClass]="{
+                                'is-invalid': experienciaModalForm.controls['anioinicioExperienciaLaboral'].invalid && 
+                                            (experienciaModalForm.controls['anioinicioExperienciaLaboral'].dirty || 
+                                            experienciaModalForm.controls['anioinicioExperienciaLaboral'].touched) , 
+                                'is-valid': experienciaModalForm.controls['anioinicioExperienciaLaboral'].valid}"> 
+                                
+                                <div class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['mesinicioExperienciaLaboral'].hasError('required') || experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('required') ">
+                                                No puede dejar estos campos vacíos
+                                    </span>
+                                </div>                                    
+                                <div class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['mesinicioExperienciaLaboral'].hasError('maxlength')">
+                                                Seleccione un mes de la lista
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('max')">
+                                                El año maximo permitido es {{anioactual}}
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('min')">
+                                                Ingrese un año mayor a {{aniomin}}
+                                    </span>
+                                </div>                  
+                                                
                         </div>
                         
                   </div>
@@ -595,10 +221,14 @@
               <div class="form-group row">
                   <label class="col-sm-2 col-form-label" style="margin-top: -1%;" id="mesdeFin">Periodo de Finalización</label>
                   <div class="col-sm-10">
-                      <div class="input-group" id="inputmesdeFin">
-                          <input type="text" class="form-control input-sm" placeholder="Mes" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;" />
+                      <div class="input-group" id="inputmesdeFin">                         
+
+                        <input type="text" class="form-control input-sm" list="fechaxfinMes" placeholder="Mes" [ngModel]="mesfinal" formControlName="mesfinExperienciaLaboral" onfocus="this.value=''" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;" />
+                            <datalist id="fechaxfinMes">
+                                <option *ngFor="let fechaxfinMes of MesPeriodo" value="{{fechaxfinMes.text}}">{{fechaxfinMes.text}}</option>
+                            </datalist> 
                           <span class="input-group-btn" style="width:0px;"></span>
-                          <input type="text" class="form-control input-sm" placeholder="Año" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"/>
+                          <input type="number" min="1900" class="form-control input-sm" [ngModel]="anio" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" placeholder="Año" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"/>
                         </div>
                         
                   </div>
@@ -606,38 +236,299 @@
               <div class="form-group row formcito">
                   <label class="col-sm-2 col-form-label">Empresa</label>
                   <div class="col-sm-10">
-                      <input class="form-control" type="text" placeholder="Ingrese el nombre de la Empresa" style="border-radius: 20px; text-align: center;">
+                    <input class="form-control" type="text" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Ingrese el nombre de la Empresa" style="border-radius: 20px; text-align: center;"
+                    [ngClass]="{
+                        'is-invalid': experienciaModalForm.controls['empresaExperienciaLaboral'].invalid && 
+                                     (experienciaModalForm.controls['empresaExperienciaLaboral'].dirty || 
+                                     experienciaModalForm.controls['empresaExperienciaLaboral'].touched) , 
+                          'is-valid': experienciaModalForm.controls['empresaExperienciaLaboral'].valid}">
+                          
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('required')">
+                                            No puede dejar este campo vacío
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('minlength')">
+                                        Debe contener al menos 1 caracteres
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('maxlength')">
+                                        Debe contener como maximo 50 caracteres
+                            </span>
+                        </div>
                   </div>
               </div>
               <div class="form-group row formcito">
                   <label class="col-sm-2 col-form-label">Descripción</label>
                   <div class="col-sm-10">
-                      <textarea class="form-control tamanio" placeholder="Ingrese una breve descripción aquí" id="exampleFormControlTextarea1" rows="2" style="text-align: center; border-radius: 20px;"></textarea>
+                    <textarea class="form-control tamanio" placeholder="Ingrese una breve descripción aquí" formControlName="descripcionExperienciaLaboral" id="exampleFormControlTextarea1" rows="2" style="text-align: center; border-radius: 20px;"
+                    placeholder="Ingrese una breve descripción"
+                    [ngClass]="{
+                        'is-invalid': experienciaModalForm.controls['descripcionExperienciaLaboral'].invalid && 
+                                     (experienciaModalForm.controls['descripcionExperienciaLaboral'].dirty || 
+                                     experienciaModalForm.controls['descripcionExperienciaLaboral'].touched) , 
+                          'is-valid': experienciaModalForm.controls['descripcionExperienciaLaboral'].valid}">                                                      
+                       </textarea>
+                       <div class="invalid-feedback">
+                        <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('required')">
+                                        No puede dejar este campo vacío
+                        </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('minlength')">
+                                        Debe contener al menos 5 caracteres
+                            </span>
+                        </div>
+                        <div class="invalid-feedback">
+                            <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('maxlength')">
+                                        Debe contener como maximo 50 caracteres
+                            </span>
+                        </div> 
                   </div>
               </div>
               <div class="form-group row formcito">
                   <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Nombre del Referente</label>
                   <div class="col-sm-10">
-                      <input class="form-control" type="text" placeholder="Ingrese el nombre del Referente" style="border-radius: 20px; text-align: center;">
+                      <input class="form-control" type="text" placeholder="Ingrese el nombre del Referente" formControlName="referenteReferenciaLaboral" id="referenteReferenciaLaboral" style="border-radius: 20px; text-align: center;">
                   </div>
               </div>
               <div class="form-group row formcito">
                   <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Correo del Referente</label>
                   <div class="col-sm-10">
-                      <input class="form-control" type="mail" placeholder="Ingrese el correo del Referente" style="border-radius: 20px; text-align: center;">
+                      <input class="form-control" type="mail" formControlName="emailreferenteReferenciaLaboral" id="emailreferenteReferenciaLaboral" placeholder="Ingrese el correo del Referente" style="border-radius: 20px; text-align: center;">
                   </div>
               </div>
               <div class="form-group row formcito">
                   <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Número del Referente</label>
-                  <div class="col-sm-10">
-                      <input class="form-control" type="number" placeholder="Ingrese el número telefónico del Referente" style="border-radius: 20px; text-align: center;">
+                  <div class="col-sm-10">                 
+                    <input class="form-control" type="number" formControlName="telefonoreferenteReferenciaLaboral" id="telefonoreferenteReferenciaLaboral" placeholder="Ingrese el número telefónico del Referente" style="border-radius: 20px; text-align: center;"
+                      [ngClass]="{
+                        'is-invalid': experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].invalid && 
+                                    (experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].dirty || 
+                                    experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].touched) , 
+                        'is-valid': experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].valid}">
+                    <div class="invalid-feedback">
+                        <span class="text-danger" *ngIf="experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].hasError('max')">
+                                        Máximo 9 dígitos
+                        </span>
+                    </div>
                   </div>
               </div>
+              <div class="modal-footer">
+                <button class="seccion_btnModal btnGuardar" [disabled]="!experienciaModalForm.valid" type="submit"><i class="far fa-save"></i> Guardar</button>
+            </div>
           </form>                              
       </div>
-      <div class="modal-footer">
-          <button class="seccion_btnModal btnGuardar" type="button"><i class="far fa-save"></i> Guardar</button>
-      </div>
+      
     </div>
   </div>
 </div>
+
+
+<!-- Niu Kaizen Noviembre 2021  ACTUALIZAR-->
+
+<div class="modal fullscreen-modal animate__animated animate__slideInUp" id="experienciaeditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modalIdiomas" style="max-width: 100%" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100 tituloModal" id="exampleModalLabel">Agregar Experiencia Laboral</h4>
+          <button type="button" class="close" data-toggle="modal" data-target="#nuevoModalcito" data-dismiss="modal animate__animated animate__slideInDown" aria-label="Cerrar">
+  
+              <!--Boton X-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          </button>
+          
+        </div>
+        
+        <div class="modal-body">
+            <form [formGroup]="experienciaUpdateModalForm" (ngSubmit)="updateExp()">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Experiencia Laboral</label>
+                    <div class="col-sm-10">                     
+
+                        <input class="form-control" type="text" placeholder="Ingrese el nombre de la Experiencia Laboral" style="border-radius: 20px; text-align: center;"
+                        formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" [ngModel]="nombreExperienciaLaboral" placeholder="Ingrese la Experiencia Laboral" required
+                          [ngClass]="{
+                              'is-invalid': experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].invalid && 
+                                          (experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].dirty || 
+                                          experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].touched) , 
+                              'is-valid': experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].valid}">
+                            
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].hasError('required')">
+                                              No puede dejar este campo vacío
+                              </span>
+                          </div>
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].hasError('minlength')">
+                                          Debe contener al menos 5 caracteres
+                              </span>
+                          </div>
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['nombreExperienciaLaboral'].hasError('maxlength')">
+                                          Debe contener como maximo 50 caracteres
+                              </span>
+                          </div>                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" style="margin-top: -1%;" id="mesdeInicio">Periodo de Inicio</label>
+                    <div class="col-sm-10">
+                        <div class="input-group" id="inputmesdeInicio">
+                            
+
+                            <input type="text" class="form-control input-sm" placeholder="Mes" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;"
+                              list="fechaxinicioMes" [ngModel]="mesinicio" name="fechaM" formControlName="mesinicioExperienciaLaboral" placeholder="Mes" onfocus="this.value=''" required
+                                  [ngClass]="{
+                                      'is-invalid':   experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].invalid && 
+                                                      (experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].dirty || 
+                                                      experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].touched) , 
+                                      'is-valid': experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].valid}">
+                                  <datalist id="fechaxinicioMes">
+                                          <option *ngFor="let fechaxinicioMes of MesPeriodo" value="{{fechaxinicioMes.text}}">{{fechaxinicioMes.text}}</option>
+                                   </datalist> 
+                                                                       
+                            <span class="input-group-btn" style="width:0px;"></span>
+                            <input type="number" class="form-control input-sm" [ngModel]="anioinicio" placeholder="Año" min="1900" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"
+                              formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" required
+                              [ngClass]="{
+                                  'is-invalid': experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].invalid && 
+                                              (experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].dirty || 
+                                              experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].touched) , 
+                                  'is-valid': experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].valid}"> 
+                                  
+                                  <div class="invalid-feedback">
+                                      <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].hasError('required') || experienciaModalForm.controls['anioinicioExperienciaLaboral'].hasError('required') ">
+                                                  No puede dejar estos campos vacíos
+                                      </span>
+                                  </div>                                    
+                                  <div class="invalid-feedback">
+                                      <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['mesinicioExperienciaLaboral'].hasError('maxlength')">
+                                                  Seleccione un mes de la lista
+                                      </span>
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].hasError('max')">
+                                                  El año maximo permitido es {{anioactual}}
+                                      </span>
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      <span class="text-danger" *ngIf="experienciaUpdateModalForm.controls['anioinicioExperienciaLaboral'].hasError('min')">
+                                                  Ingrese un año mayor a {{aniomin}}
+                                      </span>
+                                  </div>                  
+                                                  
+                          </div>
+                          
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" style="margin-top: -1%;" id="mesdeFin">Periodo de Finalización</label>
+                    <div class="col-sm-10">
+                        <div class="input-group" id="inputmesdeFin">                       
+  
+                          <input type="text" class="form-control input-sm" list="fechaxfinMes" placeholder="Mes" formControlName="mesfinExperienciaLaboral" onfocus="this.value=''" style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; text-align: center;" />
+                              <datalist id="fechaxfinMes">
+                                  <option *ngFor="let fechaxfinMes of MesPeriodo" value="{{fechaxfinMes.text}}">{{fechaxfinMes.text}}</option>
+                              </datalist> 
+                            <span class="input-group-btn" style="width:0px;"></span>
+                            <input type="number" min="1900" class="form-control input-sm" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" placeholder="Año" style="border-top-right-radius: 20px; border-bottom-right-radius: 20px; text-align: center;"/>
+                          </div>
+                          
+                    </div>
+                </div>
+                <div class="form-group row formcito">
+                    <label class="col-sm-2 col-form-label">Empresa</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text" [ngModel]="empresaExperienciaLaboral" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Ingrese el nombre de la Empresa" style="border-radius: 20px; text-align: center;"
+                      [ngClass]="{
+                          'is-invalid': experienciaModalForm.controls['empresaExperienciaLaboral'].invalid && 
+                                       (experienciaModalForm.controls['empresaExperienciaLaboral'].dirty || 
+                                       experienciaModalForm.controls['empresaExperienciaLaboral'].touched) , 
+                            'is-valid': experienciaModalForm.controls['empresaExperienciaLaboral'].valid}">
+                            
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('required')">
+                                              No puede dejar este campo vacío
+                              </span>
+                          </div>
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('minlength')">
+                                          Debe contener al menos 1 caracteres
+                              </span>
+                          </div>
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaModalForm.controls['empresaExperienciaLaboral'].hasError('maxlength')">
+                                          Debe contener como maximo 50 caracteres
+                              </span>
+                          </div>
+                    </div>
+                </div>
+                <div class="form-group row formcito">
+                    <label class="col-sm-2 col-form-label">Descripción</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control tamanio" placeholder="Ingrese una breve descripción aquí" [ngModel]="descripcionExperienciaLaboral" formControlName="descripcionExperienciaLaboral" id="exampleFormControlTextarea1" rows="2" style="text-align: center; border-radius: 20px;"
+                      placeholder="Ingrese una breve descripción"
+                      [ngClass]="{
+                          'is-invalid': experienciaModalForm.controls['descripcionExperienciaLaboral'].invalid && 
+                                       (experienciaModalForm.controls['descripcionExperienciaLaboral'].dirty || 
+                                       experienciaModalForm.controls['descripcionExperienciaLaboral'].touched) , 
+                            'is-valid': experienciaModalForm.controls['descripcionExperienciaLaboral'].valid}">                                                      
+                         </textarea>
+                         <div class="invalid-feedback">
+                          <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('required')">
+                                          No puede dejar este campo vacío
+                          </span>
+                          </div>
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('minlength')">
+                                          Debe contener al menos 5 caracteres
+                              </span>
+                          </div>
+                          <div class="invalid-feedback">
+                              <span class="text-danger" *ngIf="experienciaModalForm.controls['descripcionExperienciaLaboral'].hasError('maxlength')">
+                                          Debe contener como maximo 50 caracteres
+                              </span>
+                          </div> 
+                    </div>
+                </div>
+                <div class="form-group row formcito">
+                    <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Nombre del Referente</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder="Ingrese el nombre del Referente" [ngModel]="referenteExperienciaLaboral" formControlName="referenteReferenciaLaboral" id="referenteReferenciaLaboral" style="border-radius: 20px; text-align: center;">
+                    </div>
+                </div>
+                <div class="form-group row formcito">
+                    <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Correo del Referente</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="mail" [ngModel]="emailReferente" formControlName="emailreferenteReferenciaLaboral" id="emailreferenteReferenciaLaboral" placeholder="Ingrese el correo del Referente" style="border-radius: 20px; text-align: center;">
+                    </div>
+                </div>
+                <div class="form-group row formcito">
+                    <label class="col-sm-2 col-form-label" style="margin-top: -1%;">Número del Referente</label>
+                    <div class="col-sm-10">                 
+                      <input class="form-control" type="number"  [ngModel]="telefonoReferente" formControlName="telefonoreferenteReferenciaLaboral" id="telefonoreferenteReferenciaLaboral" placeholder="Ingrese el número telefónico del Referente" style="border-radius: 20px; text-align: center;"
+                        [ngClass]="{
+                          'is-invalid': experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].invalid && 
+                                      (experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].dirty || 
+                                      experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].touched) , 
+                          'is-valid': experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].valid}">
+                      <div class="invalid-feedback">
+                          <span class="text-danger" *ngIf="experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].hasError('max')">
+                                          Máximo 9 dígitos
+                          </span>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="seccion_btnModal btnGuardar" [disabled]="!experienciaUpdateModalForm.valid" type="submit"><i class="far fa-save"></i> Guardar</button>
+              </div>
+            </form>                              
+        </div>
+        
+      </div>
+    </div>
+  </div>
+

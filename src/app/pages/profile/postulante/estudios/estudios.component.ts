@@ -36,6 +36,8 @@ export class EstudiosComponent implements OnInit {
   aniomin: any;
   choosenivel: any;
   choosestado: any;
+  nivelEducacion: any;
+  estadoEducacion: any;
 
   constructor(private tokenService: TokenStorageService,
               private router: Router,
@@ -129,7 +131,6 @@ export class EstudiosComponent implements OnInit {
   SeleccionarEdu(edu:any) {
     this.ListEdu = edu;
     this.tokenService.saveEdu(this.ListEdu.idEducacion);   
-    var mesinicioseparador = this.ListEdu.periodoinicioEducacion
 
     switch (this.ListEdu.periodofinEducacion) {
       case 'En Curso':
@@ -146,12 +147,16 @@ export class EstudiosComponent implements OnInit {
         break;
     }
 
+    var mesinicioseparador = this.ListEdu.periodoinicioEducacion
     this.mesinicio = mesinicioseparador.slice(0,-5)  
-    var cadenainicio = this.ListEdu.periodoinicioEducacion;
 
+    var cadenainicio = this.ListEdu.periodoinicioEducacion;
     this.anioinicio = cadenainicio.slice(-4);
+
     this.nombreEducacion = this.ListEdu.nombreEducacion;
-    this.institucionEducacion = this.ListEdu.institucionEducacion
+    this.institucionEducacion = this.ListEdu.institucionEducacion;
+    this.nivelEducacion = this.ListEdu.nivelEducacion;
+    this.estadoEducacion = this.ListEdu.estadoEducacion;  
 
   }
 
@@ -162,15 +167,15 @@ export class EstudiosComponent implements OnInit {
   getEdu(){
     this.postulante = this.tokenService.getUser();
     
-    this.EstudiosService.mostrarEducacion(this.postulante.idPostulante).subscribe(
+    this.EstudiosService.mostrarEducacion(this.postulante.idUsuario).subscribe(
       data => {    
         this.CurrentEducacion = data.sort;
         if(this.CurrentEducacion.periodoinicioEducacion){
           this.CurrentEducacion = data.sort((a: any, b: any) => b.periodoinicioEducacion.slice(-4) - a.periodoinicioEducacion.slice(-4));   
+
         }else{
           this.CurrentEducacion = data;
-        }
-
+        }  
     });
   }
 
@@ -261,7 +266,6 @@ export class EstudiosComponent implements OnInit {
       this.aniofinEdu = "";
     }
 
-
     var educacion: any = {
     nombreEducacion: this.educacionModalForm.controls['nombreEducacion'].value,
     mesinicioEducacion:this.MesInicio,
@@ -271,10 +275,9 @@ export class EstudiosComponent implements OnInit {
     mesfinEducacion:this.MesFin,
     aniofinEducacion:this.aniofinEdu,
     institucionEducacion: this.educacionModalForm.controls['institucionEducacion'].value     
-    }
-  
-
-    this.EstudiosService.guardarEducacion(this.postulante.idPostulante, educacion).subscribe(
+    } 
+    
+    this.EstudiosService.guardarEducacion(this.postulante.idUsuario, educacion).subscribe(
       data => {     
       this.CurrentEducacion = data;
       window.location.reload(); 
@@ -362,9 +365,9 @@ export class EstudiosComponent implements OnInit {
       nivelEducacion: this.choosenivel,
       aniofinEducacion : this.educacionUpdateModalForm.controls['aniofinEducacion'].value,
       institucionEducacion: this.educacionUpdateModalForm.controls['institucionEducacion'].value     
-    }
+    }   
 
-    this.EstudiosService.actualizarEducacion(this.postulante.idPostulante, this.ListEdu.idEducacion, educacion).subscribe(
+    this.EstudiosService.actualizarEducacion(this.postulante.idUsuario, this.ListEdu.idEducacion, educacion).subscribe(
     data => {
       window.location.reload(); 
     })

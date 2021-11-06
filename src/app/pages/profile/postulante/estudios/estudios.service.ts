@@ -24,7 +24,6 @@ export class EstudiosService {
       educacion,
       httpOptions);
   }
-  
   mostrarEducacion(id:any): Observable<any> {
     return this.http.get(`${this.API_URL2}/${id}/educacion/show`);
   }

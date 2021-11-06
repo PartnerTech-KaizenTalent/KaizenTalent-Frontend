@@ -128,22 +128,23 @@ export class PostulanteProfileComponent implements OnInit {
 
   descargarcv(){
     
-    if(this.basicInfo.archivocvPostulante === null || this.basicInfo.archivocvPostulante === undefined || this.basicInfo.archivocvPostulante === '' ){
+    if(this.basicInfo.documentocvPostulante === null || this.basicInfo.documentocvPostulante === undefined || this.basicInfo.documentocvPostulante === '' ){
       return window.location.href= '/postulante/'+this.idPostulante+'/profile';
     }
-    if(this.basicInfo.archivocvPostulante !== null || this.basicInfo.archivocvPostulante !== undefined || this.basicInfo.archivocvPostulante !==  ''){
+    if(this.basicInfo.documentocvPostulante !== null || this.basicInfo.documentocvPostulante !== undefined || this.basicInfo.documentocvPostulante !==  ''){
        
-      return window.location.href= ''+this.basicInfo.archivocvPostulante;
+      return window.location.href= ''+this.basicInfo.documentocvPostulante;
     }
     return '';
   }
 
   getprofileBasicInfo() {
     this.currentPostulante = this.tokenService.getUser();
-
     this.postulanteprofileService.BasicInfo(this.currentPostulante.idUsuario).subscribe(
       data => {
         this.basicinfoData = data;
+        console.log(this.basicinfoData)
+
         this.basicInfo.nombrePostulante = this.basicinfoData.nombrePostulante + ' ' + this.basicinfoData.apellidoPostulante;
         this.basicInfo.apellidoPostulante = this.basicinfoData.apellidoPostulante;
         this.basicInfo.direccionPostulante = this.basicinfoData.direccionPostulante;
@@ -269,6 +270,8 @@ export class PostulanteProfileComponent implements OnInit {
           data => { 
             this.CurrentUser2 = data;
             this.signupSuccess = true;
+            window.location.reload();
+
           },
           err => {
             this.errorMessage = err.error.message;

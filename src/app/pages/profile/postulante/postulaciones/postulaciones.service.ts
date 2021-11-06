@@ -13,7 +13,7 @@ export class PostulacionesService {
   constructor(private http: HttpClient) { }
 
   getMisPostulaciones(idpostu:any): Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpostu}/show/postulaciones`)
+    return this.http.get(`${this.API_URL}/${idpostu}/postulaciones`)
   }
 }
 

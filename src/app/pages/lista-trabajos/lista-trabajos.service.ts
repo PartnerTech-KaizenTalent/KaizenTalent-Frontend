@@ -8,7 +8,7 @@ import { GlobalUrl } from 'src/app/util/global-url';
 })
 export class ListaTrabajosService {
 
-  private API_URL = GlobalUrl.BASE_URL + 'api/empleos/show/all';
+  private API_URL = GlobalUrl.BASE_URL + 'api/empleos/publicaciones';
   private API_URL2 = GlobalUrl.BASE_URL + 'api/empleos/find/by';
 
   constructor(private http: HttpClient) { }

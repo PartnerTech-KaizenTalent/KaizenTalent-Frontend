@@ -40,7 +40,7 @@ export class PostulacionesComponent implements OnInit {
 
   showMisPostulanciones(){
     this.MisPostulaciones= this.token.getUser();
-    this.postulacionservice.getMisPostulaciones(this.MisPostulaciones.idPostulante).subscribe(data => {
+    this.postulacionservice.getMisPostulaciones(this.MisPostulaciones.idUsuario).subscribe(data => {
       this.postulaciones = data;
       this.conteo=this.postulaciones.length;
             
