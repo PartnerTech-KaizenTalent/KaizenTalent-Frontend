@@ -257,7 +257,7 @@ export class NavigationComponent implements OnInit {
       categoria: ''   
     }    
     this.tokens.saveTokenBusqueda(usuario);       
-    window.location.href='/home/show/all';
+    window.location.href='/empleos';
   }
   
   

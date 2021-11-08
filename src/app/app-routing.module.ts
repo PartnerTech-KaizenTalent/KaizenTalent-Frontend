@@ -54,7 +54,7 @@ const routes: Routes = [
   
   
   { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:EmpleoDetailComponent},
-  { path: 'home/show/all', component:ListaTrabajosComponent },
+  { path: 'empleos', component:ListaTrabajosComponent },
   { path: 'postulante/:idPostulante/postulaciones', component:PostulacionesComponent},
   { path: 'reclutador/:idReclutador/publicar', component:PublicarEmpleoComponent},
   { path: 'listacandidatos', component:ListaPostulantesComponent},

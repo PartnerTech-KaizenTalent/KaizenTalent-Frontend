@@ -127,6 +127,6 @@ export class IndexComponent implements OnInit {
       categoria: this.busquedaForm.controls['categoriaUsuario'].value   
     }    
     this.tokens.saveTokenBusqueda(usuario);   
-    window.location.href='/home/show/all';
+    window.location.href='/empleos';
   }
 }
