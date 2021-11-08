@@ -150,17 +150,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Sueldo</label>
-                                            <input type="number"  class="form-control resume" placeholder="" formControlName="sueldoPuestoTrabajo" 
-                                            [ngClass]="{
-                                                'is-invalid': puestostrabajoform.controls['sueldoPuestoTrabajo'].invalid && 
-                                                             (puestostrabajoform.controls['sueldoPuestoTrabajo'].dirty || 
-                                                             puestostrabajoform.controls['sueldoPuestoTrabajo'].touched) , 
-                                                  'is-valid': puestostrabajoform.controls['sueldoPuestoTrabajo'].valid}">
-                                            <div class="invalid-feedback">
-                                                <span class="text-danger" *ngIf="puestostrabajoform.controls['sueldoPuestoTrabajo'].hasError('required')">
-                                                    No puede dejar este campo vacío
-                                                </span>
-                                            </div>      
+                                            <input type="number"  class="form-control resume" formControlName="sueldoPuestoTrabajo" 
+                                            >
+                                               
                                         </div>
                                         
                                     </div>

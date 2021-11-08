@@ -11,32 +11,41 @@ const httpOptions = {
 })
 export class ProfilePostulanteService {
 
-  private API_URL = GlobalUrl.BASE_URL + 'api/publicacion';
+  private API_URL = GlobalUrl.BASE_URL + 'api/postulante';
 
   constructor(private http:HttpClient) { }
 
-  getEducacion(idpub:any, idpost:any): Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpub}/postulante/${idpost}/profile/educacion`);
+
+  BasicInfo(idb: any): Observable<any> {
+    return this.http.get(
+      `${this.API_URL}/${idb}/profile/basicinfo`);
   }
 
-  getExperiencia(idpub:any, idpost:any): Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpub}/postulante/${idpost}/profile/experiencialaboral`);
-  }
-  getPostulantesByempleo(idpublicacion: any,idpostu:any) : Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpublicacion}/postulante/${idpostu}/profile/basicinfo`);
+  mostrarConocimiento(id:any): Observable<any> {
+    return this.http.get(`${this.API_URL}/${id}/conocimiento/show`);
   }
 
-  getReferencia(idpub: any,idpostu:any) : Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpub}/postulante/${idpostu}/profile/referencialaboral`);
+  mostrarEducacion(id:any): Observable<any> {
+    return this.http.get(`${this.API_URL}/${id}/educacion/show`);
   }
-  getHabilidades(idpub: any,idpostu:any) : Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpub}/postulante/${idpostu}/profile/habilidad`);    
+
+  mostrarExperiencia(id:any): Observable<any> {
+    return this.http.get(`${this.API_URL}/${id}/experiencialaboral/show`);
   }
-  getConocimientos(idpub: any,idpostu:any) : Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpub}/postulante/${idpostu}/profile/conocimiento`);
+
+  mostrarHabilidad(id:any): Observable<any> {
+    return this.http.get(`${this.API_URL}/${id}/habilidad/show`);
   }
-  getIdioma(idpub: any,idpostu:any) : Observable<any> {
-    return this.http.get(`${this.API_URL}/${idpub}/postulante/${idpostu}/profile/idioma`);
+  
+  mostrarIdioma(id:any): Observable<any> {
+    return this.http.get(`${this.API_URL}/${id}/idioma/show`);
   }
+
+  mostrarReferencia(id:any): Observable<any>{
+    return this.http.get(`${this.API_URL}/${id}/referencialaboral/show
+    `)
+  }
+
+
 }
 

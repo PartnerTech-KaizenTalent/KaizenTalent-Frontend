@@ -86,7 +86,7 @@ export class IdiomasComponent implements OnInit {
   getIdioma(){
     this.postulante = this.tokenService.getUser();
 
-    this.IdiomasService.mostrarIdioma( this.postulante.idPostulante).subscribe(
+    this.IdiomasService.mostrarIdioma( this.postulante.idUsuario).subscribe(
       data => {    
         this.CurrentIdioma =data;
         if(this.CurrentIdioma.nombreSkill) {
@@ -115,7 +115,7 @@ export class IdiomasComponent implements OnInit {
       nivelIdioma: this.choosenivel
     }
     
-    this.IdiomasService.guardarIdioma(this.postulante.idPostulante, idioma).subscribe(
+    this.IdiomasService.guardarIdioma(this.postulante.idUsuario, idioma).subscribe(
       data => {    
         data;
         window.location.reload();
@@ -153,7 +153,7 @@ export class IdiomasComponent implements OnInit {
       nivelIdioma: this.choosenivel
     }
     
-    this.IdiomasService.actualizarIdioma(this.postulante.idPostulante, this.ListIdi.idSkill, idioma).subscribe(
+    this.IdiomasService.actualizarIdioma(this.postulante.idUsuario, this.ListIdi.idSkill, idioma).subscribe(
       data => {    
         window.location.reload();
 

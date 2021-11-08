@@ -69,7 +69,6 @@ export class NavigationComponent implements OnInit {
     if(this.UsuarioToken.token){
       this.UsuarioToken = this.tokens.getUser();
       var a = this.UsuarioToken.authorities[0];
-      console.log(a.authority)
 
       switch (a.authority) {
         case 'ROLE_RECLUTADOR':   
@@ -83,7 +82,6 @@ export class NavigationComponent implements OnInit {
         default:
           break;
       }
-      console.log(this.UsuarioToken)
 
       if(this.reclutador !== undefined ){   
         this.isMostrar = true;
@@ -114,7 +112,6 @@ export class NavigationComponent implements OnInit {
     this.salir = this.tokens.getUser();
 
       var a = this.salir.authorities[0];
-      console.log(a.authority)
 
       switch (a.authority) {
         case 'ROLE_RECLUTADOR':   
@@ -179,7 +176,6 @@ export class NavigationComponent implements OnInit {
         default:
           break;
       }
-      console.log(this.postulante)
 
       if(this.postulante !== undefined){
         this.tokens.signOut();

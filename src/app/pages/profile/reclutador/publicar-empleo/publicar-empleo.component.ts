@@ -65,6 +65,7 @@ export class PublicarEmpleoComponent implements OnInit {
 
       
      sueldoPuestoTrabajo: new FormControl('', Validators.compose([
+       
      ])), 
      experienciaPuestoTrabajo: new FormControl('', Validators.compose([
        Validators.required
