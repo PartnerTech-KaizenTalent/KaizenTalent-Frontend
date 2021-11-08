@@ -10,9 +10,8 @@ export class InstitucionEducativaPipe implements PipeTransform {
       return value;
   }
 
-  return value.filter((lista: any) =>
+  return value.filter((lista: any) =>   
           lista.institucionesPostulante.toLowerCase().includes(FilterPostInstitucionEducativa.toLowerCase())
-
   )
   
   }

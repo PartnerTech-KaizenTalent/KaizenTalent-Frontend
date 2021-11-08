@@ -55,29 +55,26 @@ export class HeadhuntingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListaempleos();
-
   }
-
   
-
-  ngAfterContentChecked(){
+  /*ngAfterContentChecked(){
     this.cd.detectChanges();
-  }
-  
+  }*/  
 
-  filterGeneral(lista: any) {
+ /* filterGeneral(lista: any) {
 
     if( lista.experiencialaboralPostulante.puestoExperienciaLaboral !== null){
       return lista
     }    
     
-  }
+  }*/
 
   getListaempleos(){
     this.HeadhuntingService.getPostulanteByHeadHunting().subscribe(
     data => {
       this.Lista = data;   
-      console.log(this.Lista)       
+      console.log(this.Lista)    
+   
     },
     error => {
       console.log(error);

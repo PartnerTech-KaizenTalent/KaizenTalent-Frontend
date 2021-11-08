@@ -4,4 +4,5 @@ export interface BasicInfoPostulanteProfile {
     direccionUsuario: string;
     telefonoUsuario: string;
     ciudadUsuario: string;
+    sueldoUsuario: any;
 }

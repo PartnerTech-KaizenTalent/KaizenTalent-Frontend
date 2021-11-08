@@ -57,7 +57,7 @@ export class PasswordUpdateComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //link https://dessmo-1a622.web.app/   (29)    
+  //link   (29)    
   //local
   //this.token = location.href.slice(39); 
   //producción     

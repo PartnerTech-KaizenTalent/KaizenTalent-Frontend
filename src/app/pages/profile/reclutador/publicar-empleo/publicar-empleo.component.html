@@ -151,7 +151,17 @@
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Sueldo</label>
                                             <input type="number"  class="form-control resume" formControlName="sueldoPuestoTrabajo" 
-                                            >
+                                            [ngClass]="{
+                                                'is-invalid': puestostrabajoform.controls['ciudadPuestoTrabajo'].invalid && 
+                                                             (puestostrabajoform.controls['ciudadPuestoTrabajo'].dirty || 
+                                                             puestostrabajoform.controls['ciudadPuestoTrabajo'].touched) , 
+                                                  'is-valid': puestostrabajoform.controls['ciudadPuestoTrabajo'].valid}" >
+
+                                            <div class="invalid-feedback">
+                                                <span class="text-danger" *ngIf="puestostrabajoform.controls['sueldoUsuario'].hasError('min')">
+                                                     El sueldo no puede ser menor que uno
+                                                </span>
+                                            </div>                                                    
                                                
                                         </div>
                                         
