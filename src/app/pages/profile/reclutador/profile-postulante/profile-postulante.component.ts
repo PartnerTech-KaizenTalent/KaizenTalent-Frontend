@@ -97,11 +97,13 @@ export class ProfilePostulanteComponent implements OnInit {
     }    
     
   }
+
   getpostulantexempleo(){
-    this.ProfilePostulanteService.getPostulantesByempleo(this.tokens.getTokenjob(),this.tokens.getUsuarioPerfil()).subscribe(data => {
+    var id = this.tokens.getUsuarioPerfil();
+    this.ProfilePostulanteService.BasicInfo(id).subscribe(data => {
       this.Usuario = data
       this.Usuario.idPostulante= data.idPostulante
-      this.Usuario.archivocvPostulante = data.archivocvPostulante.urlArchivoCV;
+      this.Usuario.documentocvPostulante = data.documentocvPostulante.urlDocumentoCV;
       this.Usuario.fotoperfilPostulante = data.fotoperfilPostulante.urlImagen;
       this.Usuario.nombrePostulante = data.nombrePostulante;
       this.Usuario.apellidoPostulante = data.apellidoPostulante;
@@ -110,78 +112,71 @@ export class ProfilePostulanteComponent implements OnInit {
       this.Usuario.direccionPostulante = data.direccionPostulante;
       this.Usuario.telefonoPostulante= data.telefonoPostulante;
       this.Usuario.tituloPostulante=data.tituloPostulante
-      console.log(data);
 
       if (this.Usuario.descripcionPostulante){ 
         this.Usuario.descripcionPostulante = this.Usuario.descripcionPostulante.replace(/\n/g, '<br />');
-      }
-
-      
-    })
+      }      
+    },
+    
+    )
   }
 
   getEdu(){
 
-    this.ProfilePostulanteService.getEducacion(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+    this.ProfilePostulanteService.mostrarEducacion(this.tokens.getUsuarioPerfil()).subscribe(
       data => {    
         this.CurrentEducacion= data;  
-        console.log(data)
       });
   }
 
   getExp(){
 
-    this.ProfilePostulanteService.getExperiencia(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+    this.ProfilePostulanteService.mostrarExperiencia(this.tokens.getUsuarioPerfil()).subscribe(
       data => {    
         this.CurrentExperiencia= data;  
-        console.log(data)
       });
   }
 
   getRef(){
 
-    this.ProfilePostulanteService.getReferencia(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+    this.ProfilePostulanteService.mostrarReferencia(this.tokens.getUsuarioPerfil()).subscribe(
       data => {    
         this.CurrentReferencia= data;  
-        console.log(data)
       });
   }
 
   getCon(){
 
-    this.ProfilePostulanteService.getConocimientos(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+    this.ProfilePostulanteService.mostrarConocimiento(this.tokens.getUsuarioPerfil()).subscribe(
       data => {    
         this.CurrentConocimiento= data;  
-        console.log(data)
       });
   }
 
   getHab(){
 
-    this.ProfilePostulanteService.getHabilidades(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+    this.ProfilePostulanteService.mostrarHabilidad(this.tokens.getUsuarioPerfil()).subscribe(
       data => {    
         this.CurrentHabilidad= data;  
-        console.log(data)
       });
   }
 
   getIdi(){
 
-    this.ProfilePostulanteService.getIdioma(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+    this.ProfilePostulanteService.mostrarIdioma(this.tokens.getUsuarioPerfil()).subscribe(
       data => {    
         this.CurrentIdioma= data;  
-        console.log(data)
       });
   }
 
   descargarcv(){
     
-    if(this.Usuario.archivocvPostulante === null || this.Usuario.archivocvPostulante === undefined || this.Usuario.archivocvPostulante === '' ){
-      return window.location.href= '/postulante/'+this.idPostulante+'/profile';
+    if(this.Usuario.documentocvPostulante === null || this.Usuario.documentocvPostulante === undefined || this.Usuario.documentocvPostulante === '' ){
+      return window.location.href= '/perfilcandidato';
     }
-    if(this.Usuario.archivocvPostulante !== null || this.Usuario.archivocvPostulante !== undefined || this.Usuario.archivocvPostulante !==  ''){
+    if(this.Usuario.documentocvPostulante !== null || this.Usuario.documentocvPostulante !== undefined || this.Usuario.documentocvPostulante !==  ''){
        
-      return window.location.href= ''+this.Usuario.archivocvPostulante;
+      return window.location.href= ''+this.Usuario.documentocvPostulante;
     }
     return '';
   }

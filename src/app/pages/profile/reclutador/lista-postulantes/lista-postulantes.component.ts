@@ -26,10 +26,10 @@ export class ListaPostulantesComponent implements OnInit {
   }
 
   getPostulantes(){
-    this.ListaPostulantesService.getPublicacionbyPostulante(this.token.getTokenjob()).subscribe(data => {
+     var a =this.token.getTokenjob()
+    this.ListaPostulantesService.getPublicacionbyPostulante(a).subscribe(data => {
       this.ListCandidatos = data;
       this.Listprofile = this.ListCandidatos.postulantesPublicacion;
-      console.log(this.Listprofile);
     })
   }
 

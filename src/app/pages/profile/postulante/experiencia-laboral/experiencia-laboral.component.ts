@@ -39,6 +39,13 @@ export class ExperienciaLaboralComponent implements OnInit {
   anioactual: any;
   aniomin: any;
 
+  toDoTaskList = [
+    {id:'a', name:'a'},
+    {id:'b', name:'b'},
+    {id:'c', name:'c'}
+  ];
+  newRecordToUpdate: any
+  updatedVal: any
 
   constructor(private tokenService: TokenStorageService,
               private ExperienciaLaboralService: ExperienciaLaboralService,
@@ -206,10 +213,8 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.postulante = this.tokenService.getUser();
 
     this.ExperienciaLaboralService.mostrarExperiencia( this.postulante.idUsuario).subscribe(
-      data => {    
-        console.log(data)
+      data => {      
         this.CurrentExperiencia = data.sort((a: any, b: any) => b.periodoinicioExperienciaLaboral.slice(-4) - a.periodoinicioExperienciaLaboral.slice(-4));
-
       });       
   }
 
@@ -217,11 +222,8 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.postulante = this.tokenService.getUser();
 
     this.ExperienciaLaboralService.mostrarReferencia(this.postulante.idUsuario).subscribe(
-      data => {    
-
-        this.CurrentReferencia = data.sort((a: any, b: any) => b.periodoInicio.slice(-4) - a.periodoInicio.slice(-4));  
-
-
+      data => {   
+        this.CurrentReferencia = data.sort((a: any, b: any) => b.periodoinicioExperienciaLaboral.slice(-4) - a.periodoinicioExperienciaLaboral.slice(-4));  
       });    
   }
 
@@ -245,7 +247,7 @@ export class ExperienciaLaboralComponent implements OnInit {
         case 'Junio':  this.MesInicio = "06";
                  break;
         case 'Julio':  this.MesInicio = "07";
-                 break;                  
+                 break;                   
         case 'Agosto':  this.MesInicio = "08";
                  break;
         case 'Septiembre':  this.MesInicio = "09";
@@ -309,8 +311,7 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.ExperienciaLaboralService.guardarExperiencia(this.postulante.idUsuario, experiencia).subscribe(
       data => {    
         data;
-        console.log(data)
-       // window.location.reload();
+          window.location.reload();
 
       },
       err => {
