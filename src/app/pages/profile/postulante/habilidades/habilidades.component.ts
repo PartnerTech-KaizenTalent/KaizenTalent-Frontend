@@ -81,9 +81,8 @@ export class HabilidadesComponent implements OnInit {
   getHab(){
     this.postulante = this.tokenService.getUser();
 
-    this.HabilidadesService.mostrarHabilidad( this.postulante.idPostulante).subscribe(
+    this.HabilidadesService.mostrarHabilidad( this.postulante.idUsuario).subscribe(
       data => {    
-
         this.CurrentHabilidad = data;
 
         if ( this.CurrentHabilidad.nombreSkill) {
@@ -113,7 +112,7 @@ export class HabilidadesComponent implements OnInit {
 
       this.Datalist = this.NivelGeneral.filter(y => y.value === this.choosenivel)[0];
 
-      this.HabilidadesService.guardarHabilidad(this.postulante.idPostulante, habilidad).subscribe(
+      this.HabilidadesService.guardarHabilidad(this.postulante.idUsuario, habilidad).subscribe(
         data => {    
           data;
           window.location.reload();
@@ -157,7 +156,7 @@ export class HabilidadesComponent implements OnInit {
      // this.Datalist = this.NivelGeneral.filter(y => y.value === this.choosenivel)[0];
      // console.log(this.Datalist.value);
 
-      this.HabilidadesService.actualizarHabilidad(this.postulante.idPostulante, this.ListHab.idSkill, habilidad).subscribe(
+      this.HabilidadesService.actualizarHabilidad(this.postulante.idUsuario, this.ListHab.idSkill, habilidad).subscribe(
         data => {    
           window.location.reload();
 
