@@ -61,11 +61,11 @@ export class PasswordUpdateComponent implements OnInit {
   //local
   //this.token = location.href.slice(39); 
   //producción     
-  // location.href.slice(46); 
+  // location.href.slice(52); 
 
   PasswordUpdate(): any {
 
-    this.token = location.href.slice(39)
+    this.token = location.href.slice(52)
 
     var passwordUpdate: PasswordUpdate = {
       passwordUsuario: this.passwordupdateForm.controls['contrasenia'].value,
