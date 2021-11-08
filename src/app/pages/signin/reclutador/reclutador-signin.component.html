@@ -38,7 +38,7 @@
                         </div>
                         <form [formGroup]="reclutadorSigninForm" (ngSubmit)="SigninReclutador()">
                             <div class="input-group has-validation">
-                                <input (input)="AlertDefault()" class="form-control" type="text" name="usernameUsuario" placeholder="Correo electrónico" aria-describedby="usernameUsuario" required
+                                <input (input)="AlertDefault()" class="form-control" type="text" name="usernameUsuario" placeholder="Usuario o Correo Electrónico" aria-describedby="usernameUsuario" required
                                 formControlName="usernameUsuario"
                                 [ngClass]="{
                                     'is-invalid': reclutadorSigninForm.controls['usernameUsuario'].invalid && 
