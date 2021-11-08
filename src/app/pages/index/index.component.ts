@@ -74,7 +74,7 @@ export class IndexComponent implements OnInit {
     data => {
       this.CurrentLista = data;
       this.CurrentLista = data.sort((a: any, b: any) => b.idPuestoTrabajo - a.idPuestoTrabajo) ;
-      console.log(this.CurrentLista);           
+      console.log(data);           
     },
     error => {
       console.log(error);

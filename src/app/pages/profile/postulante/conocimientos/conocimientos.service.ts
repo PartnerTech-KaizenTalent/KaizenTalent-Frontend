@@ -29,14 +29,13 @@ export class ConocimientosService {
   mostrarConocimiento(id:any): Observable<any> {
     return this.http.get(`${this.API_URL}/${id}/conocimiento/show`);
   }
-
+  
   borrarConocimiento(id:any): Observable<any>{
     return this.http.delete(`${this.API_URL2}/conocimiento/${id}/delete`);
   }
 
   actualizarConocimiento(id:any, idh:any, conocimiento:any): Observable<any>{
     return this.http.put(`${this.API_URL}/${id}/conocimiento/${idh}/update`, conocimiento);
-
-
   }
+
 }

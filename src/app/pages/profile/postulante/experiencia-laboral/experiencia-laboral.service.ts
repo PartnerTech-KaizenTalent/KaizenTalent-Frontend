@@ -27,6 +27,7 @@ export class ExperienciaLaboralService {
   mostrarExperiencia(id:any): Observable<any> {
     return this.http.get(`${this.API_URL2}/${id}/experiencialaboral/show`);
   }
+  
 
   mostrarReferencia(id:any): Observable<any>{
     return this.http.get(`${this.API_URL2}/${id}/referencialaboral/show

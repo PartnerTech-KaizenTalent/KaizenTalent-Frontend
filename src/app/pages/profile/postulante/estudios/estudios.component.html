@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 mt-4" *ngFor="let edu of CurrentEducacion | estudios: filterEstudios">
            <!--Inicio Card 1-->
-            <div class="card cardInterna popu-category-box" style="width: 18rem;">
+            <div class="card cardInterna popu-category-box" style="width: 18rem;">                
                 <div class="card-body">
                     <div *ngIf="edu.estadoEducacion=='Culminado'" class="border rounded-pill hasthtagculminado">{{edu.estadoEducacion}}</div>
                     <div *ngIf="edu.estadoEducacion=='Trunco'" class="border rounded-pill hasthtagtrunco">{{edu.estadoEducacion}}</div>
@@ -213,6 +213,7 @@
                     <div class="form-group row divCentroEducativo">
                         <h3 id="tituloCentroEducativo" for="inputCentroEducativo" class="col-form-label">Nombre de Estudio</h3>
                         <div class="col-sm-10">
+                            
                             <input type="text" class="form-control" id="inputCentroEducativo" placeholder="Ingresa el Nombre del Estudio"
                             name="nombreEducacion" formControlName="nombreEducacion" [ngModel]="nombreEducacion" required 
                             [ngClass]="{
@@ -238,6 +239,7 @@
                                 </div> 
                         </div>                        
                     </div>
+                   
                     <div class="form-group row">
                         <h3 id="tituloCentroEducativo"for="inputCentroEducativo" class="col-form-label">Centro Educativo</h3>
                         <div class="col-sm-10">
@@ -270,17 +272,18 @@
                         <h3 id="tituloNivelEstudios"for="inputTituloNEstudios" class="col-form-label">Nivel de Estudios</h3>
                         <div class="col-sm-10">
                         <select (change)="SeleccionNivel($event)" id="inputNivelEstudios" class="form-control">
-                          <option selected disabled>Selecciona el Nivel de Estudios</option>
+                          <option selected disabled>{{nivelEducacion}}</option>
                           <option *ngFor="let neducacion of NivelEstudio" value="{{neducacion.text}}">{{neducacion.text}}</option>                         
                         </select>
                         </div>
                     </div>     
                     
+                    
                     <div class="form-group row">
                         <h3 id="tituloEstado"for="inputTituloNEstudios" class="col-form-label">Estado</h3>
                         <div class="col-sm-10">
                         <select (change)="SeleccionEstado($event)" id="inputEstado" class="form-control">
-                          <option selected disabled>Selecciona el Estado</option>
+                          <option selected disabled>{{estadoEducacion}}</option>
                           <option *ngFor="let esestudio of EstadoEstudio" value="{{esestudio.text}}">{{esestudio.text}}</option>  
                         </select>
                         </div>
@@ -342,13 +345,13 @@
                         <span class="input-group-addon rayita"> - </span>
                         <div id="txbMesFin" class="col-sm-2">
                             <select id="inputInicioMesPeriodo" class="form-control" formControlName="mesfinEducacion" name="fechaM">
-                              <option selected disabled>{{mesfinal}}</option>
+                              <option selected disabled >{{mesfinal}}</option>
                               <option *ngFor="let fechaMinicio of MesPeriodo" value="{{fechaMinicio.text}}">{{fechaMinicio.text}}</option>  
                             </select>
                         </div>
                         <span class="input-group-addon slashSeparadorFinal"> / </span>
                         <div id="txbAnioFin" class="col-sm-2">
-                            <input type="number"  min="1900" class="form-control" placeholder="Año" formControlName="aniofinEducacion" id="fechafinAño" >                                                      
+                            <input type="number"  min="1900" class="form-control" [ngModel]="anio" placeholder="Año" formControlName="aniofinEducacion" id="fechafinAño" >                                                      
                         </div>
                     </div>
                     <div class="modal-footer">

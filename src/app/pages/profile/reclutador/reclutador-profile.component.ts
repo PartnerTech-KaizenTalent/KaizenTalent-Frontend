@@ -134,7 +134,7 @@ export class ReclutadorProfileComponent implements OnInit {
         this.basicInfo.nombrecontactanteReclutador = this.basicinfoData.nombrecontactanteReclutador,
         this.basicInfo.logoempresaReclutador = this.basicinfoData.logoempresaReclutador.urlImagen              
 
-        console.log(this.basicInfo);
+        console.log(data);
         if (this.basicInfo.descripcionReclutador){ 
           this.basicInfo.descripcionReclutador1 = this.basicInfo.descripcionReclutador.replace(/\n/g, '<br />');
         }
@@ -154,7 +154,7 @@ export class ReclutadorProfileComponent implements OnInit {
       tituloUsuario: this.reclutadorbasicinfoupdateForm.controls['tituloUsuario'].value,
       direccionUsuario: this.reclutadorbasicinfoupdateForm.controls['direccionUsuario'].value,
       telefonoUsuario: this.reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].value,
-      nombrecontactanteUsuario: this.reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].value,
+      contactanteempresaUsuario: this.reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].value,
       ciudadUsuario: this.reclutadorbasicinfoupdateForm.controls['ciudadUsuario'].value
     }
 

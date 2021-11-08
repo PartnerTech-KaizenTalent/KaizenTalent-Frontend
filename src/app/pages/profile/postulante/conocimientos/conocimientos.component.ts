@@ -68,7 +68,7 @@ export class ConocimientosComponent implements OnInit {
   getConocimiento(){
     this.postulante = this.tokenService.getUser();
 
-      this.ConocimientosService.mostrarConocimiento( this.postulante.idPostulante).subscribe(
+      this.ConocimientosService.mostrarConocimiento( this.postulante.idUsuario).subscribe(
         data => {    
           this.CurrentConocimiento = data;
           if (this.CurrentConocimiento.nombreSkill) {
@@ -77,9 +77,7 @@ export class ConocimientosComponent implements OnInit {
             this.CurrentConocimiento = data;
           }
   
-        }); 
-      
-    
+        });     
           
   }
 
@@ -93,9 +91,8 @@ export class ConocimientosComponent implements OnInit {
 
     try {
       this.Datalist = this.NivelGeneral.filter(y => y.value === this.choosenivel)[0];
-      console.log(this.Datalist.value);
 
-      this.ConocimientosService.guardarConocimiento(this.postulante.idPostulante, conocimiento).subscribe(
+      this.ConocimientosService.guardarConocimiento(this.postulante.idUsuario, conocimiento).subscribe(
         data => {    
           data;
           window.location.reload();
@@ -142,7 +139,7 @@ export class ConocimientosComponent implements OnInit {
       //this.Datalist = this.NivelGeneral.filter(y => y.value === this.eleccion)[0];
       //console.log(this.Datalist.value);
 
-      this.ConocimientosService.actualizarConocimiento(this.postulante.idPostulante, this.ListCon.idSkill, conocimiento).subscribe(
+      this.ConocimientosService.actualizarConocimiento(this.postulante.idUsuario, this.ListCon.idSkill, conocimiento).subscribe(
         data => {    
           window.location.reload();
 

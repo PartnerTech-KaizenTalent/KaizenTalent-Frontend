@@ -30,9 +30,8 @@ export class PublicacionesComponent implements OnInit {
   GetProfileBasicInfo() {
 
     this.currentReclutador = this.tokenService.getUser();
-    this.idReclutador = this.currentReclutador.idReclutador;
 
-    this.PublicacionesService.BasicInfo(this.currentReclutador.idReclutador).subscribe(
+    this.PublicacionesService.BasicInfo(this.currentReclutador.idUsuario).subscribe(
       data => {
         this.basicinfoData = data;
         this.basicInfo.nombreReclutador = this.basicinfoData.nombreReclutador,
@@ -45,6 +44,7 @@ export class PublicacionesComponent implements OnInit {
       }
     );
   }
+  
 
 
 }

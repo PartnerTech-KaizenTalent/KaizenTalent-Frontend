@@ -163,7 +163,7 @@ export class ActiveEmpleoComponent implements OnInit {
     this.token.saveTokenjob(this.ListEmpleoCurrent.idPuestoTrabajo);
     this.route.navigate(['puestotrabajo/'+this.ListEmpleoCurrent.idPuestoTrabajo+'/detail']);    
   }
-
+ 
   //guardar el token para ver la lista de canditatos
   verPostulantes(){
     this.token.saveTokenjob(this.ListEmpleoCurrent.idPuestoTrabajo);

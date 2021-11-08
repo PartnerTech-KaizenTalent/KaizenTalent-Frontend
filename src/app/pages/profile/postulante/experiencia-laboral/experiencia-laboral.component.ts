@@ -177,6 +177,8 @@ export class ExperienciaLaboralComponent implements OnInit {
        
     var cadenainicio = this.ListExp.periodoinicioExperienciaLaboral;
     this.anioinicio = cadenainicio.slice(-4);
+
+    console.log(this.ListExp)
     this.nombreExperienciaLaboral = this.ListExp.nombreExperienciaLaboral;
     this.empresaExperienciaLaboral = this.ListExp.empresaExperienciaLaboral;
     
@@ -203,11 +205,10 @@ export class ExperienciaLaboralComponent implements OnInit {
   getExp(){
     this.postulante = this.tokenService.getUser();
 
-    this.ExperienciaLaboralService.mostrarExperiencia( this.postulante.idPostulante).subscribe(
+    this.ExperienciaLaboralService.mostrarExperiencia( this.postulante.idUsuario).subscribe(
       data => {    
-
+        console.log(data)
         this.CurrentExperiencia = data.sort((a: any, b: any) => b.periodoinicioExperienciaLaboral.slice(-4) - a.periodoinicioExperienciaLaboral.slice(-4));
-
 
       });       
   }
@@ -215,7 +216,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   getRef(){        
     this.postulante = this.tokenService.getUser();
 
-    this.ExperienciaLaboralService.mostrarReferencia(this.postulante.idPostulante).subscribe(
+    this.ExperienciaLaboralService.mostrarReferencia(this.postulante.idUsuario).subscribe(
       data => {    
 
         this.CurrentReferencia = data.sort((a: any, b: any) => b.periodoInicio.slice(-4) - a.periodoInicio.slice(-4));  
@@ -305,11 +306,11 @@ export class ExperienciaLaboralComponent implements OnInit {
       telefonoreferenteReferenciaLaboral: this.experienciaModalForm.controls['telefonoreferenteReferenciaLaboral'].value
     }
 
-  
-    this.ExperienciaLaboralService.guardarExperiencia(this.postulante.idPostulante, experiencia).subscribe(
+    this.ExperienciaLaboralService.guardarExperiencia(this.postulante.idUsuario, experiencia).subscribe(
       data => {    
         data;
-        window.location.reload();
+        console.log(data)
+       // window.location.reload();
 
       },
       err => {
@@ -399,7 +400,7 @@ export class ExperienciaLaboralComponent implements OnInit {
         telefonoreferenteReferenciaLaboral: this.experienciaUpdateModalForm.controls['telefonoreferenteReferenciaLaboral'].value
       }
 
-      this.ExperienciaLaboralService.actualizarExperiencia(this.postulante.idPostulante, this.ListExp.idExperienciaLaboral, experiencia).subscribe(
+      this.ExperienciaLaboralService.actualizarExperiencia(this.postulante.idUsuario, this.ListExp.idExperienciaLaboral, experiencia).subscribe(
         data => {    
           window.location.reload();
 

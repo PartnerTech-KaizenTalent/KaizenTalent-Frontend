@@ -3,6 +3,6 @@ export interface BasicInfoReclutadorProfile {
     tituloUsuario: string;
     direccionUsuario: string;
     telefonoUsuario: string;
-    nombrecontactanteUsuario: string;
+    contactanteempresaUsuario: string;
     ciudadUsuario: string;
 }
