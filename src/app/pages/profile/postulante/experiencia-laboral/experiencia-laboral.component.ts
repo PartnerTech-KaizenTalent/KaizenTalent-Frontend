@@ -194,8 +194,10 @@ export class ExperienciaLaboralComponent implements OnInit {
   //pipe
   filterRef(ref: any) {
 
-    if( ref.nombreReferente !== "" &&   (ref.emailReferente !== "" || ref.telefonoReferente !== "")){
-      return ref
+    if(ref !== null){
+      if( (ref.nombreReferente !== "" && ref.nombreReferente !==null) && ((ref.emailReferente !== "" && ref.emailReferente !== null ) || (ref.telefonoReferente !== "" && ref.telefonoReferente !== null))){
+        return ref
+      } 
     }    
     
   }
@@ -223,7 +225,7 @@ export class ExperienciaLaboralComponent implements OnInit {
 
     this.ExperienciaLaboralService.mostrarReferencia(this.postulante.idUsuario).subscribe(
       data => {   
-        this.CurrentReferencia = data.sort((a: any, b: any) => b.periodoinicioExperienciaLaboral.slice(-4) - a.periodoinicioExperienciaLaboral.slice(-4));  
+        this.CurrentReferencia = data 
       });    
   }
 

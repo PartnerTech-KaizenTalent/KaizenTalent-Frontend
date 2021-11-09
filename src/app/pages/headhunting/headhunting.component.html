@@ -98,14 +98,15 @@
                                         aria-expanded="false">
                                         <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle img-thumbnail">
                                     </a>
+                                    
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                        <!-- item-->
+                                        <!-- item
                                         <div class="dropdown-item noti-title">
                                             <h5>¡Hola!</h5>
                                         </div>
                                         <a class="dropdown-item" href="#">
                                             <i class="mdi mdi-account-circle m-r-5 text-muted"></i> Perfil
-                                        </a>
+                                        </a>-->
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">
                                             <i class="mdi mdi-logout m-r-5 text-muted"></i> Cerrar Sesión
@@ -181,11 +182,14 @@
                                                 </form>
                                                 
                                                 <h6 class="font-weight-bold mb-3">Educación</h6>
-                                                <input class="form-control" type="text" placeholder="Institución Educativa" name="FilterPostInstitucionEducativa" [(ngModel)]="FilterPostInstitucionEducativa">
+                                                <input class="form-control" type="text" placeholder="Institución Educativa" name="FilterPostInstitucionEducativa" [(ngModel)]="FilterPostInstitucionEducativa">                                                
                                                 <br>
                                                 <section>
                                                     <h6 class="font-weight-bold mb-3">Lugar de residencia</h6>
-                                                    <input class="form-control" type="text" placeholder="Ciudad" name="FilterPostCiudad" [(ngModel)]="FilterPostCiudad">
+                                                    <input class="form-control" type="text" placeholder="Ciudad" list="ciudadUsuario" name="FilterPostCiudad" [(ngModel)]="FilterPostCiudad" >
+                                                    <datalist id="ciudadUsuario">
+                                                        <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}" >{{ciudad.text}}</option>
+                                                    </datalist>
                                                 </section>
 
                                             </section>
@@ -228,7 +232,7 @@
                                                     <div class="d-flex align-items-center mt-4 pb-1">
                                                       <div class="md-form md-outline my-0">
                                                         <input id="from" type="text" name="FilterPostIdioma" list="idioma" placeholder="Idioma" 
-                                                            [(ngModel)]="FilterPostIdioma" class="form-control mb-0">
+                                                            [(ngModel)]="FilterPostIdioma" class="form-control mb-0" >
 
                                                         <datalist id="idioma">
                                                             <option *ngFor="let idioma of Idioma" value="{{idioma.value}}">{{idioma.text}}</option>

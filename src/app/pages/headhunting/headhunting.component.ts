@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
-import { Idioma, NivelGeneral, NivelIdioma } from '../tools/data-lists';
+import { Ciudades, Idioma, NivelGeneral, NivelIdioma } from '../tools/data-lists';
 import { HeadhuntingService } from './headhunting.service';
 import { Router} from '@angular/router'
 declare const $:any;
@@ -46,28 +46,43 @@ export class HeadhuntingComponent implements OnInit {
   Lista2: any;
   ListCandidatosCurrent: any;
 
+  //Lista de Ciudades ordenados por Nombre creado en util/data-lists
+  Ciudades = Ciudades.sort(function (a, b) {
+    if (a.text > b.text) {
+      return 1;
+    }
+
+    if(a.text < b.text) {
+      return -1;
+    }
+
+    else {
+      return 0;
+    }
+  })
+
   constructor( private HeadhuntingService: HeadhuntingService,
                private cd:ChangeDetectorRef,
                private fb:FormBuilder,
                private token:TokenStorageService, private route:Router) {
-
   }
 
   ngOnInit(): void {
     this.getListaempleos();
   }
   
-  /*ngAfterContentChecked(){
+  ngAfterContentChecked(){
     this.cd.detectChanges();
-  }*/  
+  }
+  
 
- /* filterGeneral(lista: any) {
+ filterGeneral(lista: any) {
 
     if( lista.experiencialaboralPostulante.puestoExperienciaLaboral !== null){
       return lista
     }    
     
-  }*/
+  }
 
   getListaempleos(){
     this.HeadhuntingService.getPostulanteByHeadHunting().subscribe(

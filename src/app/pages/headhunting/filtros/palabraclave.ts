@@ -13,8 +13,11 @@ export class PalabraClavePipe implements PipeTransform {
 
 
     let filteredItems = value.filter((list: any) => {
-      return list.experiencialaboralPostulante.descripcionExperienciaLaboral.toLowerCase().includes(FilterPostPalabraClave.toLowerCase()) ||
-      list.experiencialaboralPostulante.puestoExperienciaLaboral.toLowerCase().includes(FilterPostPalabraClave.toLowerCase())
+      if(list.experiencialaboralPostulante !== null){
+        return list.experiencialaboralPostulante.descripcionExperienciaLaboral.toLowerCase().includes(FilterPostPalabraClave.toLowerCase()) ||
+        list.experiencialaboralPostulante.puestoExperienciaLaboral.toLowerCase().includes(FilterPostPalabraClave.toLowerCase())
+      }
+      
     })
 
     filterMetadata.count = filteredItems.length;
