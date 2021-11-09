@@ -60,6 +60,9 @@ export class HeadhuntingComponent implements OnInit {
       return 0;
     }
   })
+  salir: any;
+  reclutador: any;
+  postulante: any;
 
   constructor( private HeadhuntingService: HeadhuntingService,
                private cd:ChangeDetectorRef,
@@ -102,6 +105,32 @@ export class HeadhuntingComponent implements OnInit {
   }
   redirect(){
     this.route.navigate(['headhunting/perfil']);
+  }
+
+  Salir(){
+    this.salir = this.token.getUser();
+
+      var a = this.salir.authorities[0];
+
+      switch (a.authority) {
+        case 'ROLE_RECLUTADOR':   
+            this.reclutador = a.authority;  
+                 
+          break;
+        case 'ROLE_POSTULANTE': 
+            this.postulante = a.authority;
+          break;      
+        default:
+          break;
+      }
+
+    if(this.reclutador !== undefined){
+      this.token.signOut();
+      window.location.href ='/signin/reclutador';
+    }else{
+      this.token.signOut();
+      window.location.href = '/signin/postulante';
+    }    
   }
 
 }
