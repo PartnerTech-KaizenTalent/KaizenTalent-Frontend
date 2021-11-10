@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "dist/kaizen-talent-app",
     "ignore": [
       "firebase.json",
       "**/.*",
