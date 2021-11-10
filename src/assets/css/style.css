@@ -4066,5 +4066,10 @@ th:last-child,td td:last-child{
       font-size: 2.5vh;
     }
   }
+  .estilito{
+    margin-top: 10%!important;
+    margin-left: 5%!important;
+    display: flex!important;
+  }
 
   /* Fin Niu Tablita*/

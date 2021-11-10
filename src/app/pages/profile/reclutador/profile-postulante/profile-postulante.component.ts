@@ -55,11 +55,15 @@ export class ProfilePostulanteComponent implements OnInit {
   }
 
   //pipe
+
   filterRef(ref: any) {
 
-    if( ref.nombreReferente !== "" &&   (ref.emailReferente !== "" || ref.telefonoReferente !== "")){
-      return ref
-    }    
+    if(ref !== null){
+      if( ref.nombreReferente !== "" &&   (ref.emailReferente !== "" || ref.telefonoReferente !== "")){
+        return ref
+      }    
+    }
+    
     
   }
 
