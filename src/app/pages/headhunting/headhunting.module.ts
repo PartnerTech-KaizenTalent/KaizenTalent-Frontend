@@ -16,6 +16,8 @@ import { PostulanteDetailPipe } from './postulante-detail/postulante-detail.pipe
 import { GeneralPipe } from './filtros/general.pipe';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PretensionMinPipe } from './filtros/pretension-min.pipe';
+import { PretensionMaxPipe } from './filtros/pretension-max.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HabilidadPipe,
     PostulanteDetailComponent,
     PostulanteDetailPipe,
-    GeneralPipe
+    GeneralPipe,
+    PretensionMinPipe,
+    PretensionMaxPipe,
   ],
   imports: [
     CommonModule,

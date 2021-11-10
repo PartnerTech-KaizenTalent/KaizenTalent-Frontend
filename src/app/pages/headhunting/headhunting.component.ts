@@ -37,6 +37,8 @@ export class HeadhuntingComponent implements OnInit {
   FilterPostHabilidad = '';
   FilterPostNivelHabilidad = '';
 
+  FilterPostPretensionMax : any;
+  FilterPostPretensionMin : any;
 
   public headhunting = this.fb.group({        
     nombreExperienciaLaboral: new FormControl('', Validators.compose([
@@ -63,6 +65,8 @@ export class HeadhuntingComponent implements OnInit {
   salir: any;
   reclutador: any;
   postulante: any;
+  expiradaso: any;
+  UsuarioToken: any;
 
   constructor( private HeadhuntingService: HeadhuntingService,
                private cd:ChangeDetectorRef,
@@ -94,9 +98,11 @@ export class HeadhuntingComponent implements OnInit {
     this.HeadhuntingService.getPostulanteByHeadHunting().subscribe(
     data => {
       this.Lista = data;   
+      console.log(this.Lista)    
    
     },
     error => {
+      console.log(error);
     });
   }
 
@@ -133,5 +139,7 @@ export class HeadhuntingComponent implements OnInit {
       window.location.href = '/signin/postulante';
     }    
   }
+
+  
 
 }
