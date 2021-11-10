@@ -54,7 +54,6 @@ export class PasswordRequestComponent implements OnInit {
     this.passwordrequestService.PasswordRequest(emailRequest).subscribe(
       data => {
         this.passwordrequestData = data;   
-        console.log(data)
         this.alert.type = 'valid';
         this.alert.message = this.passwordrequestData.message;
       },

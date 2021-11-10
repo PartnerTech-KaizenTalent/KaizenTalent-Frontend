@@ -110,7 +110,6 @@ export class PostulanteSigninComponent implements OnInit {
       },
 
       err => {
-        console.log(err);
         this.alert.type = 'invalid';  
         this.alert.message = 'Email o Contraseña incorrecta';
         $('#start').css('cursor', 'default');

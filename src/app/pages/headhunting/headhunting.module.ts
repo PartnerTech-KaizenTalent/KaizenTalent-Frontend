@@ -13,6 +13,8 @@ import { IdiomaPipe } from './filtros/idioma.pipe'
 import { HabilidadPipe } from './filtros/habilidad.pipe'
 import { PostulanteDetailComponent } from './postulante-detail/postulante-detail.component';
 import { PostulanteDetailPipe } from './postulante-detail/postulante-detail.pipe';
+import { GeneralPipe } from './filtros/general.pipe';
+
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
@@ -27,7 +29,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     IdiomaPipe,
     HabilidadPipe,
     PostulanteDetailComponent,
-    PostulanteDetailPipe
+    PostulanteDetailPipe,
+    GeneralPipe
   ],
   imports: [
     CommonModule,

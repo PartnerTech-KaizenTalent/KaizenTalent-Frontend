@@ -43,7 +43,6 @@ export class ReclutadorVerifyComponent implements OnInit {
         this.isView = true;
         this.isView2 = false;
         this.message = data.message;
-        console.log(data)
         //this.loggedPostulante = this.tokenstorageService.getUser();
         //this.router.navigate(['/postulante/' + this.loggedPostulante.idPostulante + '/profile']);
       },
@@ -51,7 +50,6 @@ export class ReclutadorVerifyComponent implements OnInit {
         this.isView = false;
         this.isView2 = true;
         this.message = err.error.message;        
-        console.log(err)
       }
     )
   }

@@ -199,8 +199,6 @@ export class PostulanteProfileComponent implements OnInit {
     var passwordRequest: PasswordRequest = {
       emailUsuario: this.basicinfoData.emailPostulante
     }
-
-    console.log()
     
     this.passwordrequestService.PasswordRequest(passwordRequest).subscribe(
       data => {
@@ -224,7 +222,6 @@ export class PostulanteProfileComponent implements OnInit {
       const logo: File | null = this.selectedlogo.item(0);
       if (logo) {
         this.currentLogo = logo;
-        console.log(this.currentLogo);
         this.postulanteprofileService.updateLogo(this.currentLogo,this.currentPostulante.idPostulante).subscribe(
           data => {
             this.CurrentUser2 = data;
@@ -267,7 +264,6 @@ export class PostulanteProfileComponent implements OnInit {
       const cv: File | null = this.selectedcv.item(0);
       if (cv) {
         this.currentcv = cv;
-        console.log(this.currentcv);
         this.postulanteprofileService.updatecv(this.currentPostulante.idUsuario, this.currentcv).subscribe(
           data => { 
             this.CurrentUser2 = data;

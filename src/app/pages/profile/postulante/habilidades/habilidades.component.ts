@@ -154,7 +154,6 @@ export class HabilidadesComponent implements OnInit {
     try {
       
      // this.Datalist = this.NivelGeneral.filter(y => y.value === this.choosenivel)[0];
-     // console.log(this.Datalist.value);
 
       this.HabilidadesService.actualizarHabilidad(this.postulante.idUsuario, this.ListHab.idSkill, habilidad).subscribe(
         data => {    

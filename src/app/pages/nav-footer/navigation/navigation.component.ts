@@ -238,7 +238,6 @@ export class NavigationComponent implements OnInit {
         
         this.passwordrequestData = data;
         localStorage.setItem('passwordresetToken', this.passwordrequestData.passwordresetToken);
-        console.log(this.passwordrequestData);
         this.message = "Se le ha enviado un enlace para que restablezca su contraseña. Por favor, revise su bandeja de entrada.";
         this.tokens.saveCont(this.message);
 

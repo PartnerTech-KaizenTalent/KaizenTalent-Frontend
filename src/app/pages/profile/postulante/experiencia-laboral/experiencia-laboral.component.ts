@@ -185,7 +185,6 @@ export class ExperienciaLaboralComponent implements OnInit {
     var cadenainicio = this.ListExp.periodoinicioExperienciaLaboral;
     this.anioinicio = cadenainicio.slice(-4);
 
-    console.log(this.ListExp)
     this.nombreExperienciaLaboral = this.ListExp.nombreExperienciaLaboral;
     this.empresaExperienciaLaboral = this.ListExp.empresaExperienciaLaboral;
     

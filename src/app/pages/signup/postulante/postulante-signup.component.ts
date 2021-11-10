@@ -317,19 +317,14 @@ export class PostulanteSignupComponent implements OnInit{
       $('#start').css('cursor', 'default');
       return;
     }
-
-    console.log(usuario)
     
     try {
       this.Datalist = this.Ciudades.filter(x => x.value === this.eleccion)[0];
-      console.log(this.Datalist.value);
 
       this.Datalistdoc = this.TiposDocumento.filter(x => x.text === this.elecciondocu)[0];
-      console.log(this.Datalistdoc.text);
 
       this.postulantesignupService.SignUpPostulante(usuario).subscribe(
         data => { 
-          console.log(data);
           this.alert.type = 'valid';  
           this.alert.message = data.message;
           this.signupSuccess = true;

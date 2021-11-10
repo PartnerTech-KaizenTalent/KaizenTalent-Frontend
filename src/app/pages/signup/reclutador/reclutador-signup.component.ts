@@ -206,11 +206,9 @@ export class ReclutadorSignupComponent implements OnInit {
 
     try {
       this.Datalist = this.Ciudades.filter(x => x.value === this.eleccion)[0];
-      console.log(this.Datalist.value);
 
       this.reclutadorsignupServie.SignUpReclutador(usuario).subscribe(
         data => { 
-          console.log(data);
           this.alert.type = 'valid';  
           this.alert.message = data.message;
           this.signupSuccess = true;

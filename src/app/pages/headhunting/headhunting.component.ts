@@ -81,9 +81,12 @@ export class HeadhuntingComponent implements OnInit {
 
  filterGeneral(lista: any) {
 
-    if( lista.experiencialaboralPostulante.puestoExperienciaLaboral !== null){
-      return lista
-    }    
+    if(lista.experiencialaboralPostulante !== null){
+      if( lista.experiencialaboralPostulante.puestoExperienciaLaboral !== null){
+        return lista
+      }  
+    }
+      
     
   }
 
@@ -91,11 +94,9 @@ export class HeadhuntingComponent implements OnInit {
     this.HeadhuntingService.getPostulanteByHeadHunting().subscribe(
     data => {
       this.Lista = data;   
-      console.log(this.Lista)    
    
     },
     error => {
-      console.log(error);
     });
   }
 

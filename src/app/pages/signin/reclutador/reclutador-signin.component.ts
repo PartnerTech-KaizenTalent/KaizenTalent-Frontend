@@ -102,7 +102,6 @@ export class ReclutadorSigninComponent implements OnInit {
         this.router.navigate(['/reclutador/' + this.loggedReclutador.idUsuario + '/profile']);
       },
       err => {
-        console.log(err);
         this.alert.type = 'invalid';  
         this.alert.message = 'Email o Contraseña incorrecta';
         $('#start').css('cursor', 'default');
