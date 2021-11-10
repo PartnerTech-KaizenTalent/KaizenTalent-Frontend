@@ -54,4 +54,8 @@ export class PostulanteVerifyComponent implements OnInit {
     )
   }
 
+  redirectTo(){
+    window.location.href = '/signin/postulante'
+  }
+
 }

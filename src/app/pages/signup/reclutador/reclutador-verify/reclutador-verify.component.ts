@@ -54,4 +54,8 @@ export class ReclutadorVerifyComponent implements OnInit {
     )
   }
 
+  redirectTo(){
+    window.location.href = '/signin/reclutador'
+  }
+
 }
