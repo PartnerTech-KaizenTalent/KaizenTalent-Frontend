@@ -113,10 +113,11 @@ export class HeadhuntingComponent implements OnInit {
 
   Seleccionarcandidato(lista:any) {
     this.ListCandidatosCurrent = lista;
-    this.token.saveHead(this.ListCandidatosCurrent.idPostulante);
+    this.token.saveUsuarioPerfil(this.ListCandidatosCurrent.idPostulante);
   }
+  
   redirect(){
-    this.route.navigate(['headhunting/perfil']);
+    this.route.navigate(['perfilcandidato']);
   }
 
   Salir(){
