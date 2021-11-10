@@ -26,6 +26,8 @@ import { HeadhuntingComponent } from './pages/headhunting/headhunting.component'
 import { PostulanteDetailComponent } from './pages/headhunting/postulante-detail/postulante-detail.component'
 import { ReclutadorVerifyComponent } from './pages/signup/reclutador/reclutador-verify/reclutador-verify.component';
 import { Error403Component } from './pages/error403/error403.component';
+import { AuthGuard } from './pages/guard/auth.guard';
+import { Auth2Guard } from './pages/guard/auth2.guard';
 
 
 
@@ -43,9 +45,8 @@ const routes: Routes = [
 
 
 
-  { path: 'reclutador/:idReclutador/profile', component: ReclutadorProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },
-  { path: 'postulante/:idPostulante/profile', component: PostulanteProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },
-  { path: '', component: IndexComponent, data: { title: 'Kaizen Talent' }},
+  { path: 'reclutador/:idReclutador/profile', component: ReclutadorProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent'}, canActivate:[AuthGuard] },
+  { path: 'postulante/:idPostulante/profile', component: PostulanteProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent'}, canActivate:[Auth2Guard] },
   { path: 'index', component: IndexComponent, data: { title: 'Kaizen Talent' }},
 
   { path: 'password/request', component: PasswordRequestComponent, data: {title: 'Recupera tu contraseña - Kaizen Talent '}},
@@ -55,14 +56,15 @@ const routes: Routes = [
   
   { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:EmpleoDetailComponent},
   { path: 'empleos', component:ListaTrabajosComponent },
-  { path: 'postulante/:idPostulante/postulaciones', component:PostulacionesComponent},
-  { path: 'reclutador/:idReclutador/publicar', component:PublicarEmpleoComponent},
-  { path: 'listacandidatos', component:ListaPostulantesComponent},
-  { path: 'perfilcandidato', component:ProfilePostulanteComponent},
+  { path: 'postulante/:idPostulante/postulaciones', component:PostulacionesComponent, canActivate:[Auth2Guard]},
+  { path: 'reclutador/:idReclutador/publicar', component:PublicarEmpleoComponent, canActivate:[AuthGuard]},
+  { path: 'listacandidatos', component:ListaPostulantesComponent, canActivate:[AuthGuard]},
+  { path: 'perfilcandidato', component:ProfilePostulanteComponent, canActivate:[AuthGuard]},
   { path: 'contactanos', component:ContactanosComponent },
-  { path: 'reclutador/:idReclutador/publicaciones', component:PublicacionesComponent},
-  { path: 'headhunting', component:HeadhuntingComponent },
-  { path: 'headhunting/perfil', component:PostulanteDetailComponent }
+  { path: 'reclutador/:idReclutador/publicaciones', component:PublicacionesComponent, canActivate:[AuthGuard]},
+  { path: 'headhunting', component:HeadhuntingComponent, canActivate:[AuthGuard] },
+  { path: 'headhunting/perfil', component:PostulanteDetailComponent, canActivate:[AuthGuard] },
+  { path: '**', redirectTo: 'index'},
 
 
 ];

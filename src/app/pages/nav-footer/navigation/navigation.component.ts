@@ -147,7 +147,6 @@ export class NavigationComponent implements OnInit {
 }
   
   Expirado(){
-    this.BtnAlerclose();
     if(this.UsuarioToken.token != null){
         if (this.TokenExpired(this.UsuarioToken.token)) {
           this.expiradaso =  'expirado';
@@ -160,33 +159,6 @@ export class NavigationComponent implements OnInit {
   }
 
   
-  BtnAlerclose(){
-    if(this.expiradaso == 'expirado'){
-
-      this.UsuarioToken = this.tokens.getUser();
-      var a = this.UsuarioToken.authorities[0];
-
-      switch (a.authority) {
-        case 'ROLE_RECLUTADOR':   
-            this.reclutador = a.authority;       
-          break;
-        case 'ROLE_POSTULANTE': 
-            this.postulante = a.authority;
-          break;      
-        default:
-          break;
-      }
-
-      if(this.postulante !== undefined){
-        this.tokens.signOut();
-        window.location.href ='/signin/postulante';
-      }
-      if(this.reclutador !== undefined){
-        this.tokens.signOut();
-        window.location.href = '/signin/reclutador';
-      }
-    }
-  }
 
   MenuNavbar(){
     $('.navbar-toggle').on('click',  (event:any) => {

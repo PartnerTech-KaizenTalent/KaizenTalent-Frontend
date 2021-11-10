@@ -6,29 +6,26 @@ import { TokenStorageService } from 'src/app/util/token-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  rol: any;
+export class Auth2Guard implements CanActivate {
   usuario: any;
-
+  rol: any;
+  
   constructor(private token: TokenStorageService, private router: Router) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      
-    
-      this.usuario = this.token.getUser();
+  canActivate(){
+    this.usuario = this.token.getUser();
       
       if(!this.usuario.token){
         this.router.navigate(['/index']);
         return false;
       }else{
         this.rol =this.usuario.authorities[0];       
-        var a = 'ROLE_RECLUTADOR'
-        if( this.rol.authority == a){
+        var b = 'ROLE_POSTULANTE'
+        if( this.rol.authority == b){
           return true;
         }else{
-          if(this.rol.authority == "ROLE_POSTULANTE"){
+          if(this.rol.authority == "ROLE_RECLUTADOR"){
+
           this.router.navigate(['/index']);
           return false;
         }
@@ -37,8 +34,7 @@ export class AuthGuard implements CanActivate {
         }
         
     }
-  
-  }
 
+  }
   
 }

@@ -67,6 +67,7 @@ export class HeadhuntingComponent implements OnInit {
   postulante: any;
   expiradaso: any;
   UsuarioToken: any;
+  idrec: any;
 
   constructor( private HeadhuntingService: HeadhuntingService,
                private cd:ChangeDetectorRef,
@@ -76,12 +77,16 @@ export class HeadhuntingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListaempleos();
+    this.id();
   }
   
   ngAfterContentChecked(){
     this.cd.detectChanges();
   }
   
+  id(){
+    this.idrec = this.token.getUser().idUsuario;
+  }
 
  filterGeneral(lista: any) {
 
