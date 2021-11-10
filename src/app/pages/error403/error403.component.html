@@ -1,42 +1,68 @@
-
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+    <html lang="es">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dessmo - Deserción Universitaria</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Recupera tu contraseña - Kaizen Talent</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />
+    
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">    
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+    
+        <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+    
+        <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+    
+        <!-- Css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 
-<body class="h-100">
-    <div class="authincation h-100">
-        <div class="container h-100">
-            <div class="row justify-content-center h-100 align-items-center">
-                <div class="col-md-5">
-                    <div class="form-input-content text-center error-page">
-                        <h1 class="error-text font-weight-bold">Error 403</h1>
-                        <h4><i class="fa fa-times-circle text-danger"></i> Error en el Servidor</h4>
-                        <p>La página que estás buscando no se ha encontrado.</p>
-						<div>
-                            <a class="btn btn-primary" href="./index.html">Ir a Dessmo</a>
+    </head>
+
+    <body>
+        
+        <div class="back-to-home rounded d-none d-sm-block">
+            <a href="/" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
+        </div>
+
+        <!-- Inicio del contenido -->
+        <section class="vh-100" style="background: url('/assets/images/imagenpassword.jpg') center center;">
+
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="login_page bg-white shadow rounded p-4">
+                                    <div class="text-center">
+                                        <h4 class="mb-4">Mensaje</h4>  
+                                    </div>
+                                    <form class="login-form"> 
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-danger text-center" role="alert">
+                                                
+                                                <h1 class="error-text font-weight-bold">Error 403</h1>
+                                                <h4><i class="fa fa-times-circle text-danger"></i> Error en el Servidor</h4>
+                                                <p>La página que estás buscando no se ha encontrado.</p>
+                                            </div>
+                                        </div>                                          
+                                        
+                                        <div class="col-lg-12">
+                                            <button type="button" (click)="redirectTo()" class="btn btn-success w-100">Inicio</button>
+                                        </div>                                       
+                                    </form>
+                                </div>
+                            </div> 
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
-        </div>
-    </div>
-</body>
-<!--**********************************
-	Scripts
-***********************************-->
-<!-- Required vendors -->
-<script src="./vendor/global/global.min.js"></script>
-<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-<script src="./js/custom.min.js"></script>
-<script src="./js/deznav-init.js"></script>
-
+        </section>
+    </body>
 </html>
