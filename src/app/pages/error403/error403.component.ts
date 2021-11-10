@@ -12,4 +12,8 @@ export class Error403Component implements OnInit {
   ngOnInit(): void {
   }
 
+  redirectTo(){
+    window.location.href = '/index'
+  }
+
 }
