@@ -15,8 +15,7 @@ const HEAD_KEY = 'auth-head'
 const CONT_KEY = 'auth-cont'
 const EMAIL_KEY = 'auth-e'
 const PROFILE_KEY = 'auth-profile'
-const POS_KEY = 'auth-post'
-const REC_KEY = 'auth-rec'
+
 
 @Injectable({
   providedIn: 'root'
@@ -171,26 +170,6 @@ export class TokenStorageService {
 
   public getEmail(): string | null {
     return window.localStorage.getItem(EMAIL_KEY);
-}
-
-//Obtiene el dato de la experiencia
-public saveRolReclutador(rec: string): void {
-  window.localStorage.removeItem(REC_KEY);
-  window.localStorage.setItem(REC_KEY, rec);
-}
-
-public getRolReclutador(): string | null {
-  return window.localStorage.getItem(REC_KEY);
-}
-
-//Obtiene el dato de la experiencia
-public saveRolPostulante(pos: string): void {
-  window.localStorage.removeItem(POS_KEY);
-  window.localStorage.setItem(POS_KEY, pos);
-}
-
-public getRolPostulante(): string | null {
-  return window.localStorage.getItem(POS_KEY);
 }
 
 }

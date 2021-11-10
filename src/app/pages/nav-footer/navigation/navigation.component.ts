@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
@@ -47,7 +47,10 @@ export class NavigationComponent implements OnInit {
 
   constructor(private tokens: TokenStorageService,
               private router:Router,
-              private passwordrequestService: PasswordRequestService,private config: NgbModalConfig, private modalService: NgbModal
+              private passwordrequestService: PasswordRequestService,
+              private config: NgbModalConfig, 
+              private modalService: NgbModal,
+              private cd:ChangeDetectorRef
               ) { }
 
   ngOnInit(): void {
@@ -60,6 +63,11 @@ export class NavigationComponent implements OnInit {
   open(content:any) {
     this.modalService.open(content);
   }
+
+  ngAfterContentChecked(){
+    this.cd.detectChanges();
+  }
+  
   
   general(){
 
@@ -151,8 +159,10 @@ export class NavigationComponent implements OnInit {
         if (this.TokenExpired(this.UsuarioToken.token)) {
           this.expiradaso =  'expirado';
           this.MostrarAlert = true;
+          this.Salir();
         } else {
           this.expiradaso =  'valido';
+
         }
     }
     if(this.UsuarioToken.token == null || this.UsuarioToken.token == undefined){}     
