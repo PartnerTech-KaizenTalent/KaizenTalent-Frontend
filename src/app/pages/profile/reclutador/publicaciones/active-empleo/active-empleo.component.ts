@@ -204,7 +204,6 @@ export class ActiveEmpleoComponent implements OnInit {
    
     this.ActiveEmpleoService.putPublicacionpausa(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
-      console.log(data);
       window.location.reload();
     });
   }
@@ -312,7 +311,6 @@ export class ActiveEmpleoComponent implements OnInit {
 
       this.ActiveEmpleoService.putPublicacionUpdate(this.ids.idUsuario, this.ListEmpleoCurrent.idPuestoTrabajo, puestowork).subscribe(
         data => {
-          console.log(data);
           window.location.reload();
 
       });
@@ -341,8 +339,7 @@ export class ActiveEmpleoComponent implements OnInit {
   BorrarEmpleoActive(){
         this.ActiveEmpleoService.deleteEmpleo(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
-      console.log(data);
-      //window.location.reload();
+      window.location.reload();
     });
   }
 
