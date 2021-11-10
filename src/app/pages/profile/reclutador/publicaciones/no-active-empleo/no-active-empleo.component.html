@@ -69,11 +69,12 @@
                                 <td colspan="2" id="nombrePuesto">{{listnoactivo.nombrePuestoTrabajo}}</td>
                                 <td id="estadoPuesto" colspan="4">{{listnoactivo.estadoPuestoTrabajo}}</td>
                                 <td id="cantidadPostulante" colspan="1">{{listnoactivo.cantidadPostulantes}}</td>
-                                <td id="irAPubli" colspan="3"><a style="cursor: pointer;" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)" (click)="verDetalle()" style="color: #2f55d4;">Ir a publicación</a></td>
-                                <td id="verCandidatos" colspan="3"><a style="cursor: pointer;" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)" (click)="verPostulantes()" style="color: #2f55d4;">Ver Candidatos</a></td>
+                                <td id="irAPubli" colspan="3"><a style="color: #2f55d4; cursor: pointer!important;" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)" (click)="verDetalle()">Ir a publicación</a></td>
+                                <td id="verCandidatos" colspan="3"><a style="color: #2f55d4; cursor: pointer!important;" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)" (click)="verPostulantes()">Ver Candidatos</a></td>
                                 <td id="accionesPublicaciones"colspan="3" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)">
                                     <a href="#deleteNoActiveModal" class="delete" data-toggle="modal"><i class="fa fa-trash" style="font-size: 18px;" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                                     <a href="#refreshNoActiveModal" class="" data-toggle="modal"><i class="fa fa-check" style="font-size: 18px; color: #30E638;" data-toggle="tooltip" title="Eliminar"></i></a>
+                                    <!-- <a href="#refreshNoActiveModal" class="" data-toggle="modal"><i class="material-icons" style="font-size: 18px; color: #30E638;" data-toggle="tooltip" title="Eliminar">&#xE5D5;</i></a> -->
                                 </td>                       
                               </tr>
                         </tbody>

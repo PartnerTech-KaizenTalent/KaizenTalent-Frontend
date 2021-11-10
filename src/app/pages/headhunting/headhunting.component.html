@@ -61,9 +61,9 @@
                             </li>
                         </ul>
                     </div>
-                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
-        </div>
             <!-- Fin Barrita Izquierda-->
 
             <!-- Contenido parte derecha-->
@@ -91,42 +91,8 @@
                             </div>
 
                             <ul class="list-inline float-right mb-0 mr-3">
-                                <li class="list-inline-item dropdown notification-list">                                    
-                                </li>
-
                                 <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-                                        aria-expanded="false">
-                                        <i class="ti-bell noti-icon"></i>
-                                        <span class="badge badge-success a-animate-blink noti-icon-badge">1</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                                        <!-- item-->
-                                        <div class="dropdown-item noti-title">
-                                            <h5>
-                                                <span class="badge badge-danger float-right">1</span>Notificaciones
-                                            </h5>
-                                        </div>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-primary">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                            <p class="notify-details">
-                                                <b>Postulante</b>
-                                                <small class="text-muted">Tienes 1 nuevo postulante en "Desarrollo Web"</small>
-                                            </p>
-                                        </a>                       
-
-                                        <!-- Ver Todos-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            Ver Todas
-                                        </a>
-
-                                    </div>
                                 </li>
-
                                 <li class="list-inline-item dropdown notification-list">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                         aria-expanded="false">
@@ -137,16 +103,18 @@
                                         <div class="dropdown-item noti-title">
                                             <h5>¡Hola!</h5>
                                         </div>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="/reclutador/{{this.idrec}}/profile">
                                             <i class="mdi mdi-account-circle m-r-5 text-muted"></i> Perfil
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" (click)="Salir()" style="cursor: pointer;">
                                             <i class="mdi mdi-logout m-r-5 text-muted"></i> Cerrar Sesión
                                         </a>
                                     </div>
                                 </li>
                             </ul>
+
+                            
 
                             <ul class="list-inline menu-left mb-0">
                                 <li class="float-left">
@@ -215,11 +183,14 @@
                                                 </form>
                                                 
                                                 <h6 class="font-weight-bold mb-3">Educación</h6>
-                                                <input class="form-control" type="text" placeholder="Institución Educativa" name="FilterPostInstitucionEducativa" [(ngModel)]="FilterPostInstitucionEducativa">
+                                                <input class="form-control" type="text" placeholder="Institución Educativa" name="FilterPostInstitucionEducativa" [(ngModel)]="FilterPostInstitucionEducativa">                                                
                                                 <br>
                                                 <section>
                                                     <h6 class="font-weight-bold mb-3">Lugar de residencia</h6>
-                                                    <input class="form-control" type="text" placeholder="Ciudad" name="FilterPostCiudad" [(ngModel)]="FilterPostCiudad">
+                                                    <input class="form-control" type="text" placeholder="Ciudad" list="ciudadUsuario" name="FilterPostCiudad" [(ngModel)]="FilterPostCiudad" >
+                                                    <datalist id="ciudadUsuario">
+                                                        <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}" >{{ciudad.text}}</option>
+                                                    </datalist>
                                                 </section>
 
                                             </section>
@@ -240,14 +211,14 @@
                                                 <form>
                                                     <div class="d-flex align-items-center mt-4 pb-1">
                                                       <div class="md-form md-outline my-0">
-                                                        <input id="from" type="text" class="form-control mb-0">
+                                                        <input id="from" type="text" class="form-control mb-0" name="FilterPostPretensionMin" [(ngModel)]="FilterPostPretensionMin">
                                                         <div class="centrar-textito">
                                                             <label for="form">S/. Mínimo</label>
                                                         </div>
                                                       </div>
                                                       <p class="px-2 mb-0 text-muted"> - </p>
                                                       <div class="md-form md-outline my-0">
-                                                        <input id="to" type="text" class="form-control mb-0">
+                                                        <input id="to" type="text" class="form-control mb-0" name="FilterPostPretensionMax" [(ngModel)]="FilterPostPretensionMax">
                                                         <div class="centrar-textito">
                                                             <label for="to">S/. Máximo</label>
                                                         </div>
@@ -262,7 +233,7 @@
                                                     <div class="d-flex align-items-center mt-4 pb-1">
                                                       <div class="md-form md-outline my-0">
                                                         <input id="from" type="text" name="FilterPostIdioma" list="idioma" placeholder="Idioma" 
-                                                            [(ngModel)]="FilterPostIdioma" class="form-control mb-0">
+                                                            [(ngModel)]="FilterPostIdioma" class="form-control mb-0" >
 
                                                         <datalist id="idioma">
                                                             <option *ngFor="let idioma of Idioma" value="{{idioma.value}}">{{idioma.text}}</option>
@@ -375,12 +346,17 @@
                                                         <tbody>
                                                                 
                                                       <!--  -->     
-                                                            <tr *ngFor="let lista of Lista | palabraclave:FilterPostPalabraClave:filterMetadata 
-                                                                                           | ciudad:FilterPostCiudad:filterMetadata | edadInicio:FilterPostEdadInicio:filterMetadata 
-                                                                                           | edadFin:FilterPostEdadFin:filterMetadata | institucionEducativa:FilterPostInstitucionEducativa 
+                                                            <tr *ngFor="let lista of Lista | general : filterGeneral
+                                                                                           | palabraclave:FilterPostPalabraClave:filterMetadata 
+                                                                                           | edadInicio:FilterPostEdadInicio:filterMetadata 
+                                                                                           | edadFin:FilterPostEdadFin:filterMetadata                                                                                            
+                                                                                           | institucionEducativa:FilterPostInstitucionEducativa 
+                                                                                           | ciudad:FilterPostCiudad:filterMetadata 
+                                                                                           | pretensionMin : FilterPostPretensionMin: filterMetadata
+                                                                                           | pretensionMax : FilterPostPretensionMax: filterMetadata
                                                                                            | idioma:FilterPostIdioma+FilterPostNivelIdioma
                                                                                            | conocimiento:FilterPostConocimiento+FilterPostNivelConocimiento
-                                                                                           | habilidad:FilterPostHabilidad+FilterPostNivelHabilidad 
+                                                                                           | habilidad:FilterPostHabilidad+FilterPostNivelHabilidad                                                                                            
                                                                                            | paginate: { itemsPerPage: 10, currentPage: p }" >
                                                                 
 
@@ -397,7 +373,6 @@
                                                                 <td class="pt-3">{{lista.experiencialaboralPostulante.empresaExperienciaLaboral}}</td>
                                                                 <td class="pt-3">{{lista.experiencialaboralPostulante.periodoinicioExperienciaLaboral}}</td>
                                                                 <td class="pt-3">{{lista.experiencialaboralPostulante.periodofinExperienciaLaboral}}</td>
-
                                                                 <td class="pt-3"><button [class.active]="lista == ListCandidatosCurrent" (click)="Seleccionarcandidato(lista)" (click)="redirect()" type="button" class="btn btn-success">Ver</button></td>     
                                                            
                                                             </tr>
@@ -437,8 +412,11 @@
 
             </div>
             <!--  -->
-
+        </div>  
+        <div style="visibility: hidden;">
+            <app-navigation></app-navigation>
         </div>
+       
         
         
     </body>

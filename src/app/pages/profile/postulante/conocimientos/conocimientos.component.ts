@@ -137,7 +137,6 @@ export class ConocimientosComponent implements OnInit {
     try {
 
       //this.Datalist = this.NivelGeneral.filter(y => y.value === this.eleccion)[0];
-      //console.log(this.Datalist.value);
 
       this.ConocimientosService.actualizarConocimiento(this.postulante.idUsuario, this.ListCon.idSkill, conocimiento).subscribe(
         data => {    

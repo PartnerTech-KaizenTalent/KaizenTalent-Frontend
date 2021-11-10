@@ -9,9 +9,12 @@ export class HabilidadPipe implements PipeTransform {
     if (arg === '' || arg.length < 3) return value;
     const resultPosts = [];
     for (const lista of value) {
-      if (lista.habilidadesPostulante.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
-        resultPosts.push(lista);
-      };
+      if(lista.habilidadesPostulante !== null){
+        if (lista.habilidadesPostulante.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+          resultPosts.push(lista);
+        };
+      }      
+
     };
     return resultPosts;
   }

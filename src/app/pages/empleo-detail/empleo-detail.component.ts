@@ -81,13 +81,11 @@ export class EmpleoDetailComponent implements OnInit {
       this.currentDetalleLista = data;
       this.currentDetalleLista.imagen = data.logoEmpresa.urlImagen;
       this.currentDetalleLista.descripcionPuestoTrabajo = data.descripcionPuestoTrabajo
-      console.log(this.currentDetalleLista);
       if (this.currentDetalleLista.descripcionPuestoTrabajo){ 
         this.currentDetalleLista.descripcionPuestoTrabajo = this.currentDetalleLista.descripcionPuestoTrabajo.replace(/\n/g, '<br />');
       }
     },
     error => {
-      console.log(error);
     });
   }
 
@@ -118,7 +116,6 @@ export class EmpleoDetailComponent implements OnInit {
     if(this.idpostulante != null || this.idpostulante != undefined  ){
         this.EmpleoDetailService.PostularTrabajoenDetalle(this.idpostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
           data => {
-            console.log(data);
             this.aviso = data.message;
           },
           error => {

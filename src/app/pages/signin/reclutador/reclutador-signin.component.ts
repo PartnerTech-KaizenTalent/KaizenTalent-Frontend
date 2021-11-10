@@ -98,11 +98,13 @@ export class ReclutadorSigninComponent implements OnInit {
         this.tokenstorageService.saveToken(data.token);
         this.tokenstorageService.saveUser(data);
         this.loggedReclutador = this.tokenstorageService.getUser();
+        var rol = this.loggedReclutador.authorities[0];
+        this.tokenstorageService.saveRolPostulante(rol)
+
         $('#start').css('cursor', 'default');
         this.router.navigate(['/reclutador/' + this.loggedReclutador.idUsuario + '/profile']);
       },
       err => {
-        console.log(err);
         this.alert.type = 'invalid';  
         this.alert.message = 'Email o Contraseña incorrecta';
         $('#start').css('cursor', 'default');

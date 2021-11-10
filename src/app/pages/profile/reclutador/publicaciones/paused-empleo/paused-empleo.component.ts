@@ -35,7 +35,6 @@ export class PausedEmpleoComponent implements OnInit {
   //Seleccionar un empleo de las listas de empleos (lista) -> es el parametro q se tomara del html
   Seleccionarempleo(lista:any) {
     this.ListEmpleoCurrent = lista;
-    console.log(this.ListEmpleoCurrent);
   }
 
   //Ir a publicacion del trabajo
@@ -58,7 +57,6 @@ export class PausedEmpleoComponent implements OnInit {
     }
     this.PausedEmpleoService.putPublicacionactivar(trabajo.idPuestoTrabajo).subscribe(data => {
       data;
-      console.log(data);
       window.location.reload();
 
     });
@@ -67,7 +65,6 @@ export class PausedEmpleoComponent implements OnInit {
   EliminarEmpleo(){
     this.PausedEmpleoService.deleteEmpleo(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
-      console.log(data);
       window.location.reload(); 
 
     });

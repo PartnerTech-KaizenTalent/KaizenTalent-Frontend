@@ -57,7 +57,7 @@ export class PasswordUpdateComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //link https://dessmo-1a622.web.app/   (29)    
+  //link   (29)    
   //local
   //this.token = location.href.slice(39); 
   //producción     
@@ -74,14 +74,11 @@ export class PasswordUpdateComponent implements OnInit {
     
     this.passwordupdateService.PasswordUpdate(passwordUpdate).subscribe(
       data => {
-        console.log(data);
         this.errorMessage = data.message;
       },
 
       err => {
         this.errorMessage = err.error.message;
-        console.log(err);
-
         this.alert.type = 'invalid';
         this.alert.message = this.errorMessage;
       }

@@ -105,12 +105,13 @@ export class PostulanteSigninComponent implements OnInit {
         this.tokenstorageService.saveToken(data.token);
         this.tokenstorageService.saveUser(data);
         this.loggedPostulante = this.tokenstorageService.getUser();
+        var rol = this.loggedPostulante.authorities[0];
+        this.tokenstorageService.saveRolPostulante(rol)
         $('#start').css('cursor', 'default');
         this.router.navigate(['/postulante/' + this.loggedPostulante.idUsuario + '/profile']);
       },
 
       err => {
-        console.log(err);
         this.alert.type = 'invalid';  
         this.alert.message = 'Email o Contraseña incorrecta';
         $('#start').css('cursor', 'default');

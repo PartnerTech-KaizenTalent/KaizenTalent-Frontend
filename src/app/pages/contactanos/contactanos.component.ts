@@ -10,6 +10,8 @@ import { ContactanosService } from './contactanos.service'
 export class ContactanosComponent implements OnInit {
   message: any;
   verificar = false;
+  messagecorreo: any;
+  verificar2 = false;
 
   constructor(private cd:ChangeDetectorRef,
               private tokens: TokenStorageService,
@@ -48,6 +50,10 @@ export class ContactanosComponent implements OnInit {
 
   });
 
+  AlertDefault() {
+    this.verificar = false;
+    this.verificar2 = false;
+  }
 
   EnviarMensaje(){
     var mensaje: any = {
@@ -60,13 +66,16 @@ export class ContactanosComponent implements OnInit {
     this.ContactanosService.Contactanos(mensaje).subscribe(
         data => {    
           data;
-          this.verificar = true;
-          this.message= data.message;  
+          this.verificar = false;
+          this.verificar2 = true;
+
+          this.messagecorreo= data.message;  
 
         },
         err => {
-          this.message = err.error.message;
+          this.messagecorreo = err.error.message;
           this.verificar = true;
+          this.verificar2 = false;
 
         });   
     }       

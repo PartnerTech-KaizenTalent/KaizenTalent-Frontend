@@ -27,8 +27,6 @@ export class NoActiveEmpleoComponent implements OnInit {
   //get Tabla de empleo no activos con su respectivo API
   getEmpleoNoActive(){    
 
-    console.log(this.ids.idUsuario);
-
     this.NoActiveEmpleoService.getPublicacionNoActive(this.ids.idUsuario).subscribe(data => {
       this.ListNoActive = data;
     })
@@ -55,7 +53,6 @@ export class NoActiveEmpleoComponent implements OnInit {
   BorrarEmpleoNoActive(){
     this.NoActiveEmpleoService.deleteEmpleo(this.ListEmpleoCurrent.idPuestoTrabajo).subscribe(data => {
       data;
-      console.log(data);
       window.location.reload();
 
     });

@@ -9,11 +9,14 @@ export class InstitucionEducativaPipe implements PipeTransform {
     if (!value || !FilterPostInstitucionEducativa) {
       return value;
   }
+   
 
-  return value.filter((lista: any) =>
-          lista.institucionesPostulante.toLowerCase().includes(FilterPostInstitucionEducativa.toLowerCase())
-
-  )
+    return value.filter((lista: any) => {
+      if(lista.institucionesPostulante !== null){
+        return lista.institucionesPostulante.toLowerCase().includes(FilterPostInstitucionEducativa.toLowerCase()) 
+      }
+      
+    })
   
   }
 

@@ -65,7 +65,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Nombre Completo</label>
-                                        <input name="name" id="name2" type="text" class="form-control resume" placeholder="Ingresa tu nombre completo..."
+                                        <input (input)="AlertDefault()" name="name" id="name2" type="text" class="form-control resume" placeholder="Ingresa tu nombre completo..."
                                         formControlName="nombreUsuario" required
                                         [ngClass]="{
                                             'is-invalid': contactanosModalForm.controls['nombreUsuario'].invalid && 
@@ -92,7 +92,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Email</label>
-                                        <input name="email" id="email1" type="email" class="form-control resume" placeholder="Ingresa tu Email.."
+                                        <input (input)="AlertDefault()" name="email" id="email1" type="email" class="form-control resume" placeholder="Ingresa tu Email.."
                                         formControlName="emailUsuario" required
                                         [ngClass]="{
                                             'is-invalid': contactanosModalForm.controls['emailUsuario'].invalid && 
@@ -109,14 +109,12 @@
                                                 Correo electrónico no válido
                                             </span>
                                         </div>
-
-                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Asunto</label>
-                                        <input type="text" class="form-control resume" id="subject" placeholder="Ingresa el asunto.."
+                                        <input (input)="AlertDefault()" type="text" class="form-control resume" id="subject" placeholder="Ingresa el asunto.."
                                         formControlName="asuntoUsuario" required
                                         [ngClass]="{
                                             'is-invalid': contactanosModalForm.controls['asuntoUsuario'].invalid && 
@@ -138,7 +136,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Mensaje</label>
-                                        <textarea name="comments" id="comments" rows="5" class="form-control resume" placeholder="Escribe aquí tu mensaje.."
+                                        <textarea (input)="AlertDefault()" name="comments" id="comments" rows="5" class="form-control resume" placeholder="Escribe aquí tu mensaje.."
                                         formControlName="mensajeUsuario" required
                                         [ngClass]="{
                                             'is-invalid': contactanosModalForm.controls['mensajeUsuario'].invalid && 
@@ -161,12 +159,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="submit" id="submit" name="send" [disabled]="!contactanosModalForm.valid" (click)="EnviarMensaje()" class="submitBnt btn btn-primary" value="Enviar Mensaje">
+                                    <input (input)="AlertDefault()" type="submit" id="submit" name="send" [disabled]="!contactanosModalForm.valid" (click)="EnviarMensaje()" class="submitBnt btn btn-primary" value="Enviar Mensaje">
                                     <div id="simple-msg"></div>
                                 </div>
                                 <div class="col-sm-6" *ngIf="this.verificar">
                                     <div class="alert alert-danger text-center" role="alert">
-                                        {{ this.message }}
+                                        {{ this.messagecorreo }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" *ngIf="this.verificar2">
+                                    <div class="alert alert-success text-center" role="alert">
+                                        {{ this.messagecorreo }}
                                     </div>
                                 </div>
                             </div>

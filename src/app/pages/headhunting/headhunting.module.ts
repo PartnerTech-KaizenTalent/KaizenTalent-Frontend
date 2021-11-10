@@ -13,7 +13,11 @@ import { IdiomaPipe } from './filtros/idioma.pipe'
 import { HabilidadPipe } from './filtros/habilidad.pipe'
 import { PostulanteDetailComponent } from './postulante-detail/postulante-detail.component';
 import { PostulanteDetailPipe } from './postulante-detail/postulante-detail.pipe';
+import { GeneralPipe } from './filtros/general.pipe';
+
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PretensionMinPipe } from './filtros/pretension-min.pipe';
+import { PretensionMaxPipe } from './filtros/pretension-max.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     IdiomaPipe,
     HabilidadPipe,
     PostulanteDetailComponent,
-    PostulanteDetailPipe
+    PostulanteDetailPipe,
+    GeneralPipe,
+    PretensionMinPipe,
+    PretensionMaxPipe,
   ],
   imports: [
     CommonModule,

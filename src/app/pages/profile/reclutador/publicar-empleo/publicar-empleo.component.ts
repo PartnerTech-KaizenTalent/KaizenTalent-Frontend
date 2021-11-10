@@ -61,11 +61,9 @@ export class PublicarEmpleoComponent implements OnInit {
       Validators.required,
       Validators.minLength(9),
       Validators.maxLength(9)
-    ])), 
-
-      
-     sueldoPuestoTrabajo: new FormControl('', Validators.compose([
-       
+    ])),       
+     sueldoPuestoTrabajo: new FormControl('', Validators.compose([ 
+      Validators.min(1)           
      ])), 
      experienciaPuestoTrabajo: new FormControl('', Validators.compose([
        Validators.required

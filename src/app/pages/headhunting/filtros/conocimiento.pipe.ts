@@ -9,9 +9,12 @@ export class ConocimientoPipe implements PipeTransform {
     if (arg === '' || arg.length < 3) return value;
     const resultPosts = [];
     for (const lista of value) {
-      if (lista.conocimientosPostulante.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
-        resultPosts.push(lista);
-      };
+      if(lista.conocimientosPostulante !== null){
+        if (lista.conocimientosPostulante.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+          resultPosts.push(lista);
+        };
+      }     
+
     };
     return resultPosts;
   }

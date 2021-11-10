@@ -17,8 +17,9 @@ export class HeadhuntingService {
   constructor(private http: HttpClient) { }
 
   getPostulanteByHeadHunting(): Observable<any> {
-    return this.http.get(`${this.API_URL1}headhunting/show/all`);
+    return this.http.get(`${this.API_URL1}headhunting/display`);
   }
+  
 
 
 }

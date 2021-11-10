@@ -43,6 +43,8 @@ export class PostulanteProfileComponent implements OnInit {
       Validators.min(1000000),
       Validators.max(999999999)
     ])),
+    
+    sueldoUsuario: new FormControl('', Validators.min(1)),
 
     imagenUsuario: new FormControl(null), 
 
@@ -143,7 +145,6 @@ export class PostulanteProfileComponent implements OnInit {
     this.postulanteprofileService.BasicInfo(this.currentPostulante.idUsuario).subscribe(
       data => {
         this.basicinfoData = data;
-        console.log(this.basicinfoData)
 
         this.basicInfo.nombrePostulante = this.basicinfoData.nombrePostulante + ' ' + this.basicinfoData.apellidoPostulante;
         this.basicInfo.apellidoPostulante = this.basicinfoData.apellidoPostulante;
@@ -175,7 +176,8 @@ export class PostulanteProfileComponent implements OnInit {
       tituloUsuario: this.postulantebasicinfoupdateForm.controls['tituloUsuario'].value,
       direccionUsuario: this.postulantebasicinfoupdateForm.controls['direccionUsuario'].value,
       telefonoUsuario: this.postulantebasicinfoupdateForm.controls['telefonoUsuario'].value,
-      ciudadUsuario: this.postulantebasicinfoupdateForm.controls['ciudadUsuario'].value
+      ciudadUsuario: this.postulantebasicinfoupdateForm.controls['ciudadUsuario'].value,
+      sueldoUsuario: this.postulantebasicinfoupdateForm.controls['sueldoUsuario'].value
     }
 
     if (this.postulantebasicinfoupdateForm.invalid) {
@@ -197,8 +199,6 @@ export class PostulanteProfileComponent implements OnInit {
     var passwordRequest: PasswordRequest = {
       emailUsuario: this.basicinfoData.emailPostulante
     }
-
-    console.log()
     
     this.passwordrequestService.PasswordRequest(passwordRequest).subscribe(
       data => {
@@ -222,7 +222,6 @@ export class PostulanteProfileComponent implements OnInit {
       const logo: File | null = this.selectedlogo.item(0);
       if (logo) {
         this.currentLogo = logo;
-        console.log(this.currentLogo);
         this.postulanteprofileService.updateLogo(this.currentLogo,this.currentPostulante.idPostulante).subscribe(
           data => {
             this.CurrentUser2 = data;
@@ -265,7 +264,6 @@ export class PostulanteProfileComponent implements OnInit {
       const cv: File | null = this.selectedcv.item(0);
       if (cv) {
         this.currentcv = cv;
-        console.log(this.currentcv);
         this.postulanteprofileService.updatecv(this.currentPostulante.idUsuario, this.currentcv).subscribe(
           data => { 
             this.CurrentUser2 = data;

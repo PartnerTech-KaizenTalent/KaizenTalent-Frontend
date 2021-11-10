@@ -134,7 +134,6 @@ export class ReclutadorProfileComponent implements OnInit {
         this.basicInfo.nombrecontactanteReclutador = this.basicinfoData.nombrecontactanteReclutador,
         this.basicInfo.logoempresaReclutador = this.basicinfoData.logoempresaReclutador.urlImagen              
 
-        console.log(data);
         if (this.basicInfo.descripcionReclutador){ 
           this.basicInfo.descripcionReclutador1 = this.basicInfo.descripcionReclutador.replace(/\n/g, '<br />');
         }
@@ -164,7 +163,6 @@ export class ReclutadorProfileComponent implements OnInit {
 
     this.reclutadorprofileService.UpdateBasicInfo(this.currentReclutador.idUsuario, postulante).subscribe(
       data => {
-        console.log(data);
         window.location.reload();
       },
 
@@ -200,7 +198,6 @@ export class ReclutadorProfileComponent implements OnInit {
         const logo: File | null = this.selectedlogo.item(0);
         if (logo) {
           this.currentLogo = logo;
-          console.log(this.currentLogo);
           this.reclutadorprofileService.updateLogo(this.currentReclutador.idUsuario, this.currentLogo).subscribe(
             data => {
               this.CurrentUser2 = data;
