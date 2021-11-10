@@ -72,8 +72,8 @@
                                     <td colspan="2" id="nombrePuesto">{{listactivo.nombrePuestoTrabajo}}</td>
                                     <td id="estadoPuesto" colspan="4">{{listactivo.estadoPuestoTrabajo}}</td>
                                     <td id="cantidadPostulante" colspan="1">{{listactivo.cantidadPostulantes}}</td>
-                                    <td id="irAPubli" colspan="3"><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verDetalle()" style="color: #2f55d4;">Ir a publicación</a></td>
-                                    <td id="verCandidatos" colspan="3"><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verPostulantes()" style="color: #2f55d4;">Ver Candidatos</a></td>
+                                    <td id="irAPubli" colspan="3"><a style="color: #2f55d4; cursor: pointer!important;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verDetalle()">Ir a publicación</a></td>
+                                    <td id="verCandidatos" colspan="3"><a style="color: #2f55d4; cursor: pointer!important;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verPostulantes">Ver Candidatos</a></td>
                                     <td id="accionesPublicaciones"colspan="3" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)">
                                         <a href="#editActiveModal" class="edit" data-toggle="modal"> <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
                                         <a href="#deleteActiveModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>

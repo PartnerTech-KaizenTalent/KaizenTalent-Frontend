@@ -69,8 +69,8 @@
                                     <td colspan="2" id="nombrePuesto">{{listpausa.nombrePuestoTrabajo}}</td>
                                     <td id="estadoPuesto" colspan="4">{{listpausa.estadoPuestoTrabajo}}</td>
                                     <td id="cantidadPostulante" colspan="1">{{listpausa.cantidadPostulantes}}</td>
-                                    <td id="irAPubli" colspan="3"><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verDetalle()" style="color: #2f55d4;">Ir a publicación</a></td>
-                                    <td id="verCandidatos" colspan="3"><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verPostulantes()" style="color: #2f55d4;">Ver Candidatos</a></td>
+                                    <td id="irAPubli" colspan="3"><a style="color: #2f55d4; cursor: pointer!important;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verDetalle()">Ir a publicación</a></td>
+                                    <td id="verCandidatos" colspan="3"><a style="color: #2f55d4; cursor: pointer!important;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verPostulantes()">Ver Candidatos</a></td>
                                     <td id="accionesPublicaciones"colspan="3" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)">
                                         <a href="#deletePausedModal" class="delete" data-toggle="modal"><i class="fa fa-trash" style="font-size: 18px;" data-toggle="tooltip" title="Eliminar"></i></a>
                                         <a href="#reanudarPausedModal" data-toggle="modal"><i style="font-size: 18px; color: #30E638;" class="fa fa-play" data-toggle="tooltip" title="Pausar"> </i></a>
