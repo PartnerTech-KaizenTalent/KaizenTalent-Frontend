@@ -29,7 +29,7 @@ export class ReclutadorVerifyComponent implements OnInit {
     //local
     //console.log(location.href.slice(47))
 
-    this.token = location.href.slice(47)
+    this.token = location.href.slice(60)
 
     var token: any = {
       utilityToken: this.token
