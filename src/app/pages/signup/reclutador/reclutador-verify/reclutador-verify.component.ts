@@ -24,12 +24,12 @@ export class ReclutadorVerifyComponent implements OnInit {
 
   UserVerify() : void{
     //prod
-    //console.log(location.href.slice(61))
+    //console.log(location.href.slice(60))
     
     //local
     //console.log(location.href.slice(47))
 
-    this.token = location.href.slice(61)
+    this.token = location.href.slice(60)
 
     var token: any = {
       utilityToken: this.token
