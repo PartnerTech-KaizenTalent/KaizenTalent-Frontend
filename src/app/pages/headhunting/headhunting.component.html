@@ -345,7 +345,7 @@
                                                         <tbody>
                                                                 
                                                       <!--  -->     
-                                                            <tr *ngFor="let lista of Lista | general : filterGeneral
+                                                            <tr *ngFor="let lista of Lista 
                                                                                            | palabraclave:FilterPostPalabraClave:filterMetadata 
                                                                                            | edadInicio:FilterPostEdadInicio:filterMetadata 
                                                                                            | edadFin:FilterPostEdadFin:filterMetadata                                                                                            
@@ -360,18 +360,46 @@
                                                                 
 
                                                                 <td class="pt-2"> <img src="{{lista.fotoperfilPostulante.urlImagen}}" class="rounded-circle" alt="">
-                                                                </td>
-
-                                                               
+                                                                </td>                                                              
 
                                                                 <td  class="pt-3" >
                                                                     <div>{{lista.nombrePostulante}}</div>
                                                                 </td>
 
-                                                                <td class="pt-3">{{lista.experiencialaboralPostulante.puestoExperienciaLaboral}}</td>
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante !== null">
+                                                                    {{lista.experiencialaboralPostulante.puestoExperienciaLaboral}}
+                                                                </td>
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante == null">
+                                                                    Sin Experiencia
+                                                                </td>
+
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante !== null">
+                                                                    {{lista.experiencialaboralPostulante.empresaExperienciaLaboral}}
+                                                                </td>
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante == null">
+                                                                    Sin Experiencia
+                                                                </td>
+
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante !== null">
+                                                                    {{lista.experiencialaboralPostulante.periodoinicioExperienciaLaboral}}
+                                                                </td>
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante == null">
+                                                                    <p>-</p>
+                                                                </td>
+
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante !== null">
+                                                                    {{lista.experiencialaboralPostulante.periodofinExperienciaLaboral}}
+                                                                </td>
+                                                                <td class="pt-3" *ngIf="lista.experiencialaboralPostulante == null">
+                                                                    <p>-</p>
+                                                                </td>
+
+
+
+                                                                <!--<td class="pt-3">{{lista.experiencialaboralPostulante.puestoExperienciaLaboral}}</td>
                                                                 <td class="pt-3">{{lista.experiencialaboralPostulante.empresaExperienciaLaboral}}</td>
                                                                 <td class="pt-3">{{lista.experiencialaboralPostulante.periodoinicioExperienciaLaboral}}</td>
-                                                                <td class="pt-3">{{lista.experiencialaboralPostulante.periodofinExperienciaLaboral}}</td>
+                                                                <td class="pt-3">{{lista.experiencialaboralPostulante.periodofinExperienciaLaboral}}</td>-->
                                                                 <td class="pt-3"><button [class.active]="lista == ListCandidatosCurrent" (click)="Seleccionarcandidato(lista)" (click)="redirect()" type="button" class="btn btn-success">Ver</button></td>     
                                                            
                                                             </tr>
