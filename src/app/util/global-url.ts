@@ -4,10 +4,10 @@ export const GlobalUrl = Object.freeze({
     //BASE_URL: 'http://localhost:8080/'
 
     //DEV Heroku URL
-    BASE_URL: 'https://kaizentalent-backend-dev.herokuapp.com/'
+    //BASE_URL: 'https://kaizentalent-backend-dev.herokuapp.com/'
 
     //QA Heroku URL
-    //BASE_URL: 'https://kaizentalent-backend-qa.herokuapp.com/'
+    BASE_URL: 'https://kaizentalent-backend-qa.herokuapp.com/'
     
     //PRD Heroku URL
     //BASE_URL: 'https://kaizentalent-backend.herokuapp.com/'
