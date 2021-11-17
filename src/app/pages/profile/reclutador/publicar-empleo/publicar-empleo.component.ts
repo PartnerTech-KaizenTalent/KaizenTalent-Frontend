@@ -2,10 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PublicarEmpleoService} from './publicar-empleo.service';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
-import { CustomValidators } from '../../../tools/custom-validators';
 import { Ciudades, Categorias, TipoPostulacion, Experiencia,Publicacion, Remoto} from '../../../tools/data-lists';
 import { Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-publicar-empleo',
@@ -38,7 +36,7 @@ export class PublicarEmpleoComponent implements OnInit {
        return 0;
      }
    })
- 
+
    //Formulario que conecta con el HTML
    public puestostrabajoform = this.fb.group({     
      
@@ -112,38 +110,7 @@ export class PublicarEmpleoComponent implements OnInit {
     this.message = this.token.getCont();
   }
 
-  savecity(e:any){
-    let ciudadcita = e.target.value;
-    this.eleccioncity = ciudadcita;
-    this.msgerror = null;
-  }
-
-  savejor(e:any){
-    let ciudadcita = e.target.value;
-    this.eleccionjornada = ciudadcita;
-    this.msgerror = null;
-  }
-
-  savecat(e:any){
-    let ciudadcita = e.target.value;
-    this.eleccioncat = ciudadcita;
-    this.msgerror = null;
-  }
-  savetime(e:any){
-    let ciudadcita = e.target.value;
-    this.elecciontime = ciudadcita;
-    this.msgerror = null;
-  }
-  saveper(e:any){
-    let ciudadcita = e.target.value;
-    this.eleccionper = ciudadcita;
-    this.msgerror = null;
-  }
-  savemod(e:any){
-    let ciudadcita = e.target.value;
-    this.eleccionmod = ciudadcita;
-    this.msgerror = null;
-  }
+  
 
   Publicarempleo(): void {  
 
@@ -173,7 +140,6 @@ export class PublicarEmpleoComponent implements OnInit {
         break;
     }
 
-    console.log(this.expPuestoTrabajo);
 
     this.pPublicacion = this.puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].value;
 
@@ -202,41 +168,19 @@ export class PublicarEmpleoComponent implements OnInit {
       descripcionPuestoTrabajo: this.puestostrabajoform.controls['descripcionPuestoTrabajo'].value,
       periodoinicioPuestoTrabajo: this.pPublicacion
     }
-    
-    if (this.puestostrabajoform.invalid) {
-      this.message = "Complete los campos faltantes";
-      return;
-    }
+    console.log(puestowork)
 
-    try {
-      this.Datalistcity = this.Ciudades.filter(x => x.text === this.eleccioncity)[0];
-      console.log(this.Datalistcity.text);
-      this.Datalistjor = this.TipoPostulacion.filter(x => x.text === this.eleccionjornada)[0];
-      console.log(this.Datalistjor.text);
-      this.Datalistcat = this.Categorias.filter(x => x.text === this.eleccioncat)[0];
-      console.log(this.Datalistcat.text);
-      this.Datalisttime = this.Experiencia.filter(x => x.text === this.elecciontime)[0];
-      console.log(this.Datalisttime.text);
-      this.Datalistper = this.Publicacion.filter(x => x.text === this.eleccionper)[0];
-      console.log(this.Datalistper.text);
-      this.Datalistmod = this.Remoto.filter(x => x.text === this.eleccionmod)[0];
-      console.log(this.Datalistmod.text);
 
       this.PublicarEmpleoService.Publicar(this.currentUser.idUsuario, puestowork).subscribe(
         data => {
           this.message2 = data.message;
-
-         // window.location.href='/reclutador/'+this.currentUser.idUsuario+'/publicaciones'
+         window.location.href='/reclutador/'+this.currentUser.idUsuario+'/publicaciones'
       },
       err => {
         this.message2 = err.error.message;
        
       });
-      
-    } catch (error) {
-      this.msgerror = 'Elegir una opcion de la Lista';
-      this.message = 'Elegir una opcion de la Lista';
-    }
+    
   }
 
   cerrar(){

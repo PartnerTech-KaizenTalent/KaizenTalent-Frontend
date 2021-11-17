@@ -29,8 +29,6 @@ import { Error403Component } from './pages/error403/error403.component';
 import { AuthGuard } from './pages/guard/auth.guard';
 import { Auth2Guard } from './pages/guard/auth2.guard';
 
-
-
 const routes: Routes = [
   { path: 'signin/postulante', component: PostulanteSigninComponent, data: { title: 'Iniciar Sesión – Kaizen Talent' } },
   { path: 'signin/reclutador', component: ReclutadorSigninComponent, data: { title: 'Iniciar Sesión  Reclutador – Kaizen Talent' } },

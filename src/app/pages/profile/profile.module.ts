@@ -50,7 +50,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ConocimientosPipe,
     HabilidadesPipe,
     IdiomasPipe,
-    ProfilePostulantePipe, 
+    ProfilePostulantePipe,
   ],
   imports: [
     CommonModule,
