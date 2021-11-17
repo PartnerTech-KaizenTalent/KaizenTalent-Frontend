@@ -56,7 +56,7 @@
                     <div class="rounded shadow bg-white p-4">
                         <div class="custom-form">
                             <div id="message3"></div>
-                            <form method="post" name="puestostrabajoform" id="contact-form3" 
+                            <form name="puestostrabajoform" id="contact-form3" 
                                   [formGroup]="puestostrabajoform" (ngSubmit)="Publicarempleo()" enctype="multipart/form-data" >
                                 <h4 class="text-dark mb-3">Publicar Empleo :</h4>
                                 <div class="row">
@@ -96,19 +96,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Tipo de Jornada</label>
-                                            <div class="form-button">
-
-                                                <input (change)="savejor($event)"  type="form-control required" class="form-control demo-default" list="tpostulacion" name="tpostulacion" onfocus="this.value=''"
-                                                        placeholder="Tipo de Jornada" formControlName="tipojornadaPuestoTrabajo" required 
-                                                        [ngClass]="{
-                                                            'is-invalid': puestostrabajoform.controls['tipojornadaPuestoTrabajo'].invalid && 
-                                                                         (puestostrabajoform.controls['tipojornadaPuestoTrabajo'].dirty || 
-                                                                         puestostrabajoform.controls['tipojornadaPuestoTrabajo'].touched) , 
-                                                              'is-valid': puestostrabajoform.controls['tipojornadaPuestoTrabajo'].valid}">
-
-                                                <datalist id="tpostulacion">
+                                            <div class="form-button">                                             
+                                                <select class="form-control demo-default" formControlName="tipojornadaPuestoTrabajo" required 
+                                                [ngClass]="{
+                                                    'is-invalid': puestostrabajoform.controls['tipojornadaPuestoTrabajo'].invalid && 
+                                                                 (puestostrabajoform.controls['tipojornadaPuestoTrabajo'].dirty || 
+                                                                 puestostrabajoform.controls['tipojornadaPuestoTrabajo'].touched) , 
+                                                      'is-valid': puestostrabajoform.controls['tipojornadaPuestoTrabajo'].valid}">
                                                     <option *ngFor="let tpostulacion of TipoPostulacion" value="{{tpostulacion.value}}">{{tpostulacion.text}}</option>       
-                                                </datalist>
+                                                </select>
 
                                                 <div class="invalid-feedback">
                                                     <span class="text-danger" *ngIf="puestostrabajoform.controls['tipojornadaPuestoTrabajo'].hasError('required')">
@@ -123,16 +119,14 @@
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Ciudad</label>
                                             <div class="form-button">
-                                                <input (change)="savecity($event)" type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
-                                                       onfocus="this.value=''" formControlName="ciudadPuestoTrabajo" required
+                                                <select class="form-control demo-default" required formControlName="ciudadPuestoTrabajo" 
                                                        [ngClass]="{
                                                         'is-invalid': puestostrabajoform.controls['ciudadPuestoTrabajo'].invalid && 
                                                                      (puestostrabajoform.controls['ciudadPuestoTrabajo'].dirty || 
                                                                      puestostrabajoform.controls['ciudadPuestoTrabajo'].touched) , 
-                                                          'is-valid': puestostrabajoform.controls['ciudadPuestoTrabajo'].valid}" >
-                                                <datalist id="ciudad">
-                                                    <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
-                                                </datalist>
+                                                          'is-valid': puestostrabajoform.controls['ciudadPuestoTrabajo'].valid}">
+                                                      <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
+                                                </select>                                                
 
                                                 <div class="invalid-feedback">
                                                     <span class="text-danger" *ngIf="puestostrabajoform.controls['ciudadPuestoTrabajo'].hasError('required')">
@@ -152,34 +146,32 @@
                                             <label class="text-muted">Sueldo</label>
                                             <input type="number"  class="form-control resume" formControlName="sueldoPuestoTrabajo" 
                                             [ngClass]="{
-                                                'is-invalid': puestostrabajoform.controls['ciudadPuestoTrabajo'].invalid && 
-                                                             (puestostrabajoform.controls['ciudadPuestoTrabajo'].dirty || 
-                                                             puestostrabajoform.controls['ciudadPuestoTrabajo'].touched) , 
-                                                  'is-valid': puestostrabajoform.controls['ciudadPuestoTrabajo'].valid}" >
+                                                'is-invalid': puestostrabajoform.controls['sueldoPuestoTrabajo'].invalid && 
+                                                             (puestostrabajoform.controls['sueldoPuestoTrabajo'].dirty || 
+                                                             puestostrabajoform.controls['sueldoPuestoTrabajo'].touched) , 
+                                                  'is-valid': puestostrabajoform.controls['sueldoPuestoTrabajo'].valid}" >
 
                                             <div class="invalid-feedback">
-                                                <span class="text-danger" *ngIf="puestostrabajoform.controls['sueldoUsuario'].hasError('min')">
+                                                <span class="text-danger" *ngIf="puestostrabajoform.controls['sueldoPuestoTrabajo'].hasError('min')">
                                                      El sueldo no puede ser menor que uno
                                                 </span>
-                                            </div>                                                    
-                                               
-                                        </div>
-                                        
+                                            </div>
+                                        </div>                                        
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Categoría de Empleo</label>
                                             <div class="form-button">
-                                                <input (change)="savecat($event)" type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
-                                                       onfocus="this.value=''" formControlName="categoriaPuestoTrabajo" required 
-                                                       [ngClass]="{
-                                                        'is-invalid': puestostrabajoform.controls['categoriaPuestoTrabajo'].invalid && 
-                                                                     (puestostrabajoform.controls['categoriaPuestoTrabajo'].dirty || 
-                                                                     puestostrabajoform.controls['categoriaPuestoTrabajo'].touched) , 
-                                                          'is-valid': puestostrabajoform.controls['categoriaPuestoTrabajo'].valid}">
-                                                <datalist id="categoria">
+                                         
+                                                <select id="categoria" class="form-control demo-default" formControlName="categoriaPuestoTrabajo" required 
+                                                [ngClass]="{
+                                                 'is-invalid': puestostrabajoform.controls['categoriaPuestoTrabajo'].invalid && 
+                                                              (puestostrabajoform.controls['categoriaPuestoTrabajo'].dirty || 
+                                                              puestostrabajoform.controls['categoriaPuestoTrabajo'].touched) , 
+                                                   'is-valid': puestostrabajoform.controls['categoriaPuestoTrabajo'].valid}">
                                                     <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>                           
-                                                </datalist>
+                                                </select>
                                                 <div class="invalid-feedback">
                                                     <span class="text-danger" *ngIf="puestostrabajoform.controls['categoriaPuestoTrabajo'].hasError('required')">
                                                         No puede dejar este campo vacío
@@ -198,16 +190,15 @@
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Tiempo de Experiencia</label>
                                             <div class="form-button">
-                                                <input (change)="savetime($event)" type="form-control" class="form-control demo-default" list="experiencia" placeholder="Experiencia" 
-                                                       onfocus="this.value=''"    formControlName="experienciaPuestoTrabajo" required
-                                                       [ngClass]="{
-                                                        'is-invalid': puestostrabajoform.controls['experienciaPuestoTrabajo'].invalid && 
-                                                                     (puestostrabajoform.controls['experienciaPuestoTrabajo'].dirty || 
-                                                                     puestostrabajoform.controls['experienciaPuestoTrabajo'].touched) , 
-                                                          'is-valid': puestostrabajoform.controls['experienciaPuestoTrabajo'].valid}">
-                                                <datalist id="experiencia">
+                                                
+                                                <select id="experiencia" class="form-control demo-default" formControlName="experienciaPuestoTrabajo" required
+                                                [ngClass]="{
+                                                 'is-invalid': puestostrabajoform.controls['experienciaPuestoTrabajo'].invalid && 
+                                                              (puestostrabajoform.controls['experienciaPuestoTrabajo'].dirty || 
+                                                              puestostrabajoform.controls['experienciaPuestoTrabajo'].touched) , 
+                                                   'is-valid': puestostrabajoform.controls['experienciaPuestoTrabajo'].valid}">
                                                     <option *ngFor="let experiencia of Experiencia" value="{{experiencia.text}}" >{{experiencia.text}}</option>                           
-                                                </datalist>
+                                                </select>
                                                 <div class="invalid-feedback">
                                                     <span class="text-danger" *ngIf="puestostrabajoform.controls['experienciaPuestoTrabajo'].hasError('required')">
                                                         No puede dejar este campo vacío
@@ -221,17 +212,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Periodo de Publicación</label>
-                                            <div class="form-button">
-                                                <input (change)="saveper($event)" type="form-control" class="form-control demo-default" list="publicacion" placeholder="Tiempo de publicación" 
-                                                       onfocus="this.value=''" formControlName="periodopublicacionPuestoTrabajo" required 
-                                                       [ngClass]="{
-                                                        'is-invalid': puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].invalid && 
-                                                                     (puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].dirty || 
-                                                                     puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].touched) , 
-                                                          'is-valid': puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].valid}">
-                                                <datalist id="publicacion">
+                                            <div class="form-button">                                                
+                                                <select id="publicacion" class="form-control demo-default" formControlName="periodopublicacionPuestoTrabajo" required 
+                                                [ngClass]="{
+                                                 'is-invalid': puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].invalid && 
+                                                              (puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].dirty || 
+                                                              puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].touched) , 
+                                                   'is-valid': puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].valid}">
                                                     <option *ngFor="let publicacion of Publicacion" value="{{publicacion.text}}" >{{publicacion.text}}</option>                           
-                                                </datalist>
+                                                </select>
                                                 <div class="invalid-feedback">
                                                     <span class="text-danger" *ngIf="puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].hasError('required')">
                                                         No puede dejar este campo vacío
@@ -250,16 +239,15 @@
                                         <div class="form-group app-label mt-2">
                                             <label class="text-muted">Modalidad del Puesto de Trabajo</label>
                                             <div class="form-button">
-                                                <input (change)="savemod($event)" type="form-control" class="form-control demo-default" list="remoto" placeholder="Modalidad" 
-                                                       onfocus="this.value=''"   formControlName="trabajoremotoPuestoTrabajo" required 
-                                                       [ngClass]="{
-                                                        'is-invalid': puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].invalid && 
-                                                                     (puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].dirty || 
-                                                                     puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].touched) , 
-                                                          'is-valid': puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].valid}">
-                                                <datalist id="remoto">
-                                                    <option *ngFor="let remoto of Remoto" >{{remoto.text}}</option>                           
-                                                </datalist>
+                                                  
+                                                <select id="remoto" class="form-control demo-default"  formControlName="trabajoremotoPuestoTrabajo" required 
+                                                [ngClass]="{
+                                                 'is-invalid': puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].invalid && 
+                                                              (puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].dirty || 
+                                                              puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].touched) , 
+                                                   'is-valid': puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].valid}">
+                                                    <option *ngFor="let remoto of Remoto" value="{{remoto.text}}">{{remoto.text}}</option>                           
+                                                </select>
                                                 <div class="invalid-feedback">
                                                     <span class="text-danger" *ngIf="puestostrabajoform.controls['trabajoremotoPuestoTrabajo'].hasError('required')">
                                                         No puede dejar este campo vacío
