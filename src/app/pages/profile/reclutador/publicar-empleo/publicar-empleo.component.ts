@@ -168,8 +168,6 @@ export class PublicarEmpleoComponent implements OnInit {
       descripcionPuestoTrabajo: this.puestostrabajoform.controls['descripcionPuestoTrabajo'].value,
       periodoinicioPuestoTrabajo: this.pPublicacion
     }
-    console.log(puestowork)
-
 
       this.PublicarEmpleoService.Publicar(this.currentUser.idUsuario, puestowork).subscribe(
         data => {
