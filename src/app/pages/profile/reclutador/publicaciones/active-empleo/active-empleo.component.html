@@ -142,19 +142,19 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-10">
-                                <div class="rounded shadow bg-white p-4">
+                                <div class="rounded shadow bg-white ">
                                     <div class="custom-form">
                                         <div class="modal-content" style="border: transparent;">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Empleo</h5>
+                                            <div class="modal-header my-0">
+                                                <h5 class="modal-title w-100 text-center my-0 px-2" id="exampleModalLabel">Editar Empleo</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>                                          
 
                                                 <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group app-label mt-2">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group pt-2 pb-2 pl-4 pr-4 mb-0">
                                                             <label class="text-muted">Título del puesto </label>
                                                             <input id="company-name" type="text" class="form-control resume" placeholder=""  name="nombrePuestoTrabajo" id="nombrePuestoTrabajo"
                                                                 formControlName="nombrePuestoTrabajo" [ngModel]="nombrePuestoTrabajo" required
@@ -187,7 +187,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label mt-0 pl-4 pr-4 mb-0 pb-0">
                                                             <label class="text-muted">Tipo de Jornada</label>
                                                             <div class="form-button">
 
@@ -213,7 +213,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label mt-0 px-4 espacioCiudad">
                                                             <label class="text-muted">Ciudad</label>
                                                             <div class="form-button">
                                                                 <input (change)="savecity($event)" type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
@@ -238,9 +238,9 @@
                                                     </div>                                    
                                                 </div>
 
-                                                <div class="row">
+                                                <div class="row my-0 py-0">
                                                     <div class="col-md-6">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label px-4 espacioCiudad">
                                                             <label class="text-muted">Sueldo</label>
                                                             <input type="number"  class="form-control resume" placeholder="" formControlName="sueldoPuestoTrabajo" [ngModel]="sueldoPuestoTrabajo" required 
                                                                 [ngClass]="{
@@ -257,7 +257,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label mt-0 pl-4 pr-4 mb-0 pb-0 espacioCiudad">
                                                             <label class="text-muted">Categoría de Empleo</label>
                                                             <div class="form-button">
                                                                 <input  (change)="savecat($event)" type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
@@ -283,7 +283,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label mt-0 px-4 espacioCiudad">
                                                             <label class="text-muted">Tiempo de Experiencia</label>
                                                             <div class="form-button">
                                                                 <input  (change)="savetime($event)" type="form-control" class="form-control demo-default" list="experiencia" placeholder="Experiencia" 
@@ -307,7 +307,7 @@
                                                     </div> 
                                                     
                                                     <div class="col-md-6">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label mt-0 px-4 espacioCiudad">
                                                             <label class="text-muted">Modalidad del Puesto de Trabajo</label>
                                                             <div class="form-button">
                                                                 <input  (change)="savemod($event)" type="form-control" class="form-control demo-default" list="remoto" placeholder="Modalidad" 
@@ -338,7 +338,7 @@
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="form-group app-label mt-2">
+                                                        <div class="form-group app-label mt-0 px-4 espacioCiudad">
                                                             <label class="text-muted">Descripción del Empleo</label>
                                                             <textarea id="description" rows="6" class="form-control resume" placeholder="" formControlName="descripcionPuestoTrabajo" [ngModel]="descripcionPuestoTrabajo" ></textarea>
                                                         </div>
@@ -347,10 +347,8 @@
                                                 
 
                                                 <div class="row">                                                    
-                                                    <div class="col-md-12">
-                                                        <button type="button" style="border-radius:10px; float: right;" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                        <label for="" style="float: right;"> &nbsp;&nbsp;&nbsp; </label>
-                                                        <button type="submit" style="border-radius:10px; float: right;" class="btn btn-primary" [disabled]="!puestosupdateform.valid">Actualizar Empleo</button>
+                                                    <div class="col-md-12 d-flex justify-content-center">
+                                                        <button type="submit" style="border-radius:10px; height: 85%; text-align: center; font-size: 19px; margin-top: -3%!important; display: flex; align-items: center; justify-content: center;" class="btn btn-primary text-center m-1" [disabled]="!puestosupdateform.valid">Actualizar Empleo</button>
                                                     </div>
                                                 </div>
                                         </div>

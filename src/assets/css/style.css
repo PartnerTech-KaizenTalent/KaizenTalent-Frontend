@@ -2783,12 +2783,15 @@ hr {
     */
   }
   .modal-dialog{
-    position: fixed!important;
+    /* position: fixed!important; */
     top: auto!important;
     right: auto!important;
     left: auto!important;
-    overflow-y: auto!important;
-    top: 8%!important;
+    /* overflow-y: auto!important;  */
+    top: 2%!important;
+  }
+  .espacioCiudad{
+    margin-top: -3%!important;
   }
   .modalIdiomas{
     position: fixed!important;
